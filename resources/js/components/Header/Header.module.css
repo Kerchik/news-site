@@ -1,0 +1,16 @@
+.header {
+    background-color: transparent;
+    display: flex;
+}
+.ul li {
+    display: inline-block;
+    padding-left: 8px;
+}
+.ul li a {
+    text-decoration: none;
+    color: #ebe4e1;
+}
+.ul li a:hover {
+    text-decoration: none;
+    color: #c7c4c3;
+}

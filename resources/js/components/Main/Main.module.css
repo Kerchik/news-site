@@ -1,0 +1,15 @@
+.main {
+    border-radius: 6px;
+    color: white;
+    background-color: #ebe4e1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.no-content {
+    width: 100%;
+    text-align: center;
+}
+.no-content h2{
+    color: #000;
+}
