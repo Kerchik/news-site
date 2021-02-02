@@ -1,5 +1,4 @@
 import React from 'react'
-import '../App.css'
 import s from './Main.module.css'
 import NewsBlock from './NewsBlock/NewsBlock'
 

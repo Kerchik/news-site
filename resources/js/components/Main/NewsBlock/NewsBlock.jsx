@@ -1,5 +1,4 @@
 import React from 'react'
-import '../../App.css'
 import s from './NewsBlock.module.css'
 
 const NewsBlock = ({props}) => {
