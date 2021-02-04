@@ -33411,27 +33411,55 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Main_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Main.module.css */ "./resources/js/components/Main/Main.module.css");
 /* harmony import */ var _Main_module_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_Main_module_css__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _NewsBlock_NewsBlock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NewsBlock/NewsBlock */ "./resources/js/components/Main/NewsBlock/NewsBlock.jsx");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
 
 var Main = function Main() {
-  var news = [{
-    id: 1,
-    title: 'Loremipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum',
-    content: 'Lorem Ipsum Lorem Ipsum Lorem Ipsum',
-    photo: 'https://cnet2.cbsistatic.com/img/-e95qclc6pwSnGE2YccC2oLDW_8=/1200x675/2020/04/16/7d6d8ed2-e10c-4f91-b2dd-74fae951c6d8/bazaart-edit-app.jpg'
-  }, {
-    id: 2,
-    title: 'Title',
-    content: 'Content Content Content',
-    photo: 'https://iso.500px.com/wp-content/uploads/2016/03/stock-photo-142984111.jpg'
-  }, {
-    id: 3,
-    title: 'Title',
-    content: 'Content Content Content',
-    photo: 'https://iso.500px.com/wp-content/uploads/2016/03/stock-photo-142984111.jpg'
-  }];
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      news = _useState2[0],
+      setNews = _useState2[1]; // const news = [
+  //     {
+  //         id: 1,
+  //         title: 'Loremipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum',
+  //         content: 'Lorem Ipsum Lorem Ipsum Lorem Ipsum',
+  //         photo: 'https://cnet2.cbsistatic.com/img/-e95qclc6pwSnGE2YccC2oLDW_8=/1200x675/2020/04/16/7d6d8ed2-e10c-4f91-b2dd-74fae951c6d8/bazaart-edit-app.jpg'
+  //     },
+  //     {
+  //         id: 2,
+  //         title: 'Title',
+  //         content: 'Content Content Content',
+  //         photo: 'https://iso.500px.com/wp-content/uploads/2016/03/stock-photo-142984111.jpg'
+  //     },
+  //     {
+  //         id: 3,
+  //         title: 'Title',
+  //         content: 'Content Content Content',
+  //         photo: 'https://iso.500px.com/wp-content/uploads/2016/03/stock-photo-142984111.jpg'
+  //     }
+  // ]
+
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    fetch('/api/news').then(function (response) {
+      return response.json();
+    }).then(function (news) {
+      setNews(news);
+    });
+  }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "content-width mt ".concat(_Main_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.main)
   }, news.map(function (n) {
