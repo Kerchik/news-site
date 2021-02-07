@@ -1,14 +1,17 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import s from './NewsBlock.module.css'
 
 const NewsBlock = ({props}) => {
     return (
-        <div className={s['news-block']}>
-            <img src={props.photo} className={s['news-block-photo']}/>
-            <div>
-                <span className={s['news-block-title']}>{props.title}</span>
+        <Link to={`/news/${props.id}`}>
+            <div className={s['news-block']}>
+                <img src={props.photo} className={s['news-block-photo']}/>
+                <div>
+                    <span className={s['news-block-title']}>{props.title}</span>
+                </div>
             </div>
-        </div>
+        </Link>
     )
 }
 

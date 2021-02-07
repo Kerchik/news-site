@@ -11,4 +11,9 @@ class NewsController extends Controller
 	{
 	    return News::all();
 	}
+
+    public function viewArticle($id)
+	{
+	    return News::where('id', $id)->first();
+	}
 }
