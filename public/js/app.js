@@ -217,14 +217,16 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".NewsArticle-module__main___1HZW2 {\r\n    border-radius: 6px;\r\n    background-color: #ebe4e1;\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    justify-content: space-between;\r\n}\r\n.NewsArticle-module__title___3S9eC {\r\n    font-size: 18px;\r\n    font-weight: bold;\r\n    display: block;\r\n    padding: 25px;\r\n}\r\n.NewsArticle-module__content___3cci3 {\r\n    padding-left: 25px;\r\n    padding-right: 25px;\r\n}\r\n.NewsArticle-module__edit-button___29Y7z {\r\n    float: right;\r\n}", ""]);
+exports.push([module.i, ".NewsArticle-module__main___1HZW2 {\r\n    border-radius: 6px;\r\n    background-color: #ebe4e1;\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    justify-content: space-between;\r\n}\r\n.NewsArticle-module__title___3S9eC {\r\n    font-size: 18px;\r\n    font-weight: bold;\r\n    display: block;\r\n    padding: 25px;\r\n}\r\n.NewsArticle-module__content___3cci3 {\r\n    padding-left: 25px;\r\n    padding-right: 25px;\r\n}\r\n.NewsArticle-module__edit-button___29Y7z {\r\n    float: right;\r\n}\r\n.NewsArticle-module__title-input___3MtT0 {\r\n    width: 100%;\r\n    margin: 10px 25px;\r\n}\r\n.NewsArticle-module__edit-content-button___1GjLY {\r\n    width: 200px;\r\n    margin-left: 10px;\r\n}", ""]);
 
 // exports
 exports.locals = {
 	"main": "NewsArticle-module__main___1HZW2",
 	"title": "NewsArticle-module__title___3S9eC",
 	"content": "NewsArticle-module__content___3cci3",
-	"edit-button": "NewsArticle-module__edit-button___29Y7z"
+	"edit-button": "NewsArticle-module__edit-button___29Y7z",
+	"title-input": "NewsArticle-module__title-input___3MtT0",
+	"edit-content-button": "NewsArticle-module__edit-content-button___1GjLY"
 };
 
 /***/ }),
@@ -33578,16 +33580,43 @@ var NewsArticle = function NewsArticle(props) {
     }));
   };
 
+  var editContent = function editContent() {
+    setState(_objectSpread(_objectSpread({}, state), {}, {
+      showEditContent: true
+    }));
+  };
+
   var handleTitleChange = function handleTitleChange(event) {
     setState(_objectSpread(_objectSpread({}, state), {}, {
       title: event.target.value
     }));
   };
 
-  var finishTitleChange = function finishTitleChange(event) {
+  var handleContentChange = function handleContentChange(event) {
+    setState(_objectSpread(_objectSpread({}, state), {}, {
+      content: event.target.value
+    }));
+  };
+
+  var finishTitleChange = function finishTitleChange() {
     setState(_objectSpread(_objectSpread({}, state), {}, {
       showEditTitle: false
     }));
+  };
+
+  var finishContentChange = function finishContentChange() {
+    setState(_objectSpread(_objectSpread({}, state), {}, {
+      showEditContent: false
+    }));
+  };
+
+  var saveChanges = function saveChanges() {
+    fetch("/api/news/".concat(id), {
+      method: 'POST',
+      body: JSON.stringify(state)
+    }).then(function (response) {
+      console.log(response);
+    });
   };
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
@@ -33595,7 +33624,8 @@ var NewsArticle = function NewsArticle(props) {
     title: 'null',
     content: null,
     photo: null,
-    showEditTitle: false
+    showEditTitle: false,
+    showEditContent: false
   }),
       _useState2 = _slicedToArray(_useState, 2),
       state = _useState2[0],
@@ -33626,16 +33656,31 @@ var NewsArticle = function NewsArticle(props) {
     onClick: editTitle,
     className: "btn btn-primary ".concat(_NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_2___default.a['edit-button'])
   }, "Edit")), state.showEditTitle && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    className: "col-12",
+    className: _NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_2___default.a['title-input'],
     value: state.title,
     onChange: handleTitleChange,
     onBlur: finishTitleChange
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }), state.showEditContent || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12 ".concat(_NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_2___default.a.content),
     dangerouslySetInnerHTML: {
       __html: state.content
     }
-  })));
+  }), state.showEditContent || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 w-100 my-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: editContent,
+    className: "btn btn-primary ".concat(_NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_2___default.a['edit-content-button'])
+  }, "Edit")), state.showEditContent && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: _NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_2___default.a['title-input'],
+    value: state.content,
+    onChange: handleContentChange,
+    onBlur: finishContentChange
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: saveChanges,
+    className: "btn btn-success"
+  }, "Save"))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (NewsArticle);

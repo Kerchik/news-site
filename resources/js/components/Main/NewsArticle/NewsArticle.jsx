@@ -12,6 +12,13 @@ const NewsArticle = (props) => {
         })
     }
 
+    const editContent = () => {
+        setState({
+            ...state,
+            showEditContent: true
+        })
+    }
+
     const handleTitleChange = (event) => {
         setState({
             ...state,
@@ -19,10 +26,31 @@ const NewsArticle = (props) => {
         })
     }
 
-    const finishTitleChange = (event) => {
+    const handleContentChange = (event) => {
+        setState({
+            ...state,
+            content: event.target.value
+        })
+    }
+
+    const finishTitleChange = () => {
         setState({
             ...state,
             showEditTitle: false
+        })
+    }
+
+    const finishContentChange = () => {
+        setState({
+            ...state,
+            showEditContent: false
+        })
+    }
+
+    const saveChanges = () => {
+        fetch(`/api/news/${id}`, { method: 'POST', body: JSON.stringify(state) })
+        .then(response => {
+            console.log(response)
         })
     }
 
@@ -31,7 +59,8 @@ const NewsArticle = (props) => {
         title: 'null',
         content: null,
         photo: null,
-        showEditTitle: false
+        showEditTitle: false,
+        showEditContent: false,
     })
 
     useEffect(() => {
@@ -58,8 +87,15 @@ const NewsArticle = (props) => {
                     {state.title}
                     <button onClick={editTitle} className={`btn btn-primary ${s['edit-button']}`}>Edit</button>
                 </span> }
-                {state.showEditTitle && <input className="col-12" value={state.title} onChange={handleTitleChange} onBlur={finishTitleChange} />}
-                <div className={`col-12 ${s.content}`} dangerouslySetInnerHTML={{__html: state.content}}></div>
+                {state.showEditTitle && <input className={s['title-input']} value={state.title} onChange={handleTitleChange} onBlur={finishTitleChange} />}
+                { state.showEditContent || <div className={`col-12 ${s.content}`} dangerouslySetInnerHTML={{__html: state.content}}></div> }
+                { state.showEditContent || <div className="col-12 w-100 my-2">
+                    <button onClick={editContent} className={`btn btn-primary ${s['edit-content-button']}`}>Edit</button>
+                </div> }
+                {state.showEditContent && <input className={s['title-input']} value={state.content} onChange={handleContentChange} onBlur={finishContentChange} />}
+                <div className="col-12">
+                    <button onClick={saveChanges} className="btn btn-success">Save</button>
+                </div>
             </div>
         </div>
     )

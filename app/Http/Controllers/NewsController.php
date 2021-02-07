@@ -16,4 +16,16 @@ class NewsController extends Controller
 	{
 	    return News::where('id', $id)->first();
 	}
+
+    public function editArticle(Request $request, $id)
+	{
+	    $data = $request->json()->all();
+		$news = News::where('id', $id)->first();
+
+		$news->title = $data['title'];
+		$news->content = $data['content'];
+
+		$news->save();
+
+	}
 }
