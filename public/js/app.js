@@ -264,7 +264,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".NewsBlock-module__news-block___3BCfl {\r\n    width: 48%;\r\n    height: 400px;\r\n    margin: 10px;\r\n}\r\n.NewsBlock-module__news-block-photo___2WUyq {\r\n    max-width: 100%;\r\n    width: 100%;\r\n    height: 350px;\r\n}\r\n.NewsBlock-module__news-block-title___dSbsB {\r\n    color: #222;\r\n    font-size: 18px;\r\n    font-weight: 500;\r\n    display: block;\r\n}\r\n.NewsBlock-module__news-block-title___dSbsB:hover {\r\n    color: #000;\r\n}\r\n@media (max-width: 1050px) {\r\n    .NewsBlock-module__news-block___3BCfl {\r\n        width: 100%;\r\n        height: auto;\r\n    }\r\n    .NewsBlock-module__news-block-photo___2WUyq {\r\n        height: auto;\r\n    }\r\n}", ""]);
+exports.push([module.i, ".NewsBlock-module__news-block___3BCfl {\r\n    height: 400px;\r\n    margin: 10px;\r\n}\r\n.NewsBlock-module__news-block-photo___2WUyq {\r\n    max-width: 100%;\r\n    width: 100%;\r\n    height: 350px;\r\n}\r\n.NewsBlock-module__news-block-title___dSbsB {\r\n    color: #222;\r\n    font-size: 18px;\r\n    font-weight: 500;\r\n    display: block;\r\n}\r\n.NewsBlock-module__news-block-title___dSbsB:hover {\r\n    color: #000;\r\n}\r\n@media (max-width: 1050px) {\r\n    .NewsBlock-module__news-block___3BCfl {\r\n        width: 100%;\r\n        height: auto;\r\n    }\r\n    .NewsBlock-module__news-block-photo___2WUyq {\r\n        height: auto;\r\n    }\r\n}", ""]);
 
 // exports
 exports.locals = {
@@ -33898,6 +33898,7 @@ __webpack_require__.r(__webpack_exports__);
 var NewsBlock = function NewsBlock(_ref) {
   var props = _ref.props;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "col-lg-6",
     to: "/news/".concat(props.id)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: _NewsBlock_module_css__WEBPACK_IMPORTED_MODULE_2___default.a['news-block']

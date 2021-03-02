@@ -4,7 +4,7 @@ import s from './NewsBlock.module.css'
 
 const NewsBlock = ({props}) => {
     return (
-        <Link to={`/news/${props.id}`}>
+        <Link className="col-lg-6" to={`/news/${props.id}`}>
             <div className={s['news-block']}>
                 <img src={props.photo} className={s['news-block-photo']}/>
                 <div>
