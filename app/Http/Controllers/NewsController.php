@@ -28,4 +28,22 @@ class NewsController extends Controller
 		$news->save();
 
 	}
+
+    public function addArticle(Request $request)
+	{
+	    $data = $request->json()->all();
+		$news = new News;
+
+		$news = new \App\Models\News([
+			'title' => $data['title'],
+			'content' => $data['content'],
+			'photo' => $data['photo'],
+			'author' => 1,
+			"created_at"=> now(),
+			"updated_at"=> now(),
+		]);
+
+		$news->save();
+
+	}
 }

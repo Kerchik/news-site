@@ -183,6 +183,27 @@ exports.locals = {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/Main/AddNews/AddNews.module.css":
+/*!*************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/components/Main/AddNews/AddNews.module.css ***!
+  \*************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".AddNews-module__add-news___O-pTw {\r\n    border-radius: 6px;\r\n    background-color: #ebe4e1;\r\n}", ""]);
+
+// exports
+exports.locals = {
+	"add-news": "AddNews-module__add-news___O-pTw"
+};
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/Main/Main.module.css":
 /*!**************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/components/Main/Main.module.css ***!
@@ -33425,10 +33446,10 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./resources/js/components/Main/Main.jsx":
-/*!***********************************************!*\
-  !*** ./resources/js/components/Main/Main.jsx ***!
-  \***********************************************/
+/***/ "./resources/js/components/Main/AddNews/AddNews.jsx":
+/*!**********************************************************!*\
+  !*** ./resources/js/components/Main/AddNews/AddNews.jsx ***!
+  \**********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -33436,9 +33457,14 @@ if(false) {}
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Main_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Main.module.css */ "./resources/js/components/Main/Main.module.css");
-/* harmony import */ var _Main_module_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_Main_module_css__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _NewsBlock_NewsBlock__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NewsBlock/NewsBlock */ "./resources/js/components/Main/NewsBlock/NewsBlock.jsx");
+/* harmony import */ var _AddNews_module_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./AddNews.module.css */ "./resources/js/components/Main/AddNews/AddNews.module.css");
+/* harmony import */ var _AddNews_module_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_AddNews_module_css__WEBPACK_IMPORTED_MODULE_1__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -33450,6 +33476,135 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+var AddNews = function AddNews() {
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    title: "",
+    content: "",
+    photo: ""
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      state = _useState2[0],
+      setState = _useState2[1];
+
+  var setTitle = function setTitle(event) {
+    setState(_objectSpread(_objectSpread({}, state), {}, {
+      title: event.target.value
+    }));
+  };
+
+  var setContent = function setContent(event) {
+    setState(_objectSpread(_objectSpread({}, state), {}, {
+      content: event.target.value
+    }));
+  };
+
+  var setPhoto = function setPhoto(event) {
+    setState(_objectSpread(_objectSpread({}, state), {}, {
+      photo: event.target.value
+    }));
+  };
+
+  var addNews = function addNews() {
+    fetch("/api/add-news", {
+      method: 'POST',
+      body: JSON.stringify(state)
+    }).then(function (response) {
+      console.log(response);
+    });
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "content-width row mx-auto mt ".concat(_AddNews_module_css__WEBPACK_IMPORTED_MODULE_1___default.a['add-news'])
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 my-2"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "w-100 my-1",
+    placeholder: "Title",
+    value: state.title,
+    onChange: setTitle
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+    className: "w-100 my-1",
+    placeholder: "Content",
+    value: state.content,
+    onChange: setContent
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    className: "w-100 my-1",
+    placeholder: "Photo",
+    value: state.photo,
+    onChange: setPhoto
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: addNews,
+    className: "btn btn-success w-100 my-1"
+  }, "Add")));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (AddNews);
+
+/***/ }),
+
+/***/ "./resources/js/components/Main/AddNews/AddNews.module.css":
+/*!*****************************************************************!*\
+  !*** ./resources/js/components/Main/AddNews/AddNews.module.css ***!
+  \*****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../../node_modules/css-loader??ref--6-1!../../../../../node_modules/postcss-loader/src??ref--6-2!./AddNews.module.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/Main/AddNews/AddNews.module.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./resources/js/components/Main/Main.jsx":
+/*!***********************************************!*\
+  !*** ./resources/js/components/Main/Main.jsx ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _Main_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Main.module.css */ "./resources/js/components/Main/Main.module.css");
+/* harmony import */ var _Main_module_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Main_module_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _NewsBlock_NewsBlock__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./NewsBlock/NewsBlock */ "./resources/js/components/Main/NewsBlock/NewsBlock.jsx");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -33489,14 +33644,19 @@ var Main = function Main() {
     });
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "content-width mt ".concat(_Main_module_css__WEBPACK_IMPORTED_MODULE_1___default.a.main)
-  }, news.map(function (n) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NewsBlock_NewsBlock__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    className: "content-width mt ".concat(_Main_module_css__WEBPACK_IMPORTED_MODULE_2___default.a.main)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "w-100",
+    to: "/add-news"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "btn btn-success w-100"
+  }, "Add article")), news.map(function (n) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_NewsBlock_NewsBlock__WEBPACK_IMPORTED_MODULE_3__["default"], {
       props: n,
       key: n.id
     });
   }), !news.length && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: _Main_module_css__WEBPACK_IMPORTED_MODULE_1___default.a['no-content']
+    className: _Main_module_css__WEBPACK_IMPORTED_MODULE_2___default.a['no-content']
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "No content added yet!")));
 };
 
@@ -33809,6 +33969,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Header_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Header/Header */ "./resources/js/components/Header/Header.jsx");
 /* harmony import */ var _components_Main_Main__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Main/Main */ "./resources/js/components/Main/Main.jsx");
 /* harmony import */ var _components_Main_NewsArticle_NewsArticle__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Main/NewsArticle/NewsArticle */ "./resources/js/components/Main/NewsArticle/NewsArticle.jsx");
+/* harmony import */ var _components_Main_AddNews_AddNews__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Main/AddNews/AddNews */ "./resources/js/components/Main/AddNews/AddNews.jsx");
+
 
 
 
@@ -33830,6 +33992,10 @@ function Router(props) {
     exact: true,
     path: "/news/:id",
     component: _components_Main_NewsArticle_NewsArticle__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    exact: true,
+    path: "/add-news",
+    component: _components_Main_AddNews_AddNews__WEBPACK_IMPORTED_MODULE_5__["default"]
   })))));
 }
 

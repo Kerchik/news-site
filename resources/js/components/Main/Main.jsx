@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import {Link} from 'react-router-dom'
 import s from './Main.module.css'
 import NewsBlock from './NewsBlock/NewsBlock'
 
@@ -36,6 +37,9 @@ const Main = () => {
     }, [])
     return (
         <div className={`content-width mt ${s.main}`}>
+            <Link className="w-100" to="/add-news">
+                <button className="btn btn-success w-100">Add article</button>
+            </Link>
             { news.map(n => <NewsBlock props={n} key={n.id} />) }
             {!news.length && <div className={s['no-content']}><h2>No content added yet!</h2></div>}
         </div>

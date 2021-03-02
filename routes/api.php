@@ -12,3 +12,5 @@ Route::get('news', 'newsController@index');
 Route::get('news/{id}', 'newsController@viewArticle');
 
 Route::post('news/{id}', 'newsController@editArticle');
+
+Route::post('add-news', 'newsController@addArticle');
