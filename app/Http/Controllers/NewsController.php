@@ -29,6 +29,15 @@ class NewsController extends Controller
 
 	}
 
+    public function removeArticle($id)
+	{
+	    $news = News::where('id', $id)->first();
+		$news->delete();
+		return response('Article has been deleted!', 200)
+                  ->header('Content-Type', 'text/plain');
+
+	}
+
     public function addArticle(Request $request)
 	{
 	    $data = $request->json()->all();

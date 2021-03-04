@@ -1,6 +1,6 @@
 .news-block {
     height: 400px;
-    margin: 10px;
+    margin-top: 5px;
 }
 .news-block-photo {
     max-width: 100%;
@@ -16,12 +16,8 @@
 .news-block-title:hover {
     color: #000;
 }
-@media (max-width: 1050px) {
-    .news-block {
-        width: 100%;
-        height: auto;
-    }
-    .news-block-photo {
-        height: auto;
-    }
+.news-button-container {
+    position: absolute;
+    top: 5px;
+    right: 20px;
 }

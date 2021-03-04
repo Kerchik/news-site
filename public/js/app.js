@@ -238,7 +238,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".NewsArticle-module__main___1HZW2 {\r\n    border-radius: 6px;\r\n    background-color: #ebe4e1;\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    justify-content: space-between;\r\n}\r\n.NewsArticle-module__title___3S9eC {\r\n    font-size: 18px;\r\n    font-weight: bold;\r\n    display: block;\r\n    padding: 25px;\r\n}\r\n.NewsArticle-module__content___3cci3 {\r\n    padding-left: 25px;\r\n    padding-right: 25px;\r\n}\r\n.NewsArticle-module__edit-button___29Y7z {\r\n    float: right;\r\n}\r\n.NewsArticle-module__title-input___3MtT0 {\r\n    width: 100%;\r\n    margin: 10px 25px;\r\n}\r\n.NewsArticle-module__edit-content-button___1GjLY {\r\n    width: 200px;\r\n    margin-left: 10px;\r\n}", ""]);
+exports.push([module.i, ".NewsArticle-module__main___1HZW2 {\r\n    border-radius: 6px;\r\n    background-color: #ebe4e1;\r\n    display: flex;\r\n    flex-wrap: wrap;\r\n    justify-content: space-between;\r\n}\r\n.NewsArticle-module__title___3S9eC {\r\n    font-size: 18px;\r\n    font-weight: bold;\r\n    display: block;\r\n    padding: 25px;\r\n    padding-top: 5px;\r\n}\r\n.NewsArticle-module__content___3cci3 {\r\n    padding-left: 25px;\r\n    padding-right: 25px;\r\n}\r\n.NewsArticle-module__edit-button___29Y7z {\r\n    cursor: pointer;\r\n    margin-left: 0.5rem;\r\n}\r\n.NewsArticle-module__title-input___3MtT0 {\r\n    width: 100%;\r\n    margin: 10px 25px;\r\n}\r\n.NewsArticle-module__edit-content-button___1GjLY {\r\n    width: 200px;\r\n    margin-left: 10px;\r\n}", ""]);
 
 // exports
 exports.locals = {
@@ -264,13 +264,14 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, ".NewsBlock-module__news-block___3BCfl {\r\n    height: 400px;\r\n    margin: 10px;\r\n}\r\n.NewsBlock-module__news-block-photo___2WUyq {\r\n    max-width: 100%;\r\n    width: 100%;\r\n    height: 350px;\r\n}\r\n.NewsBlock-module__news-block-title___dSbsB {\r\n    color: #222;\r\n    font-size: 18px;\r\n    font-weight: 500;\r\n    display: block;\r\n}\r\n.NewsBlock-module__news-block-title___dSbsB:hover {\r\n    color: #000;\r\n}\r\n@media (max-width: 1050px) {\r\n    .NewsBlock-module__news-block___3BCfl {\r\n        width: 100%;\r\n        height: auto;\r\n    }\r\n    .NewsBlock-module__news-block-photo___2WUyq {\r\n        height: auto;\r\n    }\r\n}", ""]);
+exports.push([module.i, ".NewsBlock-module__news-block___3BCfl {\r\n    height: 400px;\r\n    margin-top: 5px;\r\n}\r\n.NewsBlock-module__news-block-photo___2WUyq {\r\n    max-width: 100%;\r\n    width: 100%;\r\n    height: 350px;\r\n}\r\n.NewsBlock-module__news-block-title___dSbsB {\r\n    color: #222;\r\n    font-size: 18px;\r\n    font-weight: 500;\r\n    display: block;\r\n}\r\n.NewsBlock-module__news-block-title___dSbsB:hover {\r\n    color: #000;\r\n}\r\n.NewsBlock-module__news-button-container___3i81H {\r\n    position: absolute;\r\n    top: 5px;\r\n    right: 20px;\r\n}\r\n", ""]);
 
 // exports
 exports.locals = {
 	"news-block": "NewsBlock-module__news-block___3BCfl",
 	"news-block-photo": "NewsBlock-module__news-block-photo___2WUyq",
-	"news-block-title": "NewsBlock-module__news-block-title___dSbsB"
+	"news-block-title": "NewsBlock-module__news-block-title___dSbsB",
+	"news-button-container": "NewsBlock-module__news-button-container___3i81H"
 };
 
 /***/ }),
@@ -33694,10 +33695,10 @@ if(false) {}
 
 /***/ }),
 
-/***/ "./resources/js/components/Main/NewsArticle/NewsArticle.jsx":
-/*!******************************************************************!*\
-  !*** ./resources/js/components/Main/NewsArticle/NewsArticle.jsx ***!
-  \******************************************************************/
+/***/ "./resources/js/components/Main/NewsArticle/Edit.jsx":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/Main/NewsArticle/Edit.jsx ***!
+  \***********************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -33706,8 +33707,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NewsArticle.module.css */ "./resources/js/components/Main/NewsArticle/NewsArticle.module.css");
-/* harmony import */ var _NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _img_edit_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../img/edit.png */ "./resources/js/img/edit.png");
+/* harmony import */ var _img_edit_png__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_img_edit_png__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./NewsArticle.module.css */ "./resources/js/components/Main/NewsArticle/NewsArticle.module.css");
+/* harmony import */ var _NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_3__);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -33730,7 +33733,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-var NewsArticle = function NewsArticle(props) {
+
+var Edit = function Edit(props) {
   var _useParams = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["useParams"])(),
       id = _useParams.id;
 
@@ -33804,34 +33808,36 @@ var NewsArticle = function NewsArticle(props) {
     });
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "content-width mt ".concat(_NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_2___default.a.main)
+    className: "content-width mt ".concat(_NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_3___default.a.main)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: state.photo,
     className: "col-12"
   }), state.showEditTitle || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "col-12 ".concat(_NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_2___default.a.title)
-  }, state.title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "col-12 ".concat(_NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_3___default.a.title)
+  }, state.title, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     onClick: editTitle,
-    className: "btn btn-primary ".concat(_NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_2___default.a['edit-button'])
-  }, "Edit")), state.showEditTitle && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    className: _NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_2___default.a['title-input'],
+    src: _img_edit_png__WEBPACK_IMPORTED_MODULE_2___default.a,
+    className: _NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_3___default.a['edit-button']
+  })), state.showEditTitle && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    className: _NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_3___default.a['title-input'],
     value: state.title,
     onChange: handleTitleChange,
     onBlur: finishTitleChange
   }), state.showEditContent || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "col-12 ".concat(_NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_2___default.a.content),
+    className: "col-12 ".concat(_NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_3___default.a.content),
     dangerouslySetInnerHTML: {
       __html: state.content
     }
   }), state.showEditContent || /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "col-12 w-100 my-2"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     onClick: editContent,
-    className: "btn btn-primary ".concat(_NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_2___default.a['edit-content-button'])
-  }, "Edit")), state.showEditContent && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-    className: _NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_2___default.a['title-input'],
+    src: _img_edit_png__WEBPACK_IMPORTED_MODULE_2___default.a,
+    className: _NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_3___default.a['edit-button']
+  })), state.showEditContent && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+    className: _NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_3___default.a['title-input'],
     value: state.content,
     onChange: handleContentChange,
     onBlur: finishContentChange
@@ -33843,7 +33849,7 @@ var NewsArticle = function NewsArticle(props) {
   }, "Save"))));
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (NewsArticle);
+/* harmony default export */ __webpack_exports__["default"] = (Edit);
 
 /***/ }),
 
@@ -33877,6 +33883,89 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./resources/js/components/Main/NewsArticle/View.jsx":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/Main/NewsArticle/View.jsx ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NewsArticle.module.css */ "./resources/js/components/Main/NewsArticle/NewsArticle.module.css");
+/* harmony import */ var _NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_2__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+var View = function View(props) {
+  var _useParams = Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["useParams"])(),
+      id = _useParams.id;
+
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({
+    id: null,
+    title: '',
+    content: null,
+    photo: null
+  }),
+      _useState2 = _slicedToArray(_useState, 2),
+      state = _useState2[0],
+      setState = _useState2[1];
+
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    fetch("/api/news/".concat(id)).then(function (response) {
+      return response.json();
+    }).then(function (news) {
+      setState(_objectSpread(_objectSpread({}, state), {}, {
+        id: news.id,
+        title: news.title,
+        content: news.content,
+        photo: news.photo
+      }));
+    });
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "content-width mt ".concat(_NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_2___default.a.main)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "row"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: state.photo,
+    className: "col-12"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "col-12 ".concat(_NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_2___default.a.title)
+  }, state.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "col-12 ".concat(_NewsArticle_module_css__WEBPACK_IMPORTED_MODULE_2___default.a.content),
+    dangerouslySetInnerHTML: {
+      __html: state.content
+    }
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (View);
+
+/***/ }),
+
 /***/ "./resources/js/components/Main/NewsBlock/NewsBlock.jsx":
 /*!**************************************************************!*\
   !*** ./resources/js/components/Main/NewsBlock/NewsBlock.jsx ***!
@@ -33889,25 +33978,51 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _NewsBlock_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./NewsBlock.module.css */ "./resources/js/components/Main/NewsBlock/NewsBlock.module.css");
-/* harmony import */ var _NewsBlock_module_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_NewsBlock_module_css__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _img_remove_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../img/remove.png */ "./resources/js/img/remove.png");
+/* harmony import */ var _img_remove_png__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_img_remove_png__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _img_edit_png__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../img/edit.png */ "./resources/js/img/edit.png");
+/* harmony import */ var _img_edit_png__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_img_edit_png__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _NewsBlock_module_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./NewsBlock.module.css */ "./resources/js/components/Main/NewsBlock/NewsBlock.module.css");
+/* harmony import */ var _NewsBlock_module_css__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_NewsBlock_module_css__WEBPACK_IMPORTED_MODULE_4__);
+
+
 
 
 
 
 var NewsBlock = function NewsBlock(_ref) {
   var props = _ref.props;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    className: "col-lg-6",
+
+  var removeArticle = function removeArticle(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    fetch("/api/news/remove/".concat(props.id), {
+      method: 'DELETE'
+    }).then(function () {
+      console.log();
+    });
+  };
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: _NewsBlock_module_css__WEBPACK_IMPORTED_MODULE_4___default.a['news-block'] + " col-lg-6"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/news/".concat(props.id)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: _NewsBlock_module_css__WEBPACK_IMPORTED_MODULE_2___default.a['news-block']
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
     src: props.photo,
-    className: _NewsBlock_module_css__WEBPACK_IMPORTED_MODULE_2___default.a['news-block-photo']
+    className: _NewsBlock_module_css__WEBPACK_IMPORTED_MODULE_4___default.a['news-block-photo']
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: _NewsBlock_module_css__WEBPACK_IMPORTED_MODULE_2___default.a['news-block-title']
-  }, props.title))));
+    className: _NewsBlock_module_css__WEBPACK_IMPORTED_MODULE_4___default.a['news-block-title']
+  }, props.title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: _NewsBlock_module_css__WEBPACK_IMPORTED_MODULE_4___default.a['news-button-container']
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/news/edit/".concat(props.id)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    className: "pr-1",
+    src: _img_edit_png__WEBPACK_IMPORTED_MODULE_3___default.a
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: _img_remove_png__WEBPACK_IMPORTED_MODULE_2___default.a,
+    onClick: removeArticle
+  }))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (NewsBlock);
@@ -33944,6 +34059,17 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./resources/js/img/edit.png":
+/*!***********************************!*\
+  !*** ./resources/js/img/edit.png ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/edit.png?654c4c33782cff89e5016c4cfd85ddc6";
+
+/***/ }),
+
 /***/ "./resources/js/img/logo.png":
 /*!***********************************!*\
   !*** ./resources/js/img/logo.png ***!
@@ -33952,6 +34078,17 @@ if(false) {}
 /***/ (function(module, exports) {
 
 module.exports = "/images/logo.png?ba2738c041f2a977b16b56e151a3e73c";
+
+/***/ }),
+
+/***/ "./resources/js/img/remove.png":
+/*!*************************************!*\
+  !*** ./resources/js/img/remove.png ***!
+  \*************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/remove.png?5a13d03c750e30065405c76145d5e78b";
 
 /***/ }),
 
@@ -33969,8 +34106,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _components_Header_Header__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Header/Header */ "./resources/js/components/Header/Header.jsx");
 /* harmony import */ var _components_Main_Main__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/Main/Main */ "./resources/js/components/Main/Main.jsx");
-/* harmony import */ var _components_Main_NewsArticle_NewsArticle__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Main/NewsArticle/NewsArticle */ "./resources/js/components/Main/NewsArticle/NewsArticle.jsx");
-/* harmony import */ var _components_Main_AddNews_AddNews__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Main/AddNews/AddNews */ "./resources/js/components/Main/AddNews/AddNews.jsx");
+/* harmony import */ var _components_Main_NewsArticle_View__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/Main/NewsArticle/View */ "./resources/js/components/Main/NewsArticle/View.jsx");
+/* harmony import */ var _components_Main_NewsArticle_Edit__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/Main/NewsArticle/Edit */ "./resources/js/components/Main/NewsArticle/Edit.jsx");
+/* harmony import */ var _components_Main_AddNews_AddNews__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/Main/AddNews/AddNews */ "./resources/js/components/Main/AddNews/AddNews.jsx");
+
 
 
 
@@ -33992,11 +34131,15 @@ function Router(props) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
     path: "/news/:id",
-    component: _components_Main_NewsArticle_NewsArticle__WEBPACK_IMPORTED_MODULE_4__["default"]
+    component: _components_Main_NewsArticle_View__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    exact: true,
+    path: "/news/edit/:id",
+    component: _components_Main_NewsArticle_Edit__WEBPACK_IMPORTED_MODULE_5__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     exact: true,
     path: "/add-news",
-    component: _components_Main_AddNews_AddNews__WEBPACK_IMPORTED_MODULE_5__["default"]
+    component: _components_Main_AddNews_AddNews__WEBPACK_IMPORTED_MODULE_6__["default"]
   })))));
 }
 

@@ -10,13 +10,15 @@
     font-weight: bold;
     display: block;
     padding: 25px;
+    padding-top: 5px;
 }
 .content {
     padding-left: 25px;
     padding-right: 25px;
 }
 .edit-button {
-    float: right;
+    cursor: pointer;
+    margin-left: 0.5rem;
 }
 .title-input {
     width: 100%;
