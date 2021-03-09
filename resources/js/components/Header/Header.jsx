@@ -9,7 +9,7 @@ const Header = () => {
             <img src={logo} />
             <ul className={s.ul}>
                 <li><Link to="/news">News</Link></li>
-                <li><a href="#">Lorem</a></li>
+                <li><a href="/about">About</a></li>
             </ul>
         </div>
     )

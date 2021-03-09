@@ -16,6 +16,13 @@ html, body {
     margin-left: auto;
     margin-right: auto;
   }
+  .main {
+    border-radius: 6px;
+    background-color: #ebe4e1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
   .mt {
     margin-top: 1rem;
   }
