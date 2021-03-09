@@ -161,6 +161,27 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/Common/Loading.module.css":
+/*!*******************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/components/Common/Loading.module.css ***!
+  \*******************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, ".Loading-module__loading___3X9yI {\r\n    width: 250px;\r\n    margin-left: auto;\r\n    margin-right: auto;\r\n}", ""]);
+
+// exports
+exports.locals = {
+	"loading": "Loading-module__loading___3X9yI"
+};
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/Header/Header.module.css":
 /*!******************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader??ref--6-1!./node_modules/postcss-loader/src??ref--6-2!./resources/js/components/Header/Header.module.css ***!
@@ -33378,6 +33399,77 @@ if (document.getElementById('root')) {
 
 /***/ }),
 
+/***/ "./resources/js/components/Common/Loading.jsx":
+/*!****************************************************!*\
+  !*** ./resources/js/components/Common/Loading.jsx ***!
+  \****************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _loading_gif__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./loading.gif */ "./resources/js/components/Common/loading.gif");
+/* harmony import */ var _loading_gif__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_loading_gif__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Loading_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Loading.module.css */ "./resources/js/components/Common/Loading.module.css");
+/* harmony import */ var _Loading_module_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Loading_module_css__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+var Loading = function Loading() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: _loading_gif__WEBPACK_IMPORTED_MODULE_1___default.a,
+    className: _Loading_module_css__WEBPACK_IMPORTED_MODULE_2___default.a.loading
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Loading);
+
+/***/ }),
+
+/***/ "./resources/js/components/Common/Loading.module.css":
+/*!***********************************************************!*\
+  !*** ./resources/js/components/Common/Loading.module.css ***!
+  \***********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/postcss-loader/src??ref--6-2!./Loading.module.css */ "./node_modules/css-loader/index.js?!./node_modules/postcss-loader/src/index.js?!./resources/js/components/Common/Loading.module.css");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
+/***/ "./resources/js/components/Common/loading.gif":
+/*!****************************************************!*\
+  !*** ./resources/js/components/Common/loading.gif ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "/images/loading.gif?e4b6323e19e57f6761b1ce47b7d329e0";
+
+/***/ }),
+
 /***/ "./resources/js/components/Header/Header.jsx":
 /*!***************************************************!*\
   !*** ./resources/js/components/Header/Header.jsx ***!
@@ -33594,6 +33686,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Main_module_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Main.module.css */ "./resources/js/components/Main/Main.module.css");
 /* harmony import */ var _Main_module_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_Main_module_css__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _NewsBlock_NewsBlock__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./NewsBlock/NewsBlock */ "./resources/js/components/Main/NewsBlock/NewsBlock.jsx");
+/* harmony import */ var _Common_Loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../Common/Loading */ "./resources/js/components/Common/Loading.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -33611,42 +33704,29 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 var Main = function Main() {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
       _useState2 = _slicedToArray(_useState, 2),
       news = _useState2[0],
-      setNews = _useState2[1]; // const news = [
-  //     {
-  //         id: 1,
-  //         title: 'Loremipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum',
-  //         content: 'Lorem Ipsum Lorem Ipsum Lorem Ipsum',
-  //         photo: 'https://cnet2.cbsistatic.com/img/-e95qclc6pwSnGE2YccC2oLDW_8=/1200x675/2020/04/16/7d6d8ed2-e10c-4f91-b2dd-74fae951c6d8/bazaart-edit-app.jpg'
-  //     },
-  //     {
-  //         id: 2,
-  //         title: 'Title',
-  //         content: 'Content Content Content',
-  //         photo: 'https://iso.500px.com/wp-content/uploads/2016/03/stock-photo-142984111.jpg'
-  //     },
-  //     {
-  //         id: 3,
-  //         title: 'Title',
-  //         content: 'Content Content Content',
-  //         photo: 'https://iso.500px.com/wp-content/uploads/2016/03/stock-photo-142984111.jpg'
-  //     }
-  // ]
+      setNews = _useState2[1];
 
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(true),
+      _useState4 = _slicedToArray(_useState3, 2),
+      loading = _useState4[0],
+      setLoading = _useState4[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetch('/api/news').then(function (response) {
       return response.json();
     }).then(function (news) {
       setNews(news);
+      setLoading(false);
     });
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "content-width mt ".concat(_Main_module_css__WEBPACK_IMPORTED_MODULE_2___default.a.main)
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, loading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Common_Loading__WEBPACK_IMPORTED_MODULE_4__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "w-100",
     to: "/add-news"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -33658,7 +33738,7 @@ var Main = function Main() {
     });
   }), !news.length && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: _Main_module_css__WEBPACK_IMPORTED_MODULE_2___default.a['no-content']
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "No content added yet!")));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "No content added yet!"))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Main);
