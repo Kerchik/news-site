@@ -23,14 +23,21 @@ const AddNews = () => {
     }
 
     const setPhoto = (event) => {
+        console.log(event.target.files)
         setState({
             ...state,
-            photo: event.target.value
+            photo: event.target.files[0]
         })
     }
 
-    const addNews = () => {
-        fetch(`/api/add-news`, { method: 'POST', body: JSON.stringify(state) })
+    const addNews = (e) => {
+        e.preventDefault()
+        var form = document.forms.namedItem("fileinfo")
+        const formData = new FormData(form);
+        formData.append("title", state.title);
+        formData.append("content", state.content);
+        formData.append("photo", state.photo);
+        fetch(`/api/add-news`, { method: 'POST', body: formData })
         .then(response => {
             console.log(response)
         })
@@ -38,7 +45,7 @@ const AddNews = () => {
 
     return (
         <div className={`content-width row mx-auto mt ${s['add-news']}`}>
-            <div className="col-12 my-2">
+            <form className="col-12 my-2" encType="multipart/form-data" name="fileinfo">
                 <input 
                     type="text" 
                     className="w-100 my-1" 
@@ -53,14 +60,13 @@ const AddNews = () => {
                     onChange={setContent}
                 />
                 <input 
-                    type="text" 
+                    type="file" 
                     className="w-100 my-1" 
                     placeholder="Photo"
-                    value={state.photo}
                     onChange={setPhoto} 
                 />
                 <button onClick={addNews} className="btn btn-success w-100 my-1">Add</button>
-            </div>
+            </form>
         </div>
     )
 }

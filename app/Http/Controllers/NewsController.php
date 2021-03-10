@@ -42,15 +42,17 @@ class NewsController extends Controller
 	{
 	    $data = $request->json()->all();
 		$news = new News;
-
+		
 		$news = new \App\Models\News([
-			'title' => $data['title'],
-			'content' => $data['content'],
-			'photo' => $data['photo'],
+			'title' => $request['title'],		
+			'content' => $request['content'],
+			'photo' => $request->file('photo')->store('news-photos', 'public'),
 			'author' => 1,
 			"created_at"=> now(),
 			"updated_at"=> now(),
 		]);
+
+		//$news->photo = $request['photo'];
 
 		$news->save();
 
