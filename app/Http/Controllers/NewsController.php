@@ -14,7 +14,10 @@ class NewsController extends Controller
 
     public function viewArticle($id)
 	{
-	    return News::where('id', $id)->first();
+
+	    $news = News::where('id', $id)->first();
+		$news->photo = url($news->photo);
+		return $news;
 	}
 
     public function editArticle(Request $request, $id)
@@ -51,8 +54,6 @@ class NewsController extends Controller
 			"created_at"=> now(),
 			"updated_at"=> now(),
 		]);
-
-		//$news->photo = $request['photo'];
 
 		$news->save();
 
