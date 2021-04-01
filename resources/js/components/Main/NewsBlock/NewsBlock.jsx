@@ -4,7 +4,7 @@ import remove from '../../../img/remove.png'
 import edit from '../../../img/edit.png'
 import s from './NewsBlock.module.css'
 
-const NewsBlock = ({props}) => {
+const NewsBlock = ({props, isUser}) => {
     const removeArticle = (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -19,12 +19,14 @@ const NewsBlock = ({props}) => {
                 <div>
                     <span className={s['news-block-title']}>{props.title}</span>
                 </div>
+                {isUser &&
                 <div className={s['news-button-container']}>
                     <Link  to={`/news/edit/${props.id}`}>
                         <img className="pr-1" src={edit} />
                     </Link>
                     <img src={remove} onClick={removeArticle} />
                 </div>
+                }
                 </Link>
             </div>
     )

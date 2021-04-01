@@ -6,6 +6,9 @@ import About from '../components/About/About';
 import NewsArticle from '../components/Main/NewsArticle/View';
 import NewsArticleEdit from '../components/Main/NewsArticle/Edit';
 import AddNews from '../components/Main/AddNews/AddNews';
+import Register from '../components/Login/Register';
+import Login from '../components/Login/Login';
+
 function Router(props) {
     return (
         <div>
@@ -19,6 +22,8 @@ function Router(props) {
                         <Route exact path="/news/:id" component={NewsArticle} />
                         <Route exact path="/news/edit/:id" component={NewsArticleEdit} />
                         <Route exact path="/add-news" component={AddNews} />
+                        <Route exact path="/register" component={Register} />
+                        <Route exact path="/login" component={Login} />
                     </Switch>
                 </div>
             </BrowserRouter>
