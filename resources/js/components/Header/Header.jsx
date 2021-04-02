@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import logo from '../../img/logo.png'
 import s from './Header.module.css'
@@ -7,6 +7,12 @@ import { useHistory } from 'react-router-dom';
 
 const Header = () => {
     let history = useHistory()
+    const [user, setUser] = useState(null)
+    useEffect(() => {
+        axios.get('/api/user').then(({data}) => {
+            setUser(data.name)
+        })
+    }, [])
     const logout = (e) => {
         e.preventDefault()
         axios.get('/sanctum/csrf-cookie').then(() => {
@@ -17,13 +23,21 @@ const Header = () => {
         })
     }
     return (
-        <div className={`content-width ${s.header}`}>
+        <div className="d-flex content-width justify-content-between">
+        <div className={` ${s.header}`}>
             <img src={logo} />
             <ul className={s.ul}>
                 <li><Link to="/news">News</Link></li>
-                <li><a href="/about">About</a></li>
-                <li><a onClick={logout} href="#">Logout</a></li>
+                <li><Link to="/about">About</Link></li>
             </ul>
+        </div>
+        <div>
+            { user ?
+            <a className="text-white login-logout" onClick={logout} href="#">Logout</a>
+            :
+            <Link to="/login" className="text-white login-logout">Login</Link> 
+            }
+        </div>
         </div>
     )
 }
