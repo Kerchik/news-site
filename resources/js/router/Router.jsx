@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { Switch, BrowserRouter, Route } from 'react-router-dom';
 import {connect} from 'react-redux'
 import {changeIsLoggedIn} from '../redux/authReducer'
@@ -13,17 +13,21 @@ import Register from '../components/Login/Register';
 import Login from '../components/Login/Login';
 
 const Router = ({loggedIn, changeIsLoggedIn}) => {
+    const [appIsReady, setAppIsReady] = useState(false) 
     useEffect(() => {
         axios.get('/api/user').then(({data}) => {
             changeIsLoggedIn(true)
         }).catch((error) => {
             //console.error(error)
+        }).finally(() => {
+            setAppIsReady(true)
         })
     }, [])
     return (
         <BrowserRouter>
             <div className="bg-black">
                 <Header loggedIn={loggedIn} changeIsLoggedIn={changeIsLoggedIn} />
+                {appIsReady &&
                 <Switch>
                     <Route exact path="/"><Main loggedIn={loggedIn} /></Route>
                     <Route exact path="/news"><Main loggedIn={loggedIn} /></Route>
@@ -34,6 +38,7 @@ const Router = ({loggedIn, changeIsLoggedIn}) => {
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/login"><Login changeIsLoggedIn={changeIsLoggedIn} /></Route>
                 </Switch>
+                }
             </div>
         </BrowserRouter>
     )
