@@ -1,12 +1,21 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
+import { useHistory } from 'react-router-dom';
 import s from './AddNews.module.css'
 
-const AddNews = () => {
+const AddNews = ({loggedIn}) => {
+    let history = useHistory()
     const [state, setState] = useState({
         title: "",
         content: "",
         photo: ""
     })
+
+    useEffect(() => {
+        if (!loggedIn) {
+            history.push('/')
+            return
+        }
+    },[])
 
     const setTitle = (event) => {
         setState({
@@ -23,7 +32,6 @@ const AddNews = () => {
     }
 
     const setPhoto = (event) => {
-        console.log(event.target.files)
         setState({
             ...state,
             photo: event.target.files[0]

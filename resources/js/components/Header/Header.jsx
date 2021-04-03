@@ -5,19 +5,14 @@ import s from './Header.module.css'
 import axios from 'axios' 
 import { useHistory } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({loggedIn, changeIsLoggedIn}) => {
     let history = useHistory()
     const [user, setUser] = useState(null)
-    useEffect(() => {
-        axios.get('/api/user').then(({data}) => {
-            setUser(data.name)
-        })
-    }, [])
     const logout = (e) => {
         e.preventDefault()
         axios.get('/sanctum/csrf-cookie').then(() => {
             axios.post('/api/logout').then(() => {
-                localStorage.removeItem("auth")
+                changeIsLoggedIn(false)
                 history.go(0)
             })
         })
@@ -32,7 +27,7 @@ const Header = () => {
             </ul>
         </div>
         <div>
-            { user ?
+            { loggedIn ?
             <a className="text-white login-logout" onClick={logout} href="#">Logout</a>
             :
             <Link to="/login" className="text-white login-logout">Login</Link> 

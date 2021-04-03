@@ -3,7 +3,7 @@ import axios from 'axios'
 import {Link} from 'react-router-dom'
 import { useHistory } from 'react-router-dom';
 
-const Login = () => {
+const Login = ({changeIsLoggedIn}) => {
     let history = useHistory()
     const [form, setForm] = useState({
         email: '',
@@ -28,7 +28,7 @@ const Login = () => {
         e.preventDefault();
         axios.get('/sanctum/csrf-cookie').then(() => {
             axios.post('/api/login', form).then(() => {
-                localStorage.setItem("auth", "true")
+                changeIsLoggedIn(true)
                 history.push('/')
             })
         })

@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import {useParams} from 'react-router-dom'
+import { useHistory } from 'react-router-dom';
+import axios from 'axios'
 import edit from '../../../img/edit.png'
 import s from './NewsArticle.module.css'
 
-const Edit = (props) => {
+const Edit = ({loggedIn}) => {
+    let history = useHistory()
     const { id } = useParams();
 
     const editTitle = () => {
@@ -49,7 +52,7 @@ const Edit = (props) => {
     }
 
     const saveChanges = () => {
-        fetch(`/api/news/${id}`, { method: 'POST', body: JSON.stringify(state) })
+        axios.post(`/api/news/${id}`, JSON.stringify(state))
         .then(response => {
             console.log(response)
         })
@@ -65,6 +68,10 @@ const Edit = (props) => {
     })
 
     useEffect(() => {
+        if (!loggedIn) {
+            history.push('/')
+            return
+        }
         fetch(`/api/news/${id}`)
         .then(response => {
             return response.json();

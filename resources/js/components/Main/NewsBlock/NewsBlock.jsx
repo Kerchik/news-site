@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import {Link} from 'react-router-dom'
 import remove from '../../../img/remove.png'
 import edit from '../../../img/edit.png'
@@ -8,8 +9,10 @@ const NewsBlock = ({props, isUser}) => {
     const removeArticle = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        fetch(`/api/news/remove/${props.id}`, {method: 'DELETE'}).then(() => {
-            console.log()
+        axios.get('/sanctum/csrf-cookie').then(() => {
+            axios.delete(`/api/news/remove/${props.id}`).then(() => {
+                console.log()
+            })
         })
     }
     return (

@@ -5,9 +5,8 @@ import NewsBlock from './NewsBlock/NewsBlock'
 import Loading from '../Common/Loading'
 import axios from 'axios'
 
-const Main = () => {
+const Main = ({loggedIn}) => {
     const [news, setNews] = useState([])
-    const [user, setUser] = useState(null)
     const [loading, setLoading] = useState(true)
     
     useEffect(() => {
@@ -19,9 +18,6 @@ const Main = () => {
             setNews(news)
             setLoading(false)
         });
-        axios.get('/api/user').then(({data}) => {
-            setUser(data.name)
-        })
     }, [])
     return (
         <div className={`content-width mt ${s.main}`}>
@@ -29,10 +25,11 @@ const Main = () => {
                 ? <Loading /> 
                 : 
                 <>
+                {loggedIn &&
                 <Link className="w-100" to="/add-news">
                     <button className="btn btn-success w-100">Add article</button>
-                </Link>
-                { news.map(n => <NewsBlock props={n} isUser={user} key={n.id} />) }
+                </Link> }
+                { news.map(n => <NewsBlock props={n} isUser={loggedIn} key={n.id} />) }
                 {!news.length && <div className={s['no-content']}><h2>No content added yet!</h2></div>}
                 </>
             }

@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Router from './router'
+import ProviderComponent from './router/index'
 
 function App() {
     return (
-        <Router/>
+        <ProviderComponent />
     );
 }
 
