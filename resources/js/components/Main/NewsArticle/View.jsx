@@ -10,6 +10,7 @@ const View = (props) => {
         title: '',
         content: null,
         photo: null,
+        author: null,
     })
 
     useEffect(() => {
@@ -24,6 +25,7 @@ const View = (props) => {
                 title: news.title,
                 content: news.content,
                 photo: news.photo,
+                author: news.author,
             })
         });
     }, [])
@@ -32,6 +34,7 @@ const View = (props) => {
         <div className={`content-width mt ${s.main}`}>
             <div className="row">
                 <img src={state.photo} className="col-12" />
+                <div className={`col-12 d-flex justify-content-end ${s.author}`}>Author: <b>{state?.author?.name}</b></div>
                 <span className={`col-12 ${s.title}`}>
                     {state.title}
                 </span> 

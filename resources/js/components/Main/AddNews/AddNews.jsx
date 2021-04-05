@@ -4,7 +4,7 @@ import s from './AddNews.module.css'
 import axios from 'axios'
 import requests from '../../../api/requests'
 
-const AddNews = ({loggedIn}) => {
+const AddNews = ({loggedIn, loggedUser}) => {
     let history = useHistory()
     const [state, setState] = useState({
         title: "",
@@ -47,6 +47,7 @@ const AddNews = ({loggedIn}) => {
         formData.append("title", state.title);
         formData.append("content", state.content);
         formData.append("photo", state.photo);
+        formData.append("author", loggedUser.id);
         requests.addArticle(formData)
         .then(response => {
             console.log(response)

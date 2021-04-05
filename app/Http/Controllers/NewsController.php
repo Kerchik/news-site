@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\News;
+use App\User;
 
 class NewsController extends Controller
 {
@@ -17,6 +18,7 @@ class NewsController extends Controller
 
 	    $news = News::where('id', $id)->first();
 		$news->photo = url($news->photo);
+		$news->author = User::where('id', $news->author)->first();
 		return $news;
 	}
 
@@ -50,7 +52,7 @@ class NewsController extends Controller
 			'title' => $request['title'],		
 			'content' => $request['content'],
 			'photo' => $request->file('photo')->store('news-photos', 'public'),
-			'author' => 1,
+			'author' => $request['author'],
 			"created_at"=> now(),
 			"updated_at"=> now(),
 		]);

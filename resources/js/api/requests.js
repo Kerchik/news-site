@@ -10,7 +10,8 @@ export default {
     },
     async login(form) {
         await this.getCookie()
-        await axios.post('/api/login', form)
+        let result = await axios.post('/api/login', form)
+        return result
     },
     async register(form) {
         await this.getCookie()

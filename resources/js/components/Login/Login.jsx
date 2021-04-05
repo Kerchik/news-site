@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import { useHistory } from 'react-router-dom';
 import requests from '../../api/requests'
 
-const Login = ({changeIsLoggedIn}) => {
+const Login = ({changeIsLoggedIn, changeLoggedUser}) => {
     let history = useHistory()
     const [form, setForm] = useState({
         email: '',
@@ -27,7 +27,8 @@ const Login = ({changeIsLoggedIn}) => {
 
     const login = (e) => {
         e.preventDefault();
-        requests.login(form).then(() => {
+        requests.login(form).then(({data}) => {
+            changeLoggedUser(data)
             changeIsLoggedIn(true)
             history.push('/')
         })

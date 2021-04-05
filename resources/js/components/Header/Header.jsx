@@ -5,12 +5,13 @@ import s from './Header.module.css'
 import requests from '../../api/requests'
 import { useHistory } from 'react-router-dom';
 
-const Header = ({loggedIn, changeIsLoggedIn}) => {
+const Header = ({loggedIn, changeIsLoggedIn, changeLoggedUser}) => {
     let history = useHistory()
     const logout = (e) => {
         e.preventDefault()
         requests.logout().then(() => {
             changeIsLoggedIn(false)
+            changeLoggedUser(null)
             history.go(0)
         })
     }
