@@ -2,19 +2,16 @@ import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import logo from '../../img/logo.png'
 import s from './Header.module.css'
-import axios from 'axios' 
+import requests from '../../api/requests'
 import { useHistory } from 'react-router-dom';
 
 const Header = ({loggedIn, changeIsLoggedIn}) => {
     let history = useHistory()
-    const [user, setUser] = useState(null)
     const logout = (e) => {
         e.preventDefault()
-        axios.get('/sanctum/csrf-cookie').then(() => {
-            axios.post('/api/logout').then(() => {
-                changeIsLoggedIn(false)
-                history.go(0)
-            })
+        requests.logout().then(() => {
+            changeIsLoggedIn(false)
+            history.go(0)
         })
     }
     return (

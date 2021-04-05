@@ -19,6 +19,6 @@ Route::get('news/{id}', 'newsController@viewArticle');
 
 Route::post('news/{id}', 'newsController@editArticle');
 
-Route::delete('news/remove/{id}', 'newsController@removeArticle');
+Route::middleware('auth:sanctum')->delete('news/remove/{id}', 'newsController@removeArticle');
 
 Route::post('add-news', 'newsController@addArticle');

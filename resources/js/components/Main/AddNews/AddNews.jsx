@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react'
 import { useHistory } from 'react-router-dom';
 import s from './AddNews.module.css'
+import axios from 'axios'
+import requests from '../../../api/requests'
 
 const AddNews = ({loggedIn}) => {
     let history = useHistory()
@@ -45,7 +47,7 @@ const AddNews = ({loggedIn}) => {
         formData.append("title", state.title);
         formData.append("content", state.content);
         formData.append("photo", state.photo);
-        fetch(`/api/add-news`, { method: 'POST', body: formData })
+        requests.addArticle(formData)
         .then(response => {
             console.log(response)
         })

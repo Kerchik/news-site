@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import { useHistory } from 'react-router-dom';
+import requests from '../../api/requests'
 
 const Login = ({changeIsLoggedIn}) => {
     let history = useHistory()
@@ -26,11 +27,9 @@ const Login = ({changeIsLoggedIn}) => {
 
     const login = (e) => {
         e.preventDefault();
-        axios.get('/sanctum/csrf-cookie').then(() => {
-            axios.post('/api/login', form).then(() => {
-                changeIsLoggedIn(true)
-                history.push('/')
-            })
+        requests.login(form).then(() => {
+            changeIsLoggedIn(true)
+            history.push('/')
         })
     }
 

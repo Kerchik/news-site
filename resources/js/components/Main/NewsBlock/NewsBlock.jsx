@@ -4,15 +4,14 @@ import {Link} from 'react-router-dom'
 import remove from '../../../img/remove.png'
 import edit from '../../../img/edit.png'
 import s from './NewsBlock.module.css'
+import requests from '../../../api/requests'
 
 const NewsBlock = ({props, isUser}) => {
     const removeArticle = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        axios.get('/sanctum/csrf-cookie').then(() => {
-            axios.delete(`/api/news/remove/${props.id}`).then(() => {
-                console.log()
-            })
+        requests.deleteArticle(props.id).then(() => {
+            console.log()
         })
     }
     return (

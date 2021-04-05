@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
+import requests from '../../api/requests'
 
 const Register = () => {
     const [form, setForm] = useState({
@@ -32,9 +33,7 @@ const Register = () => {
 
     const register = (e) => {
         e.preventDefault();
-        axios.get('/sanctum/csrf-cookie').then(() => {
-            axios.post('/api/register', form)
-        })
+        requests.register(form)
     }
 
     return (

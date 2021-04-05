@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios'
 import edit from '../../../img/edit.png'
 import s from './NewsArticle.module.css'
+import requests from '../../../api/requests'
 
 const Edit = ({loggedIn}) => {
     let history = useHistory()
@@ -52,7 +53,7 @@ const Edit = ({loggedIn}) => {
     }
 
     const saveChanges = () => {
-        axios.post(`/api/news/${id}`, JSON.stringify(state))
+        requests.editArticle(state, id)
         .then(response => {
             console.log(response)
         })
