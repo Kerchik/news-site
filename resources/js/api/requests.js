@@ -28,5 +28,13 @@ export default {
     async addArticle(form) {
         await this.getCookie()
         await axios.post(`/api/add-news`, form)
+    },
+    async addComment(form) {
+        await this.getCookie()
+        await axios.post(`/api/add-comment`, form)
+    },
+    async getComments(id) {
+        await this.getCookie()
+        return await axios.get(`/api/get-comments/${id}`)
     }
 }
