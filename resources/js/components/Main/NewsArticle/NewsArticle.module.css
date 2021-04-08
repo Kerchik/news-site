@@ -32,3 +32,24 @@
     width: 200px;
     margin-left: 10px;
 }
+.container {
+    background-color: #eef2f5;
+    width: 400px
+}
+.second {
+    width: 100%;
+    background-color: white;
+    border-radius: 4px;
+}
+.text1 {
+    font-size: 13px;
+    font-weight: 500;
+    color: #56575b
+}
+
+.text2 {
+    font-size: 13px;
+    font-weight: 500;
+    margin-left: 6px;
+    color: #56575b
+}
