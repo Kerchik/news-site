@@ -24,6 +24,12 @@ const View = ({loggedIn, loggedUser}) => {
         })
     }
 
+    const getComments = async () => {
+        requests.getComments(id).then(({data}) => {
+            setComments(data)
+        })
+    }
+
     const addComment = () => {
         let data = {
             content: state.comment,
@@ -31,7 +37,8 @@ const View = ({loggedIn, loggedUser}) => {
             news_id: state.id
         }
         requests.addComment(data).then(response => {
-            console.log(response)
+            setState({...state, comment: ''})
+            getComments()
         })
     }
 
@@ -50,9 +57,7 @@ const View = ({loggedIn, loggedUser}) => {
                 author: news.author,
             })
         });
-        requests.getComments(id).then(({data}) => {
-            setComments(data)
-        })
+        getComments()
            
     }, [])
 
@@ -71,7 +76,7 @@ const View = ({loggedIn, loggedUser}) => {
                     <div className={`justify-content-center mt-5 border-left border-right`}>
                          {comments.length > 0 
                                 ? comments.map(comment => (
-                                    <div className="d-flex justify-content-center py-2">
+                                    <div className="d-flex justify-content-center py-2" key={comment.id}>
                                         <div className={`${s.second} py-2 px-2`}> <span className={s.text1}>{comment.content}</span>
                                             <div className="d-flex justify-content-between py-1 pt-2">
                                                 <div><span className={s.text2}>{comment.author.name}</span></div>
