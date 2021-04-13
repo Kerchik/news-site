@@ -50,7 +50,7 @@ const AddNews = ({loggedIn, loggedUser}) => {
         formData.append("author", loggedUser.id);
         requests.addArticle(formData)
         .then(response => {
-            console.log(response)
+            history.push('/')
         })
     }
 

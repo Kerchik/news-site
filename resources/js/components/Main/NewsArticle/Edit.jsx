@@ -55,7 +55,7 @@ const Edit = ({loggedIn}) => {
     const saveChanges = () => {
         requests.editArticle(state, id)
         .then(response => {
-            console.log(response)
+            history.push('/')
         })
     }
 

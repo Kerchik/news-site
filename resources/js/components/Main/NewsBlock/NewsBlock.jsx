@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import axios from 'axios'
 import Modal from 'react-modal';
+import { useHistory } from 'react-router-dom';
 import {Link} from 'react-router-dom'
 import remove from '../../../img/remove.png'
 import edit from '../../../img/edit.png'
@@ -8,7 +9,9 @@ import s from './NewsBlock.module.css'
 import requests from '../../../api/requests'
 
 const NewsBlock = ({props, isUser}) => {
+    let history = useHistory()
     Modal.setAppElement('#root')
+
     const customStyles = {
         content : {
           top                   : '50%',
@@ -28,12 +31,18 @@ const NewsBlock = ({props, isUser}) => {
     const closeModal = () => {
         setIsOpen(false)
     }
+    const openEditPage = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        history.push(`/news/edit/${props.id}`)
+    }
     const [modalIsOpen,setIsOpen] = useState(false);
     const removeArticle = (e) => {
         e.preventDefault();
         e.stopPropagation();
         requests.deleteArticle(props.id).then(() => {
             setIsOpen(false)
+            history.go(0)
         })
     }
     return (
@@ -46,9 +55,7 @@ const NewsBlock = ({props, isUser}) => {
                 </div>
                 {isUser &&
                 <div className={s['news-button-container']}>
-                    <Link  to={`/news/edit/${props.id}`}>
-                        <img className="pr-1" src={edit} />
-                    </Link>
+                    <img className="pr-1" src={edit} onClick={openEditPage} />
                     <img src={remove} onClick={openModalWindow} />
                 </div>
                 }
