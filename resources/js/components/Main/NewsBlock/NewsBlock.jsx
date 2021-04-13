@@ -1,5 +1,6 @@
-import React from 'react'
+import React, {useState} from 'react'
 import axios from 'axios'
+import Modal from 'react-modal';
 import {Link} from 'react-router-dom'
 import remove from '../../../img/remove.png'
 import edit from '../../../img/edit.png'
@@ -7,14 +8,36 @@ import s from './NewsBlock.module.css'
 import requests from '../../../api/requests'
 
 const NewsBlock = ({props, isUser}) => {
+    Modal.setAppElement('#root')
+    const customStyles = {
+        content : {
+          top                   : '50%',
+          left                  : '50%',
+          right                 : 'auto',
+          bottom                : 'auto',
+          marginRight           : '-50%',
+          transform             : 'translate(-50%, -50%)',
+          padding               : '50px'
+        }
+      };
+    const openModalWindow = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setIsOpen(true)
+    }
+    const closeModal = () => {
+        setIsOpen(false)
+    }
+    const [modalIsOpen,setIsOpen] = useState(false);
     const removeArticle = (e) => {
         e.preventDefault();
         e.stopPropagation();
         requests.deleteArticle(props.id).then(() => {
-            console.log()
+            setIsOpen(false)
         })
     }
     return (
+        <>
             <div className={s['news-block'] + " col-lg-6"}>
                 <Link  to={`/news/${props.id}`}>
                 <img src={props.photo} className={s['news-block-photo']}/>
@@ -26,11 +49,24 @@ const NewsBlock = ({props, isUser}) => {
                     <Link  to={`/news/edit/${props.id}`}>
                         <img className="pr-1" src={edit} />
                     </Link>
-                    <img src={remove} onClick={removeArticle} />
+                    <img src={remove} onClick={openModalWindow} />
                 </div>
                 }
                 </Link>
             </div>
+            <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                style={customStyles}
+                contentLabel="Example Modal"
+            >
+                <div>Do you really want to delete this article?</div>
+                <div className="d-flex justify-content-end">
+                    <button className={`btn btn-success ${s['modal-button']}`} onClick={removeArticle}>Yes</button>
+                    <button className={`btn btn-danger ml-2 ${s['modal-button']}`} onClick={closeModal}>No</button>
+                </div>
+            </Modal>
+        </>
     )
 }
 

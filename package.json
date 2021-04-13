@@ -26,6 +26,7 @@
     },
     "dependencies": {
         "laravel-mix-react-css-modules": "^2.0.0",
+        "react-modal": "^3.12.1",
         "react-redux": "^7.2.3",
         "react-router-dom": "^5.2.0",
         "redux": "^4.0.5"
