@@ -30,11 +30,11 @@ const Router = ({loggedIn, loggedUser, changeIsLoggedIn, changeLoggedUser}) => {
                 <Header loggedIn={loggedIn} changeIsLoggedIn={changeIsLoggedIn} changeLoggedUser={changeLoggedUser} />
                 {appIsReady &&
                 <Switch>
-                    <Route exact path="/"><Main loggedIn={loggedIn} /></Route>
-                    <Route exact path="/news"><Main loggedIn={loggedIn} /></Route>
+                    <Route exact path="/"><Main loggedIn={loggedIn} loggedUser={loggedUser}/></Route>
+                    <Route exact path="/news"><Main loggedIn={loggedIn} loggedUser={loggedUser}/></Route>
                     <Route exact path="/about" component={About} />
                     <Route exact path="/news/:id"><NewsArticle loggedIn={loggedIn} loggedUser={loggedUser} /></Route>
-                    <Route exact path="/news/edit/:id"><NewsArticleEdit loggedIn={loggedIn}/></Route>
+                    <Route exact path="/news/edit/:id"><NewsArticleEdit loggedIn={loggedIn} loggedUser={loggedUser} /></Route>
                     <Route exact path="/add-news"><AddNews loggedIn={loggedIn} loggedUser={loggedUser}/></Route>
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/login"><Login changeIsLoggedIn={changeIsLoggedIn} changeLoggedUser={changeLoggedUser} /></Route>

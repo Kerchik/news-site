@@ -6,7 +6,7 @@ import edit from '../../../img/edit.png'
 import s from './NewsArticle.module.css'
 import requests from '../../../api/requests'
 
-const Edit = ({loggedIn}) => {
+const Edit = ({loggedIn, loggedUser}) => {
     let history = useHistory()
     const { id } = useParams();
 
@@ -69,7 +69,7 @@ const Edit = ({loggedIn}) => {
     })
 
     useEffect(() => {
-        if (!loggedIn) {
+        if (!loggedIn || (loggedUser && loggedUser.role!=1)) {
             history.push('/')
             return
         }

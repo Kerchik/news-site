@@ -8,7 +8,7 @@ import edit from '../../../img/edit.png'
 import s from './NewsBlock.module.css'
 import requests from '../../../api/requests'
 
-const NewsBlock = ({props, isUser}) => {
+const NewsBlock = ({props, isUser, loggedUser}) => {
     let history = useHistory()
     Modal.setAppElement('#root')
 
@@ -53,7 +53,7 @@ const NewsBlock = ({props, isUser}) => {
                 <div>
                     <span className={s['news-block-title']}>{props.title}</span>
                 </div>
-                {isUser &&
+                {(isUser && loggedUser && loggedUser.role == 1) &&
                 <div className={s['news-button-container']}>
                     <img className="pr-1" src={edit} onClick={openEditPage} />
                     <img src={remove} onClick={openModalWindow} />
