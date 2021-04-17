@@ -9,8 +9,11 @@ use App\User;
 class CommentsController extends Controller
 {
     public function addComment(Request $request) {
+		$request->validate([
+            'content' => ['required'],
+        ]);
+
         $data = $request->json()->all();
-		$comment = new Comments;
 		
 		$comment = new \App\Models\Comments([
 			'content' => $request['content'],

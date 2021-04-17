@@ -6,10 +6,13 @@ import requests from '../../api/requests'
 
 const Login = ({changeIsLoggedIn, changeLoggedUser}) => {
     let history = useHistory()
+
     const [form, setForm] = useState({
         email: '',
         password: ''
     })
+
+    const [errors, setErrors] = useState([])
 
     const handleEmailChange = (e) => {
         setForm({
@@ -32,6 +35,11 @@ const Login = ({changeIsLoggedIn, changeLoggedUser}) => {
             changeIsLoggedIn(true)
             history.push('/')
         })
+        .catch(error => {
+            if (error.response.status == 422) {
+                setErrors(error.response.data.errors)
+            }
+        })
     }
 
     return (
@@ -44,21 +52,27 @@ const Login = ({changeIsLoggedIn, changeLoggedUser}) => {
                             <label>Email address:</label>
                             <input
                                 type="email"
-                                className="form-control"
+                                className={`form-control ${errors.email && "input-border-danger"}`}
                                 id="email"
                                 value={form.email}
                                 onChange={handleEmailChange}
                             />
+                            {errors.email && <span className="text-danger" >
+                                { errors.email[0] }
+                            </span> }
                         </div>
                         <div className="form-group">
                             <label>Password:</label>
                             <input
                                 type="password"
-                                className="form-control"
+                                className={`form-control ${errors.password && "input-border-danger"}`}
                                 id="password"
                                 value={form.password}
                                 onChange={handlePasswordChange}
                             />
+                            {errors.password && <span className="text-danger" >
+                                { errors.password[0] }
+                            </span> }
                         </div>
                         <button onClick={login} className="btn btn-primary btn-block">
                             Login

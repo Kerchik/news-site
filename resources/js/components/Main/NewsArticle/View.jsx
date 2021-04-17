@@ -14,8 +14,10 @@ const View = ({loggedIn, loggedUser}) => {
         author: null,
         comment: ''
     })
-    const initialValue = []
-    const [comments, setComments] = useState(initialValue)
+
+    const [comments, setComments] = useState([])
+
+    const [errors, setErrors] = useState([])
 
     const commentHandler = (e) => {
         setState({
@@ -39,6 +41,11 @@ const View = ({loggedIn, loggedUser}) => {
         requests.addComment(data).then(response => {
             setState({...state, comment: ''})
             getComments()
+        })
+        .catch(error => {
+            if (error.response.status == 422) {
+                setErrors(error.response.data.errors)
+            }
         })
     }
 
@@ -96,11 +103,29 @@ const View = ({loggedIn, loggedUser}) => {
                     loggedIn 
                     ?
                         <>
-                            <input value={state.comment} onChange={commentHandler} className="w-100" type="text" placeholder="Leave your comment..." />
-                            <button onClick={addComment} type="button" className="btn btn-success my-2 w-100">Add comment</button>
+                            <input 
+                                value={state.comment} 
+                                onChange={commentHandler} 
+                                className={`form-control ${errors.content && "input-border-danger"}`} 
+                                type="text" 
+                                placeholder="Leave your comment..." 
+                            />
+                            {errors.content && <span className="text-danger" >
+                                { errors.content[0] }
+                            </span> }
+                            <button 
+                                onClick={addComment} 
+                                type="button" 
+                                className="btn btn-success my-2 w-100"
+                                disabled={!state.comment}
+                            >
+                                Add comment
+                            </button>
                         </>
                     : 
-                        <div className="w-100">Please <Link to="/login">login</Link> to leave the comment</div>
+                        <div className="w-100">
+                            Please <Link to="/login">login</Link> to leave the comment
+                        </div>
                     }
                 </div>
                 

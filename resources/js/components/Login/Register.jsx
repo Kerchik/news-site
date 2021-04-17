@@ -10,6 +10,8 @@ const Register = () => {
         password: ''
     })
 
+    const [errors, setErrors] = useState([])
+
     const handleNameChange = (e) => {
         setForm({
             ...form,
@@ -34,6 +36,11 @@ const Register = () => {
     const register = (e) => {
         e.preventDefault();
         requests.register(form)
+        .catch(error => {
+          if (error.response.status == 422) {
+              setErrors(error.response.data.errors)
+          }
+      })
     }
 
     return (
@@ -46,31 +53,40 @@ const Register = () => {
                     <label>Name:</label>
                     <input
                       type="text"
-                      className="form-control"
+                      className={`form-control ${errors.name && "input-border-danger"}`}
                       id="name"
                       value={form.name}
                       onChange={handleNameChange}
                     />
+                    {errors.name && <span className="text-danger" >
+                        { errors.name[0] }
+                    </span> }
                   </div>
                   <div className="form-group">
                     <label >Email address:</label>
                     <input
                       type="email"
-                      className="form-control"
+                      className={`form-control ${errors.email && "input-border-danger"}`}
                       id="email"
                       value={form.email}
                       onChange={handleEmailChange}
                     />
+                    {errors.email && <span className="text-danger" >
+                        { errors.email[0] }
+                    </span> }
                   </div>
                   <div className="form-group">
                     <label >Password:</label>
                     <input
                       type="password"
-                      className="form-control"
+                      className={`form-control ${errors.password && "input-border-danger"}`}
                       id="password"
                       value={form.password}
                       onChange={handlePasswordChange}
                     />
+                    {errors.password && <span className="text-danger" >
+                        { errors.password[0] }
+                    </span> }
                   </div>
                   <button
                     type="submit"
