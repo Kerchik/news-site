@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {changeIsLoggedIn, changeLoggedUser} from '../redux/authReducer'
 import axios from 'axios'
 import Header from '../components/Header/Header';
+import Footer from '../components/Footer/Footer'
 import Main from '../components/Main/Main';
 import About from '../components/About/About';
 import NewsArticle from '../components/Main/NewsArticle/View';
@@ -40,6 +41,7 @@ const Router = ({loggedIn, loggedUser, changeIsLoggedIn, changeLoggedUser}) => {
                     <Route exact path="/login"><Login changeIsLoggedIn={changeIsLoggedIn} changeLoggedUser={changeLoggedUser} /></Route>
                 </Switch>
                 }
+                <Footer />
             </div>
         </BrowserRouter>
     )

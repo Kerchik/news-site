@@ -20,7 +20,7 @@ const Main = ({loggedIn, loggedUser}) => {
         });
     }, [])
     return (
-        <div className={`content-width mt ${s.main}`}>
+        <div className={`content-width ${s['main-margin']} ${s.main}`}>
             {loading 
                 ? <Loading /> 
                 : 

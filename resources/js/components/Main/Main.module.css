@@ -13,3 +13,6 @@
 .no-content h2{
     color: #000;
 }
+.main-margin {
+    margin: 1rem auto;
+}
