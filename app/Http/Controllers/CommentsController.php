@@ -27,11 +27,10 @@ class CommentsController extends Controller
     }
 
 	public function getComments($id) {
-		$comments = Comments::where('news_id', $id)->get();
+		$comments = Comments::where('news_id', $id)->orderBy('created_at', 'DESC')->get();
 		foreach ($comments as $comment) {
 			$comment->author = User::where('id', $comment->author)->first();
 		}
-		//$comments->author = User::where('id', $news->author)->first();
 		return $comments;
 	} 
 }
