@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import {useParams} from 'react-router-dom'
 import { useHistory } from 'react-router-dom';
 import axios from 'axios'
@@ -9,6 +9,10 @@ import requests from '../../../api/requests'
 const Edit = ({loggedIn, loggedUser}) => {
     let history = useHistory()
     const { id } = useParams();
+
+    const titleInput = useRef(null);
+
+    const contentInput = useRef(null);
 
     const editTitle = () => {
         setState({
@@ -88,10 +92,15 @@ const Edit = ({loggedIn, loggedUser}) => {
         });
     }, [])
 
+    useEffect(() => {
+        if (state.showEditTitle) titleInput.current.focus()
+        if (state.showEditContent) contentInput.current.focus()
+    }, [state.showEditTitle, state.showEditContent])
+
     return (
         <div className={`content-width mt ${s.main}`}>
-            <div className="row">
-                <img src={state.photo} className="col-12" />
+            <div className="row w-100 mx-0">
+                <img src={state.photo} className="col-12 px-0" />
                 { state.showEditTitle || 
                     <span className={`col-12 ${s.title}`}>
                         {state.title}
@@ -102,8 +111,16 @@ const Edit = ({loggedIn, loggedUser}) => {
                         />
                     </span> 
                 }
-                {state.showEditTitle && <input className={s['title-input']} value={state.title} onChange={handleTitleChange} onBlur={finishTitleChange} />}
-                { state.showEditContent || <div className={`col-12 ${s.content}`} dangerouslySetInnerHTML={{__html: state.content}}></div> }
+                {state.showEditTitle && 
+                    <input 
+                        className={s['title-input']} 
+                        value={state.title} 
+                        onChange={handleTitleChange} 
+                        ref={titleInput} 
+                        onBlur={finishTitleChange} 
+                    />}
+                { state.showEditContent || 
+                    <div className={`col-12 ${s.content}`} dangerouslySetInnerHTML={{__html: state.content}}></div> }
                 { state.showEditContent || 
                     <div className="col-12 w-100 my-2">
                         <img 
@@ -113,9 +130,21 @@ const Edit = ({loggedIn, loggedUser}) => {
                         />
                     </div> 
                 }
-                {state.showEditContent && <textarea className={s['title-input']} value={state.content} onChange={handleContentChange} onBlur={finishContentChange} />}
-                <div className="col-12">
-                    <button onClick={saveChanges} className="btn btn-success">Save</button>
+                {state.showEditContent && 
+                    <textarea 
+                        className={s['title-input']} 
+                        value={state.content} 
+                        onChange={handleContentChange} 
+                        onBlur={finishContentChange} 
+                        ref={contentInput} 
+                    />}
+                <div className="col-12 mb-2 d-flex justify-content-end">
+                    <button 
+                        onClick={saveChanges} 
+                        className={`btn btn-success ${s['save-button']}`}
+                    >
+                        Save
+                    </button>
                 </div>
             </div>
         </div>

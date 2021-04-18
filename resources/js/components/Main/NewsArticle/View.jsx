@@ -70,9 +70,11 @@ const View = ({loggedIn, loggedUser}) => {
 
     return (
         <div className={`content-width mt ${s.main}`}>
-            <div className="row">
-                <img src={state.photo} className="col-12" />
-                <div className={`col-12 d-flex justify-content-end ${s.author}`}>Author: <b>{state?.author?.name}</b></div>
+            <div className="row w-100 mx-0">
+                <img src={state.photo} className="col-12 px-0" />
+                <div className={`col-12 d-flex justify-content-end ${s.author}`}>
+                    Author: <b>{state?.author?.name}</b>
+                </div>
                 <span className={`col-12 ${s.title}`}>
                     {state.title}
                 </span> 
@@ -84,9 +86,15 @@ const View = ({loggedIn, loggedUser}) => {
                          {comments.length > 0 
                                 ? comments.map(comment => (
                                     <div className="d-flex justify-content-center py-2" key={comment.id}>
-                                        <div className={`${s.second} py-2 px-2`}> <span className={s.text1}>{comment.content}</span>
+                                        <div className={`${s.second} py-2 px-2`}>
+                                            <span className={s.text1}>
+                                                {comment.content}
+                                            </span>
                                             <div className="d-flex justify-content-between py-1 pt-2">
-                                                <div><span className={s.text2}>{comment.author.name}</span></div>
+                                                <div>
+                                                    <span className={s.text2}>{comment.author.name}
+                                                    </span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
