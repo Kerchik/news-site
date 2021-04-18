@@ -5,7 +5,7 @@ import s from './Header.module.css'
 import requests from '../../api/requests'
 import { useHistory } from 'react-router-dom';
 
-const Header = ({loggedIn, changeIsLoggedIn, changeLoggedUser}) => {
+const Header = ({loggedIn, changeIsLoggedIn, changeLoggedUser, loggedUser}) => {
     let history = useHistory()
     const logout = (e) => {
         e.preventDefault()
@@ -17,20 +17,23 @@ const Header = ({loggedIn, changeIsLoggedIn, changeLoggedUser}) => {
     }
     return (
         <div className="d-flex content-width justify-content-between">
-        <div className={` ${s.header}`}>
-            <img src={logo} />
-            <ul className={s.ul}>
-                <li><Link to="/news">News</Link></li>
-                <li><Link to="/about">About</Link></li>
-            </ul>
-        </div>
-        <div>
-            { loggedIn ?
-            <a className="text-white login-logout" onClick={logout} href="#">Logout</a>
-            :
-            <Link to="/login" className="text-white login-logout">Login</Link> 
-            }
-        </div>
+            <div className={` ${s.header}`}>
+                <img src={logo} />
+                <ul className={s.ul}>
+                    <li><Link to="/news">News</Link></li>
+                    <li><Link to="/about">About</Link></li>
+                </ul>
+            </div>
+            <div>
+                { loggedIn ?
+                <>
+                    <span className="text-light mr-2">{loggedUser?.name}</span>
+                    <a className="text-white login-logout" onClick={logout} href="#">Logout</a>
+                </>
+                :
+                <Link to="/login" className="text-white login-logout">Login</Link> 
+                }
+            </div>
         </div>
     )
 }
