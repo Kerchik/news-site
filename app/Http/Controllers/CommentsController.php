@@ -24,6 +24,8 @@ class CommentsController extends Controller
 		]);
 
 		$comment->save();
+
+		return response('Comment has been added!', 200)->header('Content-Type', 'text/plain');
     }
 
 	public function getComments($id) {
@@ -31,6 +33,6 @@ class CommentsController extends Controller
 		foreach ($comments as $comment) {
 			$comment->author = User::where('id', $comment->author)->first();
 		}
-		return $comments;
+		return response()->json($comments);
 	} 
 }

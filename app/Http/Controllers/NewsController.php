@@ -10,7 +10,8 @@ class NewsController extends Controller
 {
     public function index()
 	{
-	    return News::orderBy('created_at', 'DESC')->get();
+	    $news = News::orderBy('created_at', 'DESC')->get();
+		return response()->json($news);
 	}
 
     public function viewArticle($id)
@@ -19,7 +20,7 @@ class NewsController extends Controller
 	    $news = News::where('id', $id)->first();
 		$news->photo = url($news->photo);
 		$news->author = User::where('id', $news->author)->first();
-		return $news;
+		return response()->json($news);
 	}
 
     public function editArticle(Request $request, $id)
@@ -32,14 +33,14 @@ class NewsController extends Controller
 
 		$news->save();
 
+		return response("News have been sucessfully edited!", 200);
 	}
 
     public function removeArticle($id)
 	{
 	    $news = News::where('id', $id)->first();
 		$news->delete();
-		return response('Article has been deleted!', 200)
-                  ->header('Content-Type', 'text/plain');
+		return response('Article has been deleted!', 200)->header('Content-Type', 'text/plain');
 
 	}
 
@@ -58,6 +59,8 @@ class NewsController extends Controller
 		]);
 
 		$news->save();
+
+		return response('Article has added!', 200)->header('Content-Type', 'text/plain');
 
 	}
 }
