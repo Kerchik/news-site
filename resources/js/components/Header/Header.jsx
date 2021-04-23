@@ -24,14 +24,14 @@ const Header = ({loggedIn, changeIsLoggedIn, changeLoggedUser, loggedUser}) => {
                     <li><Link to="/about">About</Link></li>
                 </ul>
             </div>
-            <div>
+            <div className={s['header-mt']}>
                 { loggedIn ?
                 <>
                     <span className="text-light mr-2">{loggedUser?.name}</span>
-                    <a className="text-white login-logout" onClick={logout} href="#">Logout</a>
+                    <a className={`text-white ${s['login-logout']}`} onClick={logout} href="#">Logout</a>
                 </>
                 :
-                <Link to="/login" className="text-white login-logout">Login</Link> 
+                <Link to="/login" className={`text-white ${s['login']} ${s['login-logout']}`}>Login</Link> 
                 }
             </div>
         </div>

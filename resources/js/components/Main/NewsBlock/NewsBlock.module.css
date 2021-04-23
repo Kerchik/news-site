@@ -24,3 +24,11 @@
 .modal-button {
     width: 100px;
 }
+@media (max-width: 576px) {
+    .news-block {
+        height: 300px;
+    }
+    .news-block-photo {
+        height: 250px;
+    }
+}

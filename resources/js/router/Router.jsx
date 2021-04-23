@@ -27,7 +27,7 @@ const Router = ({loggedIn, loggedUser, changeIsLoggedIn, changeLoggedUser}) => {
     }, [])
     return (
         <BrowserRouter>
-            <div className="bg-black">
+            <div className="bg-black min-vh">
                 <Header loggedIn={loggedIn} changeIsLoggedIn={changeIsLoggedIn} changeLoggedUser={changeLoggedUser} loggedUser={loggedUser} />
                 {appIsReady &&
                 <Switch>
@@ -41,8 +41,8 @@ const Router = ({loggedIn, loggedUser, changeIsLoggedIn, changeLoggedUser}) => {
                     <Route exact path="/login"><Login changeIsLoggedIn={changeIsLoggedIn} changeLoggedUser={changeLoggedUser} /></Route>
                 </Switch>
                 }
-                <Footer />
             </div>
+            <Footer />
         </BrowserRouter>
     )
 }

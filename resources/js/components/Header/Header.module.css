@@ -2,6 +2,10 @@
     background-color: transparent;
     display: flex;
 }
+.ul {
+    margin-top: 1em !important;
+    margin-bottom: 0 !important;
+}
 .ul li {
     display: inline-block;
     padding-left: 8px;
@@ -18,7 +22,13 @@
     text-decoration: none;
     color: #ebe4e1;
 }
+.login {
+    display: block;
+}
 .login-logout:hover {
     text-decoration: none;
-    color: #c7c4c3;
+    color: #c7c4c3 !important;
+}
+.header-mt {
+    margin-top: 1em;
 }
