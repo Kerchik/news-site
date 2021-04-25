@@ -89,7 +89,10 @@ const Edit = ({loggedIn, loggedUser}) => {
                 content: news.content,
                 photo: news.photo,
             })
-        });
+        }).catch(error => {
+            history.push('/')
+            return
+        })
     }, [])
 
     useEffect(() => {

@@ -18,6 +18,11 @@ class NewsController extends Controller
 	{
 
 	    $news = News::where('id', $id)->first();
+
+		if (!$news) {
+			return response('Article is not found!', 404);
+		}
+
 		$news->photo = url($news->photo);
 		$news->author = User::where('id', $news->author)->first();
 		return response()->json($news);
@@ -27,6 +32,10 @@ class NewsController extends Controller
 	{
 	    $data = $request->json()->all();
 		$news = News::where('id', $id)->first();
+
+		if (!$news) {
+			return response('Article is not found!', 404);
+		}
 
 		$news->title = $data['title'];
 		$news->content = $data['content'];

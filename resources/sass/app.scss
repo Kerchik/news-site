@@ -49,6 +49,15 @@ html, body {
   .demo-menu {
     display: none;
   }
+  .cursor-pointer {
+    cursor: pointer;
+  }
+  .not-found-image {
+    width: 133px;
+  }
+  .font-28 {
+    font-size: 28px;
+  }
 @media (max-width: 767px) {
   .demo-menu {
     background: #000;

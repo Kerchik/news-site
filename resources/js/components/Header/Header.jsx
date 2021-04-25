@@ -27,7 +27,10 @@ const Header = ({loggedIn, changeIsLoggedIn, changeLoggedUser, loggedUser}) => {
     return (
         <div className="d-flex content-width justify-content-between">
             <div className={` ${s.header}`}>
-                <img src={logo} onClick={goToHomePage} />
+                <img 
+                    src={logo}
+                    className={'cursor-pointer'} 
+                    onClick={goToHomePage} />
                 <ul className={`${s.ul}  ${s['navbar-hide']}`}>
                     <li><Link to="/news">News</Link></li>
                     <li><Link to="/about">About</Link></li>

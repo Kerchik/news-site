@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react'
-import {useParams, Link} from 'react-router-dom'
+import {useParams, Link, useHistory} from 'react-router-dom'
 import requests from '../../../api/requests'
 import s from './NewsArticle.module.css'
 
 const View = ({loggedIn, loggedUser}) => {
     const { id } = useParams();
+    let history = useHistory()
 
     const [state, setState] = useState({
         id: null,
@@ -63,8 +64,12 @@ const View = ({loggedIn, loggedUser}) => {
                 photo: news.photo,
                 author: news.author,
             })
-        });
-        getComments()
+            getComments()
+        })
+        .catch(error => {
+            history.push('/')
+            return
+        })
            
     }, [])
 
