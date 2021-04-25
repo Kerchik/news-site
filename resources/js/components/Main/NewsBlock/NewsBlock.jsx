@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 import {Link} from 'react-router-dom'
 import remove from '../../../img/remove.png'
 import edit from '../../../img/edit.png'
-import s from './NewsBlock.module.css'
+import s from './NewsBlock.module.scss'
 import requests from '../../../api/requests'
 
 const NewsBlock = ({props, isUser, loggedUser}) => {

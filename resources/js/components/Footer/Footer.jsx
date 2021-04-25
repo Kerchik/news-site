@@ -8,9 +8,12 @@ const Footer = () => {
         window.scrollTo(0, 0)
     }
     return (
-        <div className={`d-flex content-width text-white justify-content-between pb-2 ${s['footer']}`}>
+        <div className={`d-flex content-width text-white justify-content-between pb-2 mt-1 ${s['footer']}`}>
             <div>
-                <img src={logo} />
+                <img 
+                    src={logo} 
+                    className={s['footer-logo']}
+                />
             </div>
             <div>
                 <img 

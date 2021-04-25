@@ -1,3 +1,11 @@
 .scroll-up {
     width: 56px;
 }
+@media (max-width: 576px) {
+    .footer-logo {
+        height: 42px;
+    }
+    .scroll-up {
+        width: 42px;
+    }
+}

@@ -12,9 +12,9 @@
     font-size: 18px;
     font-weight: 500;
     display: block;
-}
-.news-block-title:hover {
-    color: #000;
+    &:hover {
+        color: #000;
+    }
 }
 .news-button-container {
     position: absolute;

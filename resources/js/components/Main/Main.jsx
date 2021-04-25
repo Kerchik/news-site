@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import s from './Main.module.css'
+import s from './Main.module.scss'
 import NewsBlock from './NewsBlock/NewsBlock'
 import Loading from '../Common/Loading'
 import axios from 'axios'
