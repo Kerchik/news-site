@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Comments;
-use App\User;
+use App\Models\User;
 
 class CommentsController extends Controller
 {

@@ -1,9 +1,11 @@
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
-import axios from 'axios'
+import { useHistory } from 'react-router-dom';
 import requests from '../../api/requests'
 
 const Register = () => {
+    let history = useHistory()
+
     const [form, setForm] = useState({
         name: '',
         email: '',
@@ -36,6 +38,9 @@ const Register = () => {
     const register = (e) => {
         e.preventDefault();
         requests.register(form)
+        .then(() => {
+          history.push('/login')
+        })
         .catch(error => {
           if (error.response.status == 422) {
               setErrors(error.response.data.errors)

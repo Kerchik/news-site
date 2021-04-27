@@ -39,7 +39,7 @@ const Router = ({loggedIn, loggedUser, changeIsLoggedIn, changeLoggedUser}) => {
                     <Route exact path="/news/edit/:id"><NewsArticleEdit loggedIn={loggedIn} loggedUser={loggedUser} /></Route>
                     <Route exact path="/add-news"><AddNews loggedIn={loggedIn} loggedUser={loggedUser}/></Route>
                     <Route exact path="/register" component={Register} />
-                    <Route exact path="/login"><Login changeIsLoggedIn={changeIsLoggedIn} changeLoggedUser={changeLoggedUser} /></Route>
+                    <Route exact path="/login"><Login loggedIn={loggedIn} changeIsLoggedIn={changeIsLoggedIn} changeLoggedUser={changeLoggedUser} /></Route>
                     <Route path="*">
                         <NotFound />
                     </Route>

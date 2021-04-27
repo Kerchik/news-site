@@ -1,10 +1,10 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import axios from 'axios'
 import {Link} from 'react-router-dom'
 import { useHistory } from 'react-router-dom';
 import requests from '../../api/requests'
 
-const Login = ({changeIsLoggedIn, changeLoggedUser}) => {
+const Login = ({changeIsLoggedIn, changeLoggedUser, loggedIn}) => {
     let history = useHistory()
 
     const [form, setForm] = useState({
@@ -13,6 +13,13 @@ const Login = ({changeIsLoggedIn, changeLoggedUser}) => {
     })
 
     const [errors, setErrors] = useState([])
+
+    useEffect(() => {
+        if (loggedIn) {
+            history.push('/')
+            return
+        }
+    }, [])
 
     const handleEmailChange = (e) => {
         setForm({
