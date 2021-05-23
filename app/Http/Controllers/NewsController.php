@@ -8,6 +8,9 @@ use App\Models\User;
 
 class NewsController extends Controller
 {
+	const ROLE_ADMIN = 1;
+	const ROLE_USER = 10;
+
     public function index()
 	{
 	    $news = News::orderBy('created_at', 'DESC')->get();
@@ -16,7 +19,6 @@ class NewsController extends Controller
 
     public function viewArticle($id)
 	{
-
 	    $news = News::where('id', $id)->first();
 
 		if (!$news) {
@@ -30,6 +32,10 @@ class NewsController extends Controller
 
     public function editArticle(Request $request, $id)
 	{
+		if (auth()->user()->role !== self::ROLE_ADMIN) {
+			return response("You do not have a permission to execute this operation!", 403);
+		}
+
 	    $data = $request->json()->all();
 		$news = News::where('id', $id)->first();
 
@@ -47,7 +53,16 @@ class NewsController extends Controller
 
     public function removeArticle($id)
 	{
+		if (auth()->user()->role !== self::ROLE_ADMIN) {
+			return response("You do not have a permission to execute this operation!", 403);
+		}
+
 	    $news = News::where('id', $id)->first();
+
+		if (!$news) {
+			return response('Article is not found!', 404);
+		}
+
 		$news->delete();
 		return response('Article has been deleted!', 200)->header('Content-Type', 'text/plain');
 
@@ -55,6 +70,10 @@ class NewsController extends Controller
 
     public function addArticle(Request $request)
 	{
+		if (auth()->user()->role !== self::ROLE_ADMIN) {
+			return response("You do not have a permission to execute this operation!", 403);
+		}
+
 	    $data = $request->json()->all();
 		$news = new News;
 		
@@ -70,6 +89,5 @@ class NewsController extends Controller
 		$news->save();
 
 		return response('Article has added!', 200)->header('Content-Type', 'text/plain');
-
 	}
 }

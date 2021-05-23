@@ -17,12 +17,12 @@ Route::get('news', 'newsController@index');
 
 Route::get('news/{id}', 'newsController@viewArticle');
 
-Route::post('news/{id}', 'newsController@editArticle');
+Route::middleware('auth:sanctum')->post('news/{id}', 'newsController@editArticle');
 
 Route::middleware('auth:sanctum')->delete('news/remove/{id}', 'newsController@removeArticle');
 
-Route::post('add-news', 'newsController@addArticle');
+Route::middleware('auth:sanctum')->post('add-news', 'newsController@addArticle');
 
-Route::post('add-comment', 'commentsController@addComment');
+Route::middleware('auth:sanctum')->post('add-comment', 'commentsController@addComment');
 
 Route::get('get-comments/{id}', 'commentsController@getComments');
