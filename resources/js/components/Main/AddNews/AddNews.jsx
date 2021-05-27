@@ -13,7 +13,7 @@ const AddNews = ({loggedIn, loggedUser}) => {
     })
 
     useEffect(() => {
-        if (!loggedIn) {
+        if (!loggedIn || (loggedUser && loggedUser.role!=1)) {
             history.push('/')
             return
         }
