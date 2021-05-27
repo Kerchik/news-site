@@ -36,10 +36,9 @@ const View = ({loggedIn, loggedUser}) => {
     const addComment = () => {
         let data = {
             content: state.comment,
-            author: loggedUser.id,
             news_id: state.id
         }
-        requests.addComment(data).then(response => {
+        requests.addComment(data, state.id).then(response => {
             setState({...state, comment: ''})
             getComments()
         })

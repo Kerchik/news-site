@@ -23,6 +23,6 @@ Route::middleware('auth:sanctum')->delete('news/remove/{id}', 'newsController@re
 
 Route::middleware('auth:sanctum')->post('add-news', 'newsController@addArticle');
 
-Route::middleware('auth:sanctum')->post('add-comment', 'commentsController@addComment');
+Route::middleware('auth:sanctum')->post('add-comment/{id}', 'commentsController@addComment');
 
 Route::get('get-comments/{id}', 'commentsController@getComments');

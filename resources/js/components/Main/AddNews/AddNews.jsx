@@ -47,7 +47,6 @@ const AddNews = ({loggedIn, loggedUser}) => {
         formData.append("title", state.title);
         formData.append("content", state.content);
         formData.append("photo", state.photo);
-        formData.append("author", loggedUser.id);
         requests.addArticle(formData)
         .then(response => {
             history.push('/')

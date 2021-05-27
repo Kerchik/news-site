@@ -29,9 +29,9 @@ export default {
         await this.getCookie()
         await axios.post(`/api/add-news`, form)
     },
-    async addComment(form) {
+    async addComment(form, id) {
         await this.getCookie()
-        await axios.post(`/api/add-comment`, form)
+        await axios.post(`/api/add-comment/${id}`, form)
     },
     async getComments(id) {
         await this.getCookie()

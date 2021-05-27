@@ -74,6 +74,8 @@ class NewsController extends Controller
 			return response("You do not have a permission to execute this operation!", 403);
 		}
 
+		$authorId = auth()->user()->id;
+
 	    $data = $request->json()->all();
 		$news = new News;
 		
@@ -81,7 +83,7 @@ class NewsController extends Controller
 			'title' => $request['title'],		
 			'content' => $request['content'],
 			'photo' => $request->file('photo')->store('news-photos', 'public'),
-			'author' => $request['author'],
+			'author' => $authorId,
 			"created_at"=> now(),
 			"updated_at"=> now(),
 		]);
