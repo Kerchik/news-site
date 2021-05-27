@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\News;
 use App\Models\User;
+use App\Models\Comments;
 
 class NewsController extends Controller
 {
@@ -64,8 +65,10 @@ class NewsController extends Controller
 		}
 
 		$news->delete();
-		return response('Article has been deleted!', 200)->header('Content-Type', 'text/plain');
 
+		Comments::where('news_id', $news->id)->delete();
+
+		return response('Article has been deleted!', 200)->header('Content-Type', 'text/plain');
 	}
 
     public function addArticle(Request $request)
