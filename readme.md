@@ -1,23 +1,12 @@
-Ziņu portāls  
-Autors: Maksims Liskins
+News portal
+Author: Maksims Liskins
 
-Programmatūras apraksts:
-Ziņu portāls, kas ļauj pievienot/redīgēt vai apskatīt zīņas/rakstus. 
-Frontend būs izstrādāts kā SPA(Single page application), kurš veic pieprasījumus uz backend API.
-Backend – Laravel;
-Frontend – React JS
-DB - MySql
+Frontend: React JS + Redux
+Backend: PHP + Laravel
+DB: MySql
 
-SWOT:
-Stiprās puses — pieredze frontend, SPA izstrāde, Pieredze ar React bibliotēku
-Vājās puses —laika trūkums, backend izstrādes pieredzes trūkums;
-Iespējas —dokumentācija, citu programmetāju padomes;
-Draudi —bakalaura darbs;
+To start server:
+php artisan start
 
-SIPOC:
-Suppliers - News writers;
-Inputs - News, Articles;
-Process - News/Article is added to DB;
-Outputs - News/Article will be shown on mian page;
-Customers - Subscribers/Advertisers
-
+To watch frontend:
+npm run watch
