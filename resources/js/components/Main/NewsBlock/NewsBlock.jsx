@@ -61,18 +61,20 @@ const NewsBlock = ({props, isUser, loggedUser}) => {
                 }
                 </Link>
             </div>
-            <Modal
-                isOpen={modalIsOpen}
-                onRequestClose={closeModal}
-                style={customStyles}
-                contentLabel="Example Modal"
-            >
-                <div>Do you really want to delete this article?</div>
-                <div className="d-flex justify-content-end">
-                    <button className={`btn btn-success ${s['modal-button']}`} onClick={removeArticle}>Yes</button>
-                    <button className={`btn btn-danger ml-2 ${s['modal-button']}`} onClick={closeModal}>No</button>
-                </div>
-            </Modal>
+            { modalIsOpen &&
+                <Modal
+                    isOpen={modalIsOpen}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                >
+                    <div>Do you really want to delete this article?</div>
+                    <div className="d-flex justify-content-end">
+                        <button className={`btn btn-success ${s['modal-button']}`} onClick={removeArticle}>Yes</button>
+                        <button className={`btn btn-danger ml-2 ${s['modal-button']}`} onClick={closeModal}>No</button>
+                    </div>
+                </Modal>
+            }
         </>
     )
 }
