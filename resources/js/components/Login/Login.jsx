@@ -53,7 +53,7 @@ const Login = ({changeIsLoggedIn, changeLoggedUser, loggedIn}) => {
         <div className={`content-width mt main`}>
             <div className="col-md-5 mx-auto my-2">
                 <h1 className="text-center">Login</h1>
-                <div className="card bg-none border-none">
+                <form className="card bg-none border-none" onSubmit={login}>
                     <div className="card-body">
                         <div className="form-group">
                             <label>Email address:</label>
@@ -86,7 +86,7 @@ const Login = ({changeIsLoggedIn, changeLoggedUser, loggedIn}) => {
                         </button>
                         <Link to="/register">Register</Link>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     )

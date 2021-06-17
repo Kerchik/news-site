@@ -52,7 +52,7 @@ const Register = () => {
       <div className="content-width mt main">
         <div className="col-md-5 mx-auto my-2">
           <h1 className="text-center">Register</h1>
-          <div className="card bg-none border-none">
+          <form className="card bg-none border-none" onSubmit={register}>
             <div className="card-body">
                   <div className="form-group">
                     <label>Name:</label>
@@ -102,7 +102,7 @@ const Register = () => {
                   </button>
                   <Link to="/login">Login</Link>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     )
