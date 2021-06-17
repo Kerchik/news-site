@@ -6,11 +6,14 @@ import requests from '../../../api/requests'
 
 const AddNews = ({loggedIn, loggedUser}) => {
     let history = useHistory()
+
     const [state, setState] = useState({
         title: "",
         content: "",
         photo: ""
     })
+
+    const [errors, setErrors] = useState([])
 
     useEffect(() => {
         if (!loggedIn || (loggedUser && loggedUser.role!=1)) {
@@ -51,6 +54,11 @@ const AddNews = ({loggedIn, loggedUser}) => {
         .then(response => {
             history.push('/')
         })
+        .catch(error => {
+            if (error.response.status == 422) {
+                setErrors(error.response.data.errors)
+            }
+        })
     }
 
     return (
@@ -58,23 +66,32 @@ const AddNews = ({loggedIn, loggedUser}) => {
             <form className="col-12 my-2" encType="multipart/form-data" name="fileinfo">
                 <input 
                     type="text" 
-                    className="w-100 my-1" 
+                    className={`form-control w-100 my-1 ${errors.title && "input-border-danger"}`}
                     placeholder="Title" 
                     value={state.title}
                     onChange={setTitle}
                 />
+                {errors.title && <span className="text-danger" >
+                    { errors.title[0] }
+                </span> }
                 <textarea 
-                    className="w-100 my-1" 
+                    className={`form-control w-100 my-1 ${errors.content && "input-border-danger"}`}
                     placeholder="Content"
                     value={state.content}
                     onChange={setContent}
                 />
+                {errors.content && <span className="text-danger" >
+                    { errors.content[0] }
+                </span> }
                 <input 
                     type="file" 
-                    className="w-100 my-1" 
+                    className={`w-100 my-1 ${errors.photo && "input-border-danger"}`} 
                     placeholder="Photo"
                     onChange={setPhoto} 
                 />
+                {errors.photo && <span className="text-danger" >
+                    { errors.photo[0] }
+                </span> }
                 <button onClick={addNews} className="btn btn-success w-100 my-1">Add</button>
             </form>
         </div>

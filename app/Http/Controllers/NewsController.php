@@ -77,6 +77,12 @@ class NewsController extends Controller
 			return response("You do not have a permission to execute this operation!", 403);
 		}
 
+		$request->validate([
+            'title' => ['required', 'min:3'],
+            'content' => ['required', 'min:8'],
+            'photo' => ['required']
+        ]);
+
 		$authorId = auth()->user()->id;
 
 	    $data = $request->json()->all();
