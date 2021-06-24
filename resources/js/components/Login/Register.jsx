@@ -9,7 +9,8 @@ const Register = () => {
     const [form, setForm] = useState({
         name: '',
         email: '',
-        password: ''
+        password: '',
+        handleConfirmPasswordChange: ''
     })
 
     const [errors, setErrors] = useState([])
@@ -35,6 +36,13 @@ const Register = () => {
         })
     }
 
+    const handleConfirmPasswordChange = (e) => {
+        setForm({
+            ...form,
+            password_confirmation: e.target.value
+        })
+    }
+
     const register = (e) => {
         e.preventDefault();
         requests.register(form)
@@ -43,6 +51,7 @@ const Register = () => {
         })
         .catch(error => {
           if (error.response.status == 422) {
+            console.log(error.response.data.errors)
               setErrors(error.response.data.errors)
           }
       })
@@ -88,6 +97,19 @@ const Register = () => {
                       id="password"
                       value={form.password}
                       onChange={handlePasswordChange}
+                    />
+                    {errors.password && <span className="text-danger" >
+                        { errors.password[0] }
+                    </span> }
+                  </div>
+                  <div className="form-group">
+                    <label >Confirm password:</label>
+                    <input
+                      type="password"
+                      className={`form-control ${errors.password && "input-border-danger"}`}
+                      id="password"
+                      value={form.password_confirmation}
+                      onChange={handleConfirmPasswordChange}
                     />
                     {errors.password && <span className="text-danger" >
                         { errors.password[0] }
