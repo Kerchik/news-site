@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
-import axios from 'axios'
+import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
-import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom'
 import requests from '../../api/requests'
 
 const Login = ({changeIsLoggedIn, changeLoggedUser, loggedIn}) => {
@@ -90,6 +90,12 @@ const Login = ({changeIsLoggedIn, changeLoggedUser, loggedIn}) => {
             </div>
         </div>
     )
+}
+
+Login.propTypes = {
+    changeIsLoggedIn: PropTypes.func.isRequired,
+    changeLoggedUser: PropTypes.func.isRequired,
+    loggedIn: PropTypes.bool.isRequired,
 }
 
 export default Login

@@ -9,9 +9,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/register', 'registerController@register');
 
-Route::post('/login', 'loginCOntroller@login');
+Route::post('/login', 'loginController@login');
 
-Route::post('/logout', 'loginCOntroller@logout');
+Route::post('/logout', 'loginController@logout');
 
 Route::get('news', 'newsController@index');
 

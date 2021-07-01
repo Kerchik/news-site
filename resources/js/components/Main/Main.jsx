@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react'
+import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 import s from './Main.module.scss'
 import NewsBlock from './NewsBlock/NewsBlock'
 import Loading from '../Common/Loading'
-import axios from 'axios'
 
 const Main = ({loggedIn, loggedUser}) => {
     const [news, setNews] = useState([])
@@ -61,18 +61,18 @@ const Main = ({loggedIn, loggedUser}) => {
                     <Link className="w-100" to="/add-news">
                         <button className="btn btn-success w-100">Add article</button>
                     </Link> }
-                    { news.map(n => <NewsBlock props={n} isUser={loggedIn} loggedUser={loggedUser} key={n.id} />) }
+                    { news.map(n => <NewsBlock articleInfo={n} isUser={loggedIn} loggedUser={loggedUser} key={n.id} />) }
                     {!news.length && <div className={s['no-content']}><h2>No content added yet!</h2></div>}
                     {newsCount && 
                         <ul className="w-100 d-flex justify-content-center pagination">
                             { currentPage > 1 &&
                                 <li className="page-item cursor-pointer">
-                                    <span class="page-link" onClick={getPreviousItems}>Previous</span>
+                                    <span className="page-link" onClick={getPreviousItems}>Previous</span>
                                 </li>
                             }
                             { currentPage < lastPage &&
                                 <li className="page-item cursor-pointer">
-                                    <span class="page-link" onClick={getNextItems}>Next</span>
+                                    <span className="page-link" onClick={getNextItems}>Next</span>
                                 </li>
                             }
                         </ul>
@@ -81,6 +81,11 @@ const Main = ({loggedIn, loggedUser}) => {
             }
         </div>
     )
+}
+
+Main.propTypes = {
+    loggedIn: PropTypes.bool.isRequired,
+    loggedUser: PropTypes.object,
 }
 
 export default Main

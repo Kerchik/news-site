@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react'
+import PropTypes from 'prop-types'
 import { useHistory } from 'react-router-dom';
 import s from './AddNews.module.css'
-import axios from 'axios'
 import requests from '../../../api/requests'
 
 const AddNews = ({loggedIn, loggedUser}) => {
@@ -51,7 +51,7 @@ const AddNews = ({loggedIn, loggedUser}) => {
         formData.append("content", state.content);
         formData.append("photo", state.photo);
         requests.addArticle(formData)
-        .then(response => {
+        .then(() => {
             history.push('/')
         })
         .catch(error => {
@@ -96,6 +96,11 @@ const AddNews = ({loggedIn, loggedUser}) => {
             </form>
         </div>
     )
+}
+
+AddNews.propTypes = {
+    loggedIn: PropTypes.bool.isRequired,
+    loggedUser: PropTypes.object,
 }
 
 export default AddNews

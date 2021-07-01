@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react'
+import PropTypes from 'prop-types'
 import { Switch, BrowserRouter, Route } from 'react-router-dom';
 import {connect} from 'react-redux'
 import {changeIsLoggedIn, changeLoggedUser} from '../redux/authReducer'
@@ -21,7 +22,7 @@ const Router = ({loggedIn, loggedUser, changeIsLoggedIn, changeLoggedUser}) => {
             changeIsLoggedIn(true)
             changeLoggedUser(data)
         }).catch((error) => {
-            //console.error(error)
+            console.error(error)
         }).finally(() => {
             setAppIsReady(true)
         })
@@ -35,7 +36,7 @@ const Router = ({loggedIn, loggedUser, changeIsLoggedIn, changeLoggedUser}) => {
                     <Route exact path="/"><Main loggedIn={loggedIn} loggedUser={loggedUser}/></Route>
                     <Route exact path="/news"><Main loggedIn={loggedIn} loggedUser={loggedUser}/></Route>
                     <Route exact path="/about" component={About} />
-                    <Route exact path="/news/:id"><NewsArticle loggedIn={loggedIn} loggedUser={loggedUser} /></Route>
+                    <Route exact path="/news/:id"><NewsArticle loggedIn={loggedIn} /></Route>
                     <Route exact path="/news/edit/:id"><NewsArticleEdit loggedIn={loggedIn} loggedUser={loggedUser} /></Route>
                     <Route exact path="/add-news"><AddNews loggedIn={loggedIn} loggedUser={loggedUser}/></Route>
                     <Route exact path="/register" component={Register} />
@@ -49,6 +50,13 @@ const Router = ({loggedIn, loggedUser, changeIsLoggedIn, changeLoggedUser}) => {
             <Footer />
         </BrowserRouter>
     )
+}
+
+Router.propTypes = {
+    loggedIn: PropTypes.bool.isRequired,
+    loggedUser: PropTypes.object,
+    changeIsLoggedIn: PropTypes.func.isRequired,
+    changeLoggedUser: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = ({auth}) => {

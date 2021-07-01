@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react'
+import PropTypes from 'prop-types'
 import {useParams, Link, useHistory} from 'react-router-dom'
 import requests from '../../../api/requests'
 import s from './NewsArticle.module.css'
 
-const View = ({loggedIn, loggedUser}) => {
+const View = ({loggedIn}) => {
     const { id } = useParams();
     let history = useHistory()
 
@@ -38,7 +39,7 @@ const View = ({loggedIn, loggedUser}) => {
             content: state.comment,
             news_id: state.id
         }
-        requests.addComment(data, state.id).then(response => {
+        requests.addComment(data, state.id).then(() => {
             setState({...state, comment: ''})
             getComments()
         })
@@ -65,7 +66,7 @@ const View = ({loggedIn, loggedUser}) => {
             })
             getComments()
         })
-        .catch(error => {
+        .catch(() => {
             history.push('/')
             return
         })
@@ -144,6 +145,10 @@ const View = ({loggedIn, loggedUser}) => {
             </div>
         </div>
     )
+}
+
+View.propTypes = {
+    loggedIn: PropTypes.bool.isRequired,
 }
 
 export default View

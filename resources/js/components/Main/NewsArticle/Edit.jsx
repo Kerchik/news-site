@@ -1,7 +1,7 @@
 import React, {useState, useEffect, useRef} from 'react'
+import PropTypes from 'prop-types'
 import {useParams} from 'react-router-dom'
 import { useHistory } from 'react-router-dom';
-import axios from 'axios'
 import edit from '../../../img/edit.png'
 import s from './NewsArticle.module.css'
 import requests from '../../../api/requests'
@@ -58,7 +58,7 @@ const Edit = ({loggedIn, loggedUser}) => {
 
     const saveChanges = () => {
         requests.editArticle(state, id)
-        .then(response => {
+        .then(() => {
             history.push('/')
         })
     }
@@ -89,7 +89,7 @@ const Edit = ({loggedIn, loggedUser}) => {
                 content: news.content,
                 photo: news.photo,
             })
-        }).catch(error => {
+        }).catch(() => {
             history.push('/')
             return
         })
@@ -152,6 +152,11 @@ const Edit = ({loggedIn, loggedUser}) => {
             </div>
         </div>
     )
+}
+
+Edit.propTypes = {
+    loggedIn: PropTypes.bool.isRequired,
+    loggedUser: PropTypes.object,
 }
 
 export default Edit

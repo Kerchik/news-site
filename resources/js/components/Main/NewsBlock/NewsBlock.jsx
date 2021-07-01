@@ -1,14 +1,14 @@
 import React, {useState} from 'react'
-import axios from 'axios'
+import PropTypes from 'prop-types'
 import Modal from 'react-modal';
-import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom'
 import {Link} from 'react-router-dom'
 import remove from '../../../img/remove.png'
 import edit from '../../../img/edit.png'
 import s from './NewsBlock.module.scss'
 import requests from '../../../api/requests'
 
-const NewsBlock = ({props, isUser, loggedUser}) => {
+const NewsBlock = ({articleInfo, isUser, loggedUser}) => {
     let history = useHistory()
     Modal.setAppElement('#root')
 
@@ -34,13 +34,13 @@ const NewsBlock = ({props, isUser, loggedUser}) => {
     const openEditPage = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        history.push(`/news/edit/${props.id}`)
+        history.push(`/news/edit/${articleInfo.id}`)
     }
     const [modalIsOpen,setIsOpen] = useState(false);
     const removeArticle = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        requests.deleteArticle(props.id).then(() => {
+        requests.deleteArticle(articleInfo.id).then(() => {
             setIsOpen(false)
             history.go(0)
         })
@@ -48,10 +48,10 @@ const NewsBlock = ({props, isUser, loggedUser}) => {
     return (
         <>
             <div className={s['news-block'] + " col-lg-6"}>
-                <Link  to={`/news/${props.id}`}>
-                <img src={props.photo} className={s['news-block-photo']}/>
+                <Link  to={`/news/${articleInfo.id}`}>
+                <img src={articleInfo.photo} className={s['news-block-photo']}/>
                 <div>
-                    <span className={s['news-block-title']}>{props.title}</span>
+                    <span className={s['news-block-title']}>{articleInfo.title}</span>
                 </div>
                 {(isUser && loggedUser && loggedUser.role == 1) &&
                 <div className={s['news-button-container']}>
@@ -77,6 +77,12 @@ const NewsBlock = ({props, isUser, loggedUser}) => {
             }
         </>
     )
+}
+
+NewsBlock.propTypes = {
+    articleInfo: PropTypes.object,
+    isUser: PropTypes.bool.isRequired,
+    loggedUser: PropTypes.object,
 }
 
 export default NewsBlock

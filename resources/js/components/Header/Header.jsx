@@ -1,9 +1,10 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
+import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 import logo from '../../img/logo.png'
 import s from './Header.module.scss'
 import requests from '../../api/requests'
-import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom'
 
 const Header = ({loggedIn, changeIsLoggedIn, changeLoggedUser, loggedUser}) => {
     let history = useHistory()
@@ -66,6 +67,13 @@ const Header = ({loggedIn, changeIsLoggedIn, changeLoggedUser, loggedUser}) => {
             </div>
         </div>
     )
+}
+
+Header.propTypes = {
+    loggedIn: PropTypes.bool.isRequired,
+    changeIsLoggedIn: PropTypes.func.isRequired,
+    changeLoggedUser: PropTypes.func.isRequired,
+    loggedUser: PropTypes.object,
 }
 
 export default Header
