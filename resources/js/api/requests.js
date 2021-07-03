@@ -19,7 +19,7 @@ export default {
     },
     async editArticle(form, id) {
         await this.getCookie()
-        await axios.post(`/api/news/${id}`, JSON.stringify(form))
+        await axios.post(`/api/news/${id}`, form)
     },
     async deleteArticle(id) {
         await this.getCookie()

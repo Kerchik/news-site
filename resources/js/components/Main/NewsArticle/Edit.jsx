@@ -10,6 +10,8 @@ const Edit = ({loggedIn, loggedUser}) => {
     let history = useHistory()
     const { id } = useParams();
 
+    const hiddenFileInput = useRef(null);
+
     const titleInput = useRef(null);
 
     const contentInput = useRef(null);
@@ -49,6 +51,20 @@ const Edit = ({loggedIn, loggedUser}) => {
         })
     }
 
+    const handlePhotoChange = (e) => {
+        if (!e.target.files[0]) return
+        setState({
+            ...state,
+            photo: URL.createObjectURL(e.target.files[0]),
+            photoObject: e.target.files[0],
+        })
+    }
+
+    const handlePhotoChangeClick = (e) => {
+        e.preventDefault()
+        hiddenFileInput.current.click();
+    }
+
     const finishContentChange = () => {
         setState({
             ...state,
@@ -56,8 +72,14 @@ const Edit = ({loggedIn, loggedUser}) => {
         })
     }
 
-    const saveChanges = () => {
-        requests.editArticle(state, id)
+    const saveChanges = (e) => {
+        e.preventDefault()
+        var form = document.forms.namedItem("fileinfo")
+        const formData = new FormData(form);
+        formData.append("title", state.title);
+        formData.append("content", state.content);
+        formData.append("photo", state.photoObject);
+        requests.editArticle(formData, id)
         .then(() => {
             history.push('/')
         })
@@ -65,9 +87,10 @@ const Edit = ({loggedIn, loggedUser}) => {
 
     const [state, setState] = useState({
         id: null,
-        title: 'null',
+        title: '',
         content: null,
         photo: null,
+        photoObject: null,
         showEditTitle: false,
         showEditContent: false,
     })
@@ -102,7 +125,7 @@ const Edit = ({loggedIn, loggedUser}) => {
 
     return (
         <div className={`content-width mt ${s.main}`}>
-            <div className="row w-100 mx-0">
+            <form className="row w-100 mx-0" encType="multipart/form-data" name="fileinfo">
                 <img src={state.photo} className="col-12 px-0" />
                 { state.showEditTitle || 
                     <span className={`col-12 ${s.title}`}>
@@ -141,7 +164,19 @@ const Edit = ({loggedIn, loggedUser}) => {
                         onBlur={finishContentChange} 
                         ref={contentInput} 
                     />}
-                <div className="col-12 mb-2 d-flex justify-content-end">
+                <div className={`col-12 mb-2 d-flex flex-wrap justify-content-end ${s['action-buttons']}`}>
+                    <button 
+                        className="btn btn-primary mr-2"
+                        onClick={handlePhotoChangeClick}
+                    >
+                        Change photo
+                    </button>
+                    <input
+                        type="file"
+                        className="d-none"
+                        ref={hiddenFileInput}
+                        onChange={handlePhotoChange} 
+                    />
                     <button 
                         onClick={saveChanges} 
                         className={`btn btn-success ${s['save-button']}`}
@@ -149,7 +184,7 @@ const Edit = ({loggedIn, loggedUser}) => {
                         Save
                     </button>
                 </div>
-            </div>
+            </form>
         </div>
     )
 }

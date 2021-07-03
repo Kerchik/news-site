@@ -36,16 +36,25 @@ class NewsController extends Controller
 		if (auth()->user()->role !== self::ROLE_ADMIN) {
 			return response("You do not have a permission to execute this operation!", 403);
 		}
-
+		$request->validate([
+            'title' => ['required', 'min:3'],
+            'content' => ['required', 'min:8'],
+            'photo' => ['required']
+        ]);
 	    $data = $request->json()->all();
+		
 		$news = News::where('id', $id)->first();
 
 		if (!$news) {
 			return response('Article is not found!', 404);
 		}
 
-		$news->title = $data['title'];
-		$news->content = $data['content'];
+		$news->title = $request['title'];
+		$news->content = $request['content'];
+		
+		if ($request->file('photo')) {
+			$news->photo = $request->file('photo')->store('news-photos', 'public');
+		}
 
 		$news->save();
 
