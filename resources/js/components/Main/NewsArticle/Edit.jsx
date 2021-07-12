@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useEffect, useRef, useReducer} from 'react'
 import PropTypes from 'prop-types'
 import {useParams} from 'react-router-dom'
 import { useHistory } from 'react-router-dom';
@@ -6,9 +6,54 @@ import edit from '../../../img/edit.png'
 import s from './NewsArticle.module.css'
 import requests from '../../../api/requests'
 
+const initialState = {
+    id: null,
+    title: '',
+    content: null,
+    photo: null,
+    photoObject: null,
+    showEditTitle: false,
+    showEditContent: false,
+}
+
+const reducer = (state, action) => {
+    switch (action.type) {
+        case 'set-state':
+            return {
+                ...state,
+                id: action.news.id,
+                title: action.news.title,
+                content: action.news.content,
+                photo: action.news.photo,
+            }
+        case 'edit-title':
+            return {...state, showEditTitle: true}
+        case 'edit-content':
+            return {...state, showEditContent: true}
+        case 'handle-title-change':
+            return {...state, title: action.title}
+        case 'handle-content-change':
+            return {...state, content: action.content}
+        case 'finish-title-change':
+            return {...state, showEditTitle: false}
+        case 'finish-content-change':
+            return {...state, showEditContent: false}
+        case 'handle-photo-change':
+            return {
+                ...state,
+                photo: URL.createObjectURL(action.files),
+                photoObject: action.files,
+            }
+        default: return state 
+    }
+}
+
 const Edit = ({loggedIn, loggedUser}) => {
     let history = useHistory()
+
     const { id } = useParams();
+
+    const [state, dispatch] = useReducer(reducer, initialState)
 
     const hiddenFileInput = useRef(null);
 
@@ -16,60 +61,31 @@ const Edit = ({loggedIn, loggedUser}) => {
 
     const contentInput = useRef(null);
 
-    const editTitle = () => {
-        setState({
-            ...state,
-            showEditTitle: true
+    useEffect(() => {
+        if (!loggedIn || (loggedUser && loggedUser.role!=1)) {
+            history.push('/')
+            return
+        }
+        fetch(`/api/news/${id}`)
+        .then(response => {
+            return response.json();
         })
-    }
+        .then(news => {
+            dispatch({type: 'set-state', news})
+        }).catch(() => {
+            history.push('/')
+            return
+        })
+    }, [])
 
-    const editContent = () => {
-        setState({
-            ...state,
-            showEditContent: true
-        })
-    }
-
-    const handleTitleChange = (event) => {
-        setState({
-            ...state,
-            title: event.target.value
-        })
-    }
-
-    const handleContentChange = (event) => {
-        setState({
-            ...state,
-            content: event.target.value
-        })
-    }
-
-    const finishTitleChange = () => {
-        setState({
-            ...state,
-            showEditTitle: false
-        })
-    }
-
-    const handlePhotoChange = (e) => {
-        if (!e.target.files[0]) return
-        setState({
-            ...state,
-            photo: URL.createObjectURL(e.target.files[0]),
-            photoObject: e.target.files[0],
-        })
-    }
+    useEffect(() => {
+        if (state.showEditTitle) titleInput.current.focus()
+        if (state.showEditContent) contentInput.current.focus()
+    }, [state.showEditTitle, state.showEditContent])
 
     const handlePhotoChangeClick = (e) => {
         e.preventDefault()
         hiddenFileInput.current.click();
-    }
-
-    const finishContentChange = () => {
-        setState({
-            ...state,
-            showEditContent: false
-        })
     }
 
     const saveChanges = (e) => {
@@ -85,44 +101,6 @@ const Edit = ({loggedIn, loggedUser}) => {
         })
     }
 
-    const [state, setState] = useState({
-        id: null,
-        title: '',
-        content: null,
-        photo: null,
-        photoObject: null,
-        showEditTitle: false,
-        showEditContent: false,
-    })
-
-    useEffect(() => {
-        if (!loggedIn || (loggedUser && loggedUser.role!=1)) {
-            history.push('/')
-            return
-        }
-        fetch(`/api/news/${id}`)
-        .then(response => {
-            return response.json();
-        })
-        .then(news => {
-            setState({
-                ...state,
-                id: news.id,
-                title: news.title,
-                content: news.content,
-                photo: news.photo,
-            })
-        }).catch(() => {
-            history.push('/')
-            return
-        })
-    }, [])
-
-    useEffect(() => {
-        if (state.showEditTitle) titleInput.current.focus()
-        if (state.showEditContent) contentInput.current.focus()
-    }, [state.showEditTitle, state.showEditContent])
-
     return (
         <div className={`content-width mt ${s.main}`}>
             <form className="row w-100 mx-0" encType="multipart/form-data" name="fileinfo">
@@ -131,7 +109,7 @@ const Edit = ({loggedIn, loggedUser}) => {
                     <span className={`col-12 ${s.title}`}>
                         {state.title}
                         <img 
-                            onClick={editTitle} 
+                            onClick={() => dispatch({type: 'edit-title'})} 
                             src={edit} 
                             className={s['edit-button']}
                         />
@@ -141,16 +119,16 @@ const Edit = ({loggedIn, loggedUser}) => {
                     <input 
                         className={s['title-input']} 
                         value={state.title} 
-                        onChange={handleTitleChange} 
+                        onChange={(e) => dispatch({type: 'handle-title-change', title: e.target.value})} 
                         ref={titleInput} 
-                        onBlur={finishTitleChange} 
+                        onBlur={() => dispatch({type: 'finish-title-change'})} 
                     />}
                 { state.showEditContent || 
                     <div className={`col-12 ${s.content}`} dangerouslySetInnerHTML={{__html: state.content}}></div> }
                 { state.showEditContent || 
                     <div className="col-12 w-100 my-2">
                         <img 
-                            onClick={editContent} 
+                            onClick={() => dispatch({type: 'edit-content'})} 
                             src={edit} 
                             className={s['edit-button']}
                         />
@@ -160,8 +138,8 @@ const Edit = ({loggedIn, loggedUser}) => {
                     <textarea 
                         className={s['title-input']} 
                         value={state.content} 
-                        onChange={handleContentChange} 
-                        onBlur={finishContentChange} 
+                        onChange={(e) => dispatch({type: 'handle-content-change', content: e.target.value})} 
+                        onBlur={() => dispatch({type: 'finish-content-change'})} 
                         ref={contentInput} 
                     />}
                 <div className={`col-12 mb-2 d-flex flex-wrap justify-content-end ${s['action-buttons']}`}>
@@ -175,7 +153,10 @@ const Edit = ({loggedIn, loggedUser}) => {
                         type="file"
                         className="d-none"
                         ref={hiddenFileInput}
-                        onChange={handlePhotoChange} 
+                        onChange={(e) => {
+                            if (!e.target.files[0]) return
+                            dispatch({type: 'handle-photo-change', files: e.target.files[0]})
+                        }} 
                     />
                     <button 
                         onClick={saveChanges} 
