@@ -35,6 +35,9 @@ const Header = ({loggedIn, changeIsLoggedIn, changeLoggedUser, loggedUser}) => {
                 <ul className={`${s.ul}  ${s['navbar-hide']}`}>
                     <li><Link to="/news">News</Link></li>
                     <li><Link to="/about">About</Link></li>
+                    { (loggedIn && loggedUser?.role === 1) &&
+                        <li><Link to="/admin-page">Admin Page</Link></li>                   
+                    }
                 </ul>
             </div>
             <button onClick={toggleHeaderMenu} className={`navbar-toggler navbar-dark ${s['navbar-toggle-button']}`} type="button">
@@ -44,13 +47,16 @@ const Header = ({loggedIn, changeIsLoggedIn, changeLoggedUser, loggedUser}) => {
                 <ul className={`${s['dropdown-menu-ul']} text-center pl-0`}>
                     <li><Link to="/news">News</Link></li>
                     <li><Link to="/about">About</Link></li>
+                    { (loggedIn && loggedUser?.role === 1) &&
+                        <li><Link to="/admin-page">Admin Page</Link></li>                   
+                    }
                     { loggedIn ?
                         <>
                             <span className="text-light mr-2">{loggedUser?.name}</span>
                             <a onClick={logout} href="#" className="d-inline">Logout</a>
                         </>
                     :
-                    <Link to="/login">Login</Link> 
+                        <Link to="/login">Login</Link> 
                     }
                 </ul>
             </div>

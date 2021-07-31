@@ -58,6 +58,16 @@ html, body {
   .font-28 {
     font-size: 28px;
   }
+  .table-bordered {
+    th,td {
+      border: 1px solid #444d57;
+    }
+    thead {
+      th {
+        border-bottom: 2px solid #444d57;
+      }
+    }
+  }
 @media (max-width: 767px) {
   .demo-menu {
     background: #000;

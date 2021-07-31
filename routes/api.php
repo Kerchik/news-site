@@ -26,3 +26,5 @@ Route::middleware('auth:sanctum')->post('add-news', 'newsController@addArticle')
 Route::middleware('auth:sanctum')->post('add-comment/{id}', 'commentsController@addComment');
 
 Route::get('get-comments/{id}', 'commentsController@getComments');
+
+Route::middleware('auth:sanctum')->get('get-users', 'UserController@getAllUsers');
