@@ -36,5 +36,9 @@ export default {
     async getComments(id) {
         await this.getCookie()
         return await axios.get(`/api/get-comments/${id}`)
+    },
+    async changeUserRole(form, id) {
+        await this.getCookie()
+        await axios.post(`/api/change-user-role/${id}`, form)
     }
 }

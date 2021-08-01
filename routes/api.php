@@ -28,3 +28,5 @@ Route::middleware('auth:sanctum')->post('add-comment/{id}', 'commentsController@
 Route::get('get-comments/{id}', 'commentsController@getComments');
 
 Route::middleware('auth:sanctum')->get('get-users', 'UserController@getAllUsers');
+
+Route::middleware('auth:sanctum')->post('change-user-role/{id}', 'UserController@changeUserRole');
