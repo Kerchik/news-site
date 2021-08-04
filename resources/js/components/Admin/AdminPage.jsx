@@ -25,6 +25,25 @@ const AdminPage = ({loggedIn, loggedUser}) => {
     const [loading, setLoading] = useState(false)
     const [currentUser, setCurrentUser] = useState(null)
 
+    const userRoles = {
+        1: {
+            id: 1,
+            key: 1,
+            name: 'Admin'
+        },
+        5: {
+            id: 2,
+            key: 5,
+            name: 'Author'
+        },
+        10: {
+            id: 3,
+            key: 10,
+            name: 'Regular User'
+        },
+        
+    }
+
     useEffect(() => {
         setLoading(true)
         if (!loggedIn || (loggedUser && loggedUser.role!=1)) {
@@ -89,7 +108,7 @@ const AdminPage = ({loggedIn, loggedUser}) => {
                         usersList.map(user => (
                             <tr key={user.id}>
                                 <td>{user.name}</td>
-                                <td>{user.role}<button className="btn btn-primary ml-2" onClick={(e) => openModalWindow(e, user)}>Change</button></td>
+                                <td>{userRoles[user.role].name}<button className="btn btn-primary ml-2" onClick={(e) => openModalWindow(e, user)}>Change</button></td>
                             </tr>
                         ))
                         : 
@@ -109,10 +128,11 @@ const AdminPage = ({loggedIn, loggedUser}) => {
                     contentLabel="Example Modal"
                 >
                     <div className="form-group mb-3">
-                        <label for="role-select">Choose role for this user:</label>
+                        <label htmlFor="role-select">Choose role for this user:</label>
                         <select id="role-select" className="form-control" value={currentUser?.role} onChange={changeCurrentUserRole}>
-                            <option value="1">Admin</option>
-                            <option value="10">Regular User</option>
+                            {Object.entries(userRoles).map(([, value]) => (
+                                <option key={value.id} value={value.key}>{value.name}</option>
+                            ))}
                         </select>
                     </div>
                     <div className="d-flex justify-content-end">

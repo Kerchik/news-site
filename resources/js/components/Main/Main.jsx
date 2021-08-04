@@ -57,7 +57,7 @@ const Main = ({loggedIn, loggedUser}) => {
                 ? <Loading /> 
                 : 
                 <>
-                    { (loggedIn && loggedUser && loggedUser.role == 1) &&
+                    { (loggedIn && loggedUser && (loggedUser.role === 1 || loggedUser.role === 5)) &&
                     <Link className="w-100" to="/add-news">
                         <button className="btn btn-success w-100">Add article</button>
                     </Link> }

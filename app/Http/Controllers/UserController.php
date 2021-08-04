@@ -6,9 +6,16 @@ use Illuminate\Http\Request;
 use App\Models\User;
 
 class UserController extends Controller
-{
-    const ROLE_ADMIN = 1;
+{   
+	const ROLE_ADMIN = 1;
+	const ROLE_AUTHOR = 5;
 	const ROLE_USER = 10;
+
+	const USER_ROLES = [
+		self::ROLE_ADMIN, 
+		self::ROLE_AUTHOR, 
+		self::ROLE_USER, 
+	];
     
     public function getAllUsers() {
         if (auth()->user()->role !== self::ROLE_ADMIN) {
@@ -29,6 +36,10 @@ class UserController extends Controller
 			return response('User is not found!', 404);
 		}
 
+		if (!in_array($request['role'], self::USER_ROLES)) {
+			return response('Wrong role!', 404);
+		}
+		
         $user->role = $request['role'];
 
 		$user->save();

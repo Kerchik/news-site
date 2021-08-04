@@ -16,7 +16,7 @@ const AddNews = ({loggedIn, loggedUser}) => {
     const [errors, setErrors] = useState([])
 
     useEffect(() => {
-        if (!loggedIn || (loggedUser && loggedUser.role!=1)) {
+        if (!loggedIn || (loggedUser && (loggedUser.role !== 1 && loggedUser.role !== 5))) {
             history.push('/')
             return
         }

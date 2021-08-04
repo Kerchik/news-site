@@ -10,6 +10,7 @@ use App\Models\Comments;
 class NewsController extends Controller
 {
 	const ROLE_ADMIN = 1;
+	const ROLE_AUTHOR = 5;
 	const ROLE_USER = 10;
 
     public function index()
@@ -82,7 +83,7 @@ class NewsController extends Controller
 
     public function addArticle(Request $request)
 	{
-		if (auth()->user()->role !== self::ROLE_ADMIN) {
+		if (auth()->user()->role !== self::ROLE_ADMIN && auth()->user()->role !== self::ROLE_AUTHOR) {
 			return response("You do not have a permission to execute this operation!", 403);
 		}
 
