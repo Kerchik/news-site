@@ -23,12 +23,10 @@ class CommentsController extends Controller
 
         $data = $request->json()->all();
 		
-		$comment = new \App\Models\Comments([
+		$comment = new Comments([
 			'content' => $request['content'],
 			'author' => $authorId,
-			'news_id' => $id,
-			"created_at"=> now(),
-			"updated_at"=> now(),
+			'news_id' => $id
 		]);
 
 		$comment->save();

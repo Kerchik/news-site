@@ -40,5 +40,9 @@ export default {
     async changeUserRole(form, id) {
         await this.getCookie()
         await axios.post(`/api/change-user-role/${id}`, form)
+    },
+    async deleteUser(id) {
+        await this.getCookie()
+        await axios.delete(`/api/delete-user/${id}`)
     }
 }

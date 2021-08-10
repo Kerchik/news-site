@@ -61,20 +61,36 @@ const Edit = ({loggedIn, loggedUser}) => {
 
     const contentInput = useRef(null);
 
+    const handleResponse = (response) => {
+        return response.json()
+            .then((json) => {
+                if (!response.ok) {
+                    const error = Object.assign({}, json, {
+                        status: response.status,
+                        statusText: response.statusText,
+                    });
+                    
+                    return Promise.reject(error);
+                }
+                return json;
+            });
+    }
+
     useEffect(() => {
         if (!loggedIn || (loggedUser && loggedUser.role!=1)) {
             history.push('/')
             return
         }
         fetch(`/api/news/${id}`)
-        .then(response => {
-            return response.json();
-        })
+        .then(handleResponse)
         .then(news => {
             dispatch({type: 'set-state', news})
-        }).catch(() => {
-            history.push('/')
-            return
+        }).catch((error) => {
+            if (error?.status === 404) {
+                console.error(error.message)
+                history.push('/')
+                return
+            }
         })
     }, [])
 

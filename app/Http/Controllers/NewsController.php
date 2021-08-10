@@ -24,11 +24,16 @@ class NewsController extends Controller
 	    $news = News::where('id', $id)->first();
 
 		if (!$news) {
-			return response('Article is not found!', 404);
+			return response()->json([
+				'message' => 'Article is not found!'
+			], 404);
 		}
 
 		$news->photo = url($news->photo);
-		$news->author = User::where('id', $news->author)->first();
+		$author = User::where('id', $news->author)->first();
+
+		$news->author = $author ?: null;
+
 		return response()->json($news);
 	}
 
@@ -42,7 +47,6 @@ class NewsController extends Controller
             'content' => ['required', 'min:8'],
             'photo' => ['required']
         ]);
-	    $data = $request->json()->all();
 		
 		$news = News::where('id', $id)->first();
 
@@ -95,20 +99,15 @@ class NewsController extends Controller
 
 		$authorId = auth()->user()->id;
 
-	    $data = $request->json()->all();
-		$news = new News;
-		
-		$news = new \App\Models\News([
+		$news = new News([
 			'title' => $request['title'],		
 			'content' => $request['content'],
 			'photo' => $request->file('photo')->store('news-photos', 'public'),
 			'author' => $authorId,
-			"created_at"=> now(),
-			"updated_at"=> now(),
 		]);
 
 		$news->save();
 
-		return response('Article has added!', 200)->header('Content-Type', 'text/plain');
+		return response('Article has been added!', 200)->header('Content-Type', 'text/plain');
 	}
 }

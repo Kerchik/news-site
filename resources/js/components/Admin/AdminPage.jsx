@@ -21,7 +21,8 @@ const AdminPage = ({loggedIn, loggedUser}) => {
       };
 
     const [usersList, setUsersList] = useState([])
-    const [modalIsOpen,setIsOpen] = useState(false);
+    const [roleModalIsOpen,setRoleModalIsOpen] = useState(false);
+    const [deleteModalIsOpen,setDeleteModalIsOpen] = useState(false);
     const [loading, setLoading] = useState(false)
     const [currentUser, setCurrentUser] = useState(null)
 
@@ -63,20 +64,37 @@ const AdminPage = ({loggedIn, loggedUser}) => {
         })
     }, [])
 
-    const openModalWindow = (e, user) => {
+    const openRoleModalWindow = (e, user) => {
         e.preventDefault();
         e.stopPropagation();
-        setIsOpen(true)
+        setRoleModalIsOpen(true)
+        setCurrentUser(user)
+    }
+    const openDeleteModalWindow = (e, user) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setDeleteModalIsOpen(true)
         setCurrentUser(user)
     }
     const closeModal = () => {
-        setIsOpen(false)
+        setRoleModalIsOpen(false)
+        setDeleteModalIsOpen(false)
         setCurrentUser(null)
     }
     const submitNewUserRole = (e) => {
         e.preventDefault();
         e.stopPropagation();
         requests.changeUserRole(currentUser, currentUser.id)
+        .then(() => {
+            closeModal()
+            setCurrentUser(null)
+            history.go(0)
+        })
+    }
+    const deleteUser = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        requests.deleteUser(currentUser.id)
         .then(() => {
             closeModal()
             setCurrentUser(null)
@@ -100,6 +118,7 @@ const AdminPage = ({loggedIn, loggedUser}) => {
                         <tr>
                             <th>Username</th>
                             <th>Role</th>
+                            <th>Delete User</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -108,7 +127,11 @@ const AdminPage = ({loggedIn, loggedUser}) => {
                         usersList.map(user => (
                             <tr key={user.id}>
                                 <td>{user.name}</td>
-                                <td>{userRoles[user.role].name}<button className="btn btn-primary ml-2" onClick={(e) => openModalWindow(e, user)}>Change</button></td>
+                                <td>
+                                    {userRoles[user.role].name}
+                                    {user.id === 1 || <button className="btn btn-primary ml-2" onClick={(e) => openRoleModalWindow(e, user)}>Change</button>}
+                                </td>
+                                <td>{user.id === 1 || <button className="btn btn-danger ml-2" onClick={(e) => openDeleteModalWindow(e, user)}>Delete</button>}</td>
                             </tr>
                         ))
                         : 
@@ -120,9 +143,9 @@ const AdminPage = ({loggedIn, loggedUser}) => {
                 </table>
                 }
             </div>
-            { modalIsOpen &&
+            { roleModalIsOpen &&
                 <Modal
-                    isOpen={modalIsOpen}
+                    isOpen={roleModalIsOpen}
                     onRequestClose={closeModal}
                     style={customStyles}
                     contentLabel="Example Modal"
@@ -138,6 +161,20 @@ const AdminPage = ({loggedIn, loggedUser}) => {
                     <div className="d-flex justify-content-end">
                         <button className={`btn btn-success modal-button`} onClick={submitNewUserRole}>Save</button>
                         <button className={`btn btn-danger modal-button ml-2`} onClick={closeModal}>Cancel</button>
+                    </div>
+                </Modal>
+            }
+            { deleteModalIsOpen &&
+                <Modal
+                    isOpen={deleteModalIsOpen}
+                    onRequestClose={closeModal}
+                    style={customStyles}
+                    contentLabel="Example Modal"
+                >
+                    <div>Do you really want to delete this user?</div>
+                    <div className="d-flex justify-content-end">
+                        <button className={`btn btn-success modal-button`} onClick={deleteUser}>Yes</button>
+                        <button className={`btn btn-danger ml-2 modal-button`} onClick={closeModal}>No</button>
                     </div>
                 </Modal>
             }

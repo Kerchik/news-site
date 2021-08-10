@@ -36,6 +36,10 @@ class UserController extends Controller
 			return response('User is not found!', 404);
 		}
 
+		if ($user->id === 1) {
+			return response('You cannot chane role of main Admin!', 403);
+		}
+
 		if (!in_array($request['role'], self::USER_ROLES)) {
 			return response('Wrong role!', 404);
 		}
@@ -44,5 +48,25 @@ class UserController extends Controller
 
 		$user->save();
 		return response("User role has been successfully changed!", 200);
+    }
+
+    public function deleteUser($userId) {
+        if (auth()->user()->role !== self::ROLE_ADMIN) {
+			return response("You do not have a permission to execute this operation!", 403);
+		}
+
+        $user = User::where('id', $userId)->first();
+
+		if (!$user) {
+			return response('User is not found!', 404);
+		}
+
+		if ($user->id === 1) {
+			return response('You cannot delete main Admin!', 403);
+		}
+
+        $user->delete();
+
+		return response("User has been deleted!", 200);
     }
 }

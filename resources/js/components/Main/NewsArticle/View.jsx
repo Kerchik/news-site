@@ -21,6 +21,21 @@ const View = ({loggedIn}) => {
 
     const [errors, setErrors] = useState([])
 
+    const handleResponse = (response) => {
+        return response.json()
+            .then((json) => {
+                if (!response.ok) {
+                    const error = Object.assign({}, json, {
+                        status: response.status,
+                        statusText: response.statusText,
+                    });
+                    
+                    return Promise.reject(error);
+                }
+                return json;
+            });
+    }
+
     const commentHandler = (e) => {
         setState({
             ...state,
@@ -52,9 +67,7 @@ const View = ({loggedIn}) => {
 
     useEffect(() => {
         fetch(`/api/news/${id}`)
-        .then(response => {
-            return response.json();
-        })
+        .then(handleResponse)
         .then(news => {
             setState({
                 ...state,
@@ -66,9 +79,12 @@ const View = ({loggedIn}) => {
             })
             getComments()
         })
-        .catch(() => {
-            history.push('/')
-            return
+        .catch((error) => {
+            if (error?.status === 404) {
+                console.error(error.message)
+                history.push('/')
+                return
+            }
         })
            
     }, [])
@@ -78,7 +94,7 @@ const View = ({loggedIn}) => {
             <div className="row w-100 mx-0">
                 <img src={state.photo} className="col-12 px-0" />
                 <div className={`col-12 d-flex justify-content-end ${s.author}`}>
-                    Author: <b>{state?.author?.name}</b>
+                    Author: <b>{state?.author?.name || 'DELETED'}</b>
                 </div>
                 <span className={`col-12 ${s.title}`}>
                     {state.title}
@@ -97,7 +113,7 @@ const View = ({loggedIn}) => {
                                             </span>
                                             <div className="d-flex justify-content-between py-1 pt-2">
                                                 <div>
-                                                    <span className={s.text2}>{comment.author.name}
+                                                    <span className={s.text2}>{comment?.author?.name || 'DELETED'}
                                                     </span>
                                                 </div>
                                             </div>

@@ -30,3 +30,9 @@ Route::get('get-comments/{id}', 'commentsController@getComments');
 Route::middleware('auth:sanctum')->get('get-users', 'UserController@getAllUsers');
 
 Route::middleware('auth:sanctum')->post('change-user-role/{id}', 'UserController@changeUserRole');
+
+Route::middleware('auth:sanctum')->delete('delete-user/{id}', 'UserController@deleteUser');
+
+Route::get('redirect', function() {
+    return response("You do not have a permission to execute this operation!", 403);
+})->name('redirect');
