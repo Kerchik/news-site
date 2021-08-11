@@ -52,6 +52,10 @@ const AdminPage = ({loggedIn, loggedUser}) => {
             console.error('You do not have permission to see this page')
             return
         }
+        loadUsers()
+    }, [])
+
+    const loadUsers = async () => {
         fetch(`/api/get-users`)
         .then(response => {
             return response.json();
@@ -62,7 +66,7 @@ const AdminPage = ({loggedIn, loggedUser}) => {
             console.error(e)
             setLoading(false)
         })
-    }, [])
+    }
 
     const openRoleModalWindow = (e, user) => {
         e.preventDefault();
@@ -84,21 +88,23 @@ const AdminPage = ({loggedIn, loggedUser}) => {
     const submitNewUserRole = (e) => {
         e.preventDefault();
         e.stopPropagation();
+        setLoading(true)
         requests.changeUserRole(currentUser, currentUser.id)
         .then(() => {
             closeModal()
             setCurrentUser(null)
-            history.go(0)
+            loadUsers()
         })
     }
     const deleteUser = (e) => {
         e.preventDefault();
         e.stopPropagation();
+        setLoading(true)
         requests.deleteUser(currentUser.id)
         .then(() => {
             closeModal()
             setCurrentUser(null)
-            history.go(0)
+            loadUsers()
         })
     }
     const changeCurrentUserRole = (e) => {

@@ -8,7 +8,7 @@ import edit from '../../../img/edit.png'
 import s from './NewsBlock.module.scss'
 import requests from '../../../api/requests'
 
-const NewsBlock = ({articleInfo, isUser, loggedUser}) => {
+const NewsBlock = ({articleInfo, isUser, loggedUser, reloadItemsCallback}) => {
     let history = useHistory()
     Modal.setAppElement('#root')
 
@@ -42,7 +42,7 @@ const NewsBlock = ({articleInfo, isUser, loggedUser}) => {
         e.stopPropagation();
         requests.deleteArticle(articleInfo.id).then(() => {
             setIsOpen(false)
-            history.go(0)
+            reloadItemsCallback()
         })
     }
     return (

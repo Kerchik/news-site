@@ -13,6 +13,10 @@ const Main = ({loggedIn, loggedUser}) => {
     const [loading, setLoading] = useState(true)
     
     useEffect(() => {
+        loadItems()
+    }, [])
+
+    const loadItems = async () => {
         fetch('/api/news')
         .then(response => {
             return response.json();
@@ -20,7 +24,7 @@ const Main = ({loggedIn, loggedUser}) => {
         .then((news) => {
             fetchActions(news)
         });
-    }, [])
+    }
 
     const getNextItems = () => {
         setLoading(true)
@@ -51,6 +55,7 @@ const Main = ({loggedIn, loggedUser}) => {
         setLastPage(last_page)
         setLoading(false)
     }
+
     return (
         <div className={`content-width ${s['main-margin']} ${s.main}`}>
             {loading 
@@ -61,7 +66,7 @@ const Main = ({loggedIn, loggedUser}) => {
                     <Link className="w-100" to="/add-news">
                         <button className="btn btn-success w-100">Add article</button>
                     </Link> }
-                    { news.map(n => <NewsBlock articleInfo={n} isUser={loggedIn} loggedUser={loggedUser} key={n.id} />) }
+                    { news.map(n => <NewsBlock reloadItemsCallback={loadItems} articleInfo={n} isUser={loggedIn} loggedUser={loggedUser} key={n.id} />) }
                     {!news.length && <div className={s['no-content']}><h2>No content added yet!</h2></div>}
                     {newsCount && 
                         <ul className="w-100 d-flex justify-content-center pagination">
