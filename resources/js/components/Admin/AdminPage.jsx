@@ -1,14 +1,13 @@
 import React, {useState, useEffect} from 'react'
 import { useHistory } from 'react-router-dom';
-import Modal from 'react-modal';
-import requests from '../../api/requests'
 import Loading from '../Common/Loading'
+import RoleModal from './Modal/RoleModal';
+import DeleteUserModal from './Modal/DeleteUserModal';
 
 const AdminPage = ({loggedIn, loggedUser}) => {
     let history = useHistory()
-    Modal.setAppElement('#root')
 
-    const customStyles = {
+    const modalStyles = {
         content : {
           top                   : '50%',
           left                  : '50%',
@@ -18,7 +17,7 @@ const AdminPage = ({loggedIn, loggedUser}) => {
           transform             : 'translate(-50%, -50%)',
           padding               : '50px'
         }
-      };
+    };
 
     const [usersList, setUsersList] = useState([])
     const [roleModalIsOpen,setRoleModalIsOpen] = useState(false);
@@ -42,7 +41,6 @@ const AdminPage = ({loggedIn, loggedUser}) => {
             key: 10,
             name: 'Regular User'
         },
-        
     }
 
     useEffect(() => {
@@ -79,39 +77,6 @@ const AdminPage = ({loggedIn, loggedUser}) => {
         e.stopPropagation();
         setDeleteModalIsOpen(true)
         setCurrentUser(user)
-    }
-    const closeModal = () => {
-        setRoleModalIsOpen(false)
-        setDeleteModalIsOpen(false)
-        setCurrentUser(null)
-    }
-    const submitNewUserRole = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        setLoading(true)
-        requests.changeUserRole(currentUser, currentUser.id)
-        .then(() => {
-            closeModal()
-            setCurrentUser(null)
-            loadUsers()
-        })
-    }
-    const deleteUser = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        setLoading(true)
-        requests.deleteUser(currentUser.id)
-        .then(() => {
-            closeModal()
-            setCurrentUser(null)
-            loadUsers()
-        })
-    }
-    const changeCurrentUserRole = (e) => {
-        setCurrentUser({
-            ...currentUser,
-            role: +e.target.value
-        })
     }
     return (
         <>
@@ -150,39 +115,27 @@ const AdminPage = ({loggedIn, loggedUser}) => {
                 }
             </div>
             { roleModalIsOpen &&
-                <Modal
-                    isOpen={roleModalIsOpen}
-                    onRequestClose={closeModal}
-                    style={customStyles}
-                    contentLabel="Example Modal"
-                >
-                    <div className="form-group mb-3">
-                        <label htmlFor="role-select">Choose role for this user:</label>
-                        <select id="role-select" className="form-control" value={currentUser?.role} onChange={changeCurrentUserRole}>
-                            {Object.entries(userRoles).map(([, value]) => (
-                                <option key={value.id} value={value.key}>{value.name}</option>
-                            ))}
-                        </select>
-                    </div>
-                    <div className="d-flex justify-content-end">
-                        <button className={`btn btn-success modal-button`} onClick={submitNewUserRole}>Save</button>
-                        <button className={`btn btn-danger modal-button ml-2`} onClick={closeModal}>Cancel</button>
-                    </div>
-                </Modal>
+                <RoleModal 
+                    roleModalIsOpen={roleModalIsOpen}  
+                    currentUser={currentUser}
+                    userRoles={userRoles}
+                    modalStyles={modalStyles}
+                    setRoleModalIsOpenCallback={setRoleModalIsOpen}
+                    loadUsersCallback={loadUsers}
+                    setCurrentUserCallback={setCurrentUser}
+                    setLoadingCallback={setLoading}
+                />
             }
             { deleteModalIsOpen &&
-                <Modal
-                    isOpen={deleteModalIsOpen}
-                    onRequestClose={closeModal}
-                    style={customStyles}
-                    contentLabel="Example Modal"
-                >
-                    <div>Do you really want to delete this user?</div>
-                    <div className="d-flex justify-content-end">
-                        <button className={`btn btn-success modal-button`} onClick={deleteUser}>Yes</button>
-                        <button className={`btn btn-danger ml-2 modal-button`} onClick={closeModal}>No</button>
-                    </div>
-                </Modal>
+                <DeleteUserModal 
+                    deleteModalIsOpen={deleteModalIsOpen}
+                    currentUser={currentUser}
+                    modalStyles={modalStyles}
+                    setDeleteModalIsOpenCallback={setDeleteModalIsOpen}
+                    loadUsersCallback={loadUsers}
+                    setCurrentUserCallback={setCurrentUser}
+                    setLoadingCallback={setLoading}
+                />
             }
         </>
     )
