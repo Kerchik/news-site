@@ -17,6 +17,7 @@ const Main = ({loggedIn, loggedUser}) => {
     }, [])
 
     const loadItems = async () => {
+        setLoading(true)
         fetch('/api/news')
         .then(response => {
             return response.json();

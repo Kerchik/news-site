@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import Modal from 'react-modal';
 import { useHistory } from 'react-router-dom'
 import {Link} from 'react-router-dom'
+import DeleteModal from './Modal/DeleteModal'
 import remove from '../../../img/remove.png'
 import edit from '../../../img/edit.png'
 import s from './NewsBlock.module.scss'
-import requests from '../../../api/requests'
 
 const NewsBlock = ({articleInfo, isUser, loggedUser, reloadItemsCallback}) => {
     let history = useHistory()
@@ -22,28 +22,19 @@ const NewsBlock = ({articleInfo, isUser, loggedUser, reloadItemsCallback}) => {
           transform             : 'translate(-50%, -50%)',
           padding               : '50px'
         }
-      };
+    };
+
+    const [modalIsOpen,setIsOpen] = useState(false);
+
     const openModalWindow = (e) => {
         e.preventDefault();
         e.stopPropagation();
         setIsOpen(true)
     }
-    const closeModal = () => {
-        setIsOpen(false)
-    }
     const openEditPage = (e) => {
         e.preventDefault();
         e.stopPropagation();
         history.push(`/news/edit/${articleInfo.id}`)
-    }
-    const [modalIsOpen,setIsOpen] = useState(false);
-    const removeArticle = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        requests.deleteArticle(articleInfo.id).then(() => {
-            setIsOpen(false)
-            reloadItemsCallback()
-        })
     }
     return (
         <>
@@ -62,18 +53,25 @@ const NewsBlock = ({articleInfo, isUser, loggedUser, reloadItemsCallback}) => {
                 </Link>
             </div>
             { modalIsOpen &&
-                <Modal
-                    isOpen={modalIsOpen}
-                    onRequestClose={closeModal}
-                    style={customStyles}
-                    contentLabel="Example Modal"
-                >
-                    <div>Do you really want to delete this article?</div>
-                    <div className="d-flex justify-content-end">
-                        <button className={`btn btn-success ${s['modal-button']}`} onClick={removeArticle}>Yes</button>
-                        <button className={`btn btn-danger ml-2 ${s['modal-button']}`} onClick={closeModal}>No</button>
-                    </div>
-                </Modal>
+                // <Modal
+                //     isOpen={modalIsOpen}
+                //     onRequestClose={closeModal}
+                //     style={customStyles}
+                //     contentLabel="Example Modal"
+                // >
+                //     <div>Do you really want to delete this article?</div>
+                //     <div className="d-flex justify-content-end">
+                //         <button className={`btn btn-success ${s['modal-button']}`} onClick={removeArticle}>Yes</button>
+                //         <button className={`btn btn-danger ml-2 ${s['modal-button']}`} onClick={closeModal}>No</button>
+                //     </div>
+                // </Modal>
+                <DeleteModal 
+                    modalIsOpen={modalIsOpen}
+                    setIsOpenCallback={setIsOpen}
+                    reloadItemsCallback={reloadItemsCallback}
+                    modalStyles={customStyles}
+                    articleInfo={articleInfo}
+                />
             }
         </>
     )
