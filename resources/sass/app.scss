@@ -61,6 +61,9 @@ html, body {
   .modal-button {
     width: 100px;
   }
+  .overflow-x-auto {
+    overflow-x: auto;
+  }
   .table-bordered {
     th,td {
       border: 1px solid #444d57;
@@ -91,7 +94,12 @@ html, body {
   transition: transform .2s,opacity .2s,visibility linear;
   visibility: visible;
   opacity: 1;
-  width: 100%;
+  width: 97%;
   display: block;
 }
+}
+@media (max-width: 1300px) {
+  .content-width {
+    width: 97%;
+  }
 }

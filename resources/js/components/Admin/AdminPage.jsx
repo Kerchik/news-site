@@ -80,38 +80,40 @@ const AdminPage = ({loggedIn, loggedUser}) => {
     }
     return (
         <>
-            <div className="content-width main justify-content-center p-4">
+            <div className="content-width main justify-content-center p-4 mt">
                 {loading 
                     ? <Loading /> 
-                    : 
-                <table className="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th>Username</th>
-                            <th>Role</th>
-                            <th>Delete User</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {usersList.length
-                        ?
-                        usersList.map(user => (
-                            <tr key={user.id}>
-                                <td>{user.name}</td>
-                                <td>
-                                    {userRoles[user.role].name}
-                                    {user.id === 1 || <button className="btn btn-primary ml-2" onClick={(e) => openRoleModalWindow(e, user)}>Change</button>}
-                                </td>
-                                <td>{user.id === 1 || <button className="btn btn-danger ml-2" onClick={(e) => openDeleteModalWindow(e, user)}>Delete</button>}</td>
+                    :
+                <div className="overflow-x-auto w-100">
+                    <table className="table table-bordered text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Role</th>
+                                <th>Delete User</th>
                             </tr>
-                        ))
-                        : 
-                        <tr>
-                            <td colSpan="2">No users found</td>
-                        </tr>
-                        }
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {usersList.length
+                            ?
+                            usersList.map(user => (
+                                <tr key={user.id}>
+                                    <td>{user.name}</td>
+                                    <td>
+                                        {userRoles[user.role].name}
+                                        {user.id === 1 || <button className="btn btn-primary ml-2" onClick={(e) => openRoleModalWindow(e, user)}>Change</button>}
+                                    </td>
+                                    <td>{user.id === 1 || <button className="btn btn-danger ml-2" onClick={(e) => openDeleteModalWindow(e, user)}>Delete</button>}</td>
+                                </tr>
+                            ))
+                            : 
+                            <tr>
+                                <td colSpan="2">No users found</td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
                 }
             </div>
             { roleModalIsOpen &&
