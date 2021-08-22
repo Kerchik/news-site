@@ -17,6 +17,11 @@ const Header = ({loggedIn, changeIsLoggedIn, changeLoggedUser, loggedUser}) => {
         history.push('/')
     }
 
+    const goToPage = (page) => {
+        history.push(page)
+        setShowMenu(false)
+    }
+
     const logout = (e) => {
         e.preventDefault()
         requests.logout().then(() => {
@@ -45,18 +50,20 @@ const Header = ({loggedIn, changeIsLoggedIn, changeLoggedUser, loggedUser}) => {
             </button>
             <div className={`demo-menu ${showMenu && 'visible'}`}>
                 <ul className={`${s['dropdown-menu-ul']} text-center pl-0`}>
-                    <li><Link to="/news">News</Link></li>
-                    <li><Link to="/about">About</Link></li>
+                    <li><a onClick={() => goToPage("/news")}>News</a></li>
+                    <li><a onClick={() => goToPage("/about")}>About</a></li>
                     { (loggedIn && loggedUser?.role === 1) &&
-                        <li><Link to="/admin-page">Admin Page</Link></li>                   
+                        <li><a onClick={() => goToPage("/admin-page")}>Admin Page</a></li>                   
                     }
                     { loggedIn ?
-                        <>
+                        <li>
                             <span className="text-light mr-2">{loggedUser?.name}</span>
                             <a onClick={logout} href="#" className="d-inline">Logout</a>
-                        </>
+                        </li>
                     :
-                        <Link to="/login">Login</Link> 
+                        <li>
+                            <a className="link" onClick={() => goToPage("/login")}>Login</a>
+                        </li>
                     }
                 </ul>
             </div>
