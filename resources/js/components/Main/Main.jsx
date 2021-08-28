@@ -69,7 +69,7 @@ const Main = ({loggedIn, loggedUser}) => {
                     </Link> }
                     { news.map(n => <NewsBlock reloadItemsCallback={loadItems} articleInfo={n} isUser={loggedIn} loggedUser={loggedUser} key={n.id} />) }
                     {!news.length && <div className={s['no-content']}><h2>No content added yet!</h2></div>}
-                    {newsCount && 
+                    {newsCount !== 0 && 
                         <ul className="w-100 d-flex justify-content-center pagination">
                             { currentPage > 1 &&
                                 <li className="page-item cursor-pointer">
