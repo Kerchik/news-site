@@ -1,5 +1,6 @@
 import React from 'react'
 import Modal from 'react-modal';
+import PropTypes from 'prop-types'
 import requests from '../../../../api/requests'
 import s from '../NewsBlock.module.scss'
 
@@ -33,6 +34,14 @@ const DeleteModal = ({modalIsOpen, setIsOpenCallback, reloadItemsCallback, artic
             </div>
         </Modal>
     )
+}
+
+DeleteModal.propTypes = {
+    modalIsOpen: PropTypes.bool.isRequired,
+    setIsOpenCallback: PropTypes.func,
+    reloadItemsCallback: PropTypes.func,
+    articleInfo: PropTypes.object,
+    modalStyles: PropTypes.object,
 }
 
 export default DeleteModal

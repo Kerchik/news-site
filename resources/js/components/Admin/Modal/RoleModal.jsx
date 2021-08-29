@@ -1,5 +1,6 @@
 import React from 'react'
 import Modal from 'react-modal';
+import PropTypes from 'prop-types'
 import requests from '../../../api/requests'
 
 const RoleModal = ({roleModalIsOpen, setRoleModalIsOpenCallback, currentUser, setCurrentUserCallback, loadUsersCallback, userRoles, setLoadingCallback, modalStyles}) => {
@@ -47,6 +48,17 @@ const RoleModal = ({roleModalIsOpen, setRoleModalIsOpenCallback, currentUser, se
             </div>
         </Modal>
     )
+}
+
+RoleModal.propTypes = {
+    roleModalIsOpen: PropTypes.bool.isRequired,
+    setRoleModalIsOpenCallback: PropTypes.func,
+    currentUser: PropTypes.object,
+    setCurrentUserCallback: PropTypes.func,
+    loadUsersCallback: PropTypes.func,
+    setLoadingCallback: PropTypes.func,
+    modalStyles: PropTypes.object,
+    userRoles: PropTypes.object,
 }
 
 export default RoleModal

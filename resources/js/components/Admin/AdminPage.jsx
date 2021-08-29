@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types'
 import Loading from '../Common/Loading'
 import RoleModal from './Modal/RoleModal';
 import DeleteUserModal from './Modal/DeleteUserModal';
@@ -141,6 +142,11 @@ const AdminPage = ({loggedIn, loggedUser}) => {
             }
         </>
     )
+}
+
+AdminPage.propTypes = {
+    loggedIn: PropTypes.bool.isRequired,
+    loggedUser: PropTypes.object,
 }
 
 export default AdminPage

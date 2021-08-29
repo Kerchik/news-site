@@ -69,6 +69,7 @@ NewsBlock.propTypes = {
     articleInfo: PropTypes.object,
     isUser: PropTypes.bool.isRequired,
     loggedUser: PropTypes.object,
+    reloadItemsCallback: PropTypes.func,
 }
 
 export default NewsBlock

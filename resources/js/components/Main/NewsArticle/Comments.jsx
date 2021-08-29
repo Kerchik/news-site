@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
+import PropTypes from 'prop-types'
 import requests  from '../../../api/requests'
 import s from './NewsArticle.module.css'
 
@@ -97,6 +98,11 @@ const Comments = ({loggedIn, newsState}) => {
             </div>
         </div>
     )
+}
+
+Comments.propTypes = {
+    loggedIn: PropTypes.bool.isRequired,
+    newsState: PropTypes.object,
 }
 
 export default Comments

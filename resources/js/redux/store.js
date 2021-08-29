@@ -1,4 +1,4 @@
-import {createStore, combineReducers, applyMiddleware} from "redux"
+import {createStore, combineReducers} from "redux"
 import authReducer from "./authReducer"
 
 const reducers = combineReducers({

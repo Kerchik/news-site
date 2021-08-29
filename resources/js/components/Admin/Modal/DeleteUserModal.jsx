@@ -1,5 +1,6 @@
 import React from 'react'
 import Modal from 'react-modal';
+import PropTypes from 'prop-types'
 import requests from '../../../api/requests'
 
 const DeleteUserModal = ({deleteModalIsOpen, setDeleteModalIsOpenCallback, currentUser, setCurrentUserCallback, loadUsersCallback, setLoadingCallback, modalStyles}) => {
@@ -36,6 +37,16 @@ const DeleteUserModal = ({deleteModalIsOpen, setDeleteModalIsOpenCallback, curre
             </div>
         </Modal>
     )
+}
+
+DeleteUserModal.propTypes = {
+    deleteModalIsOpen: PropTypes.bool.isRequired,
+    setDeleteModalIsOpenCallback: PropTypes.func,
+    currentUser: PropTypes.object,
+    setCurrentUserCallback: PropTypes.func,
+    loadUsersCallback: PropTypes.func,
+    setLoadingCallback: PropTypes.func,
+    modalStyles: PropTypes.object,
 }
 
 export default DeleteUserModal
