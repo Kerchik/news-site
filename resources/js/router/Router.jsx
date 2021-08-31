@@ -14,6 +14,7 @@ import AddNews from '../components/Main/AddNews/AddNews';
 import AdminPage from '../components/Admin/AdminPage';
 import Register from '../components/Login/Register';
 import Login from '../components/Login/Login';
+import Profile from '../components/User/Profile';
 import NotFound from '../components/Common/NotFound';
 
 const Router = ({loggedIn, loggedUser, changeIsLoggedIn, changeLoggedUser}) => {
@@ -43,6 +44,7 @@ const Router = ({loggedIn, loggedUser, changeIsLoggedIn, changeLoggedUser}) => {
                     <Route exact path="/admin-page"><AdminPage loggedIn={loggedIn} loggedUser={loggedUser}/></Route>
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/login"><Login loggedIn={loggedIn} changeIsLoggedIn={changeIsLoggedIn} changeLoggedUser={changeLoggedUser} /></Route>
+                    <Route exact path="/profile"><Profile loggedIn={loggedIn} loggedUser={loggedUser}/></Route>
                     <Route path="*">
                         <NotFound />
                     </Route>

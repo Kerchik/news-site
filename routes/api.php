@@ -29,6 +29,8 @@ Route::get('get-comments/{id}', 'commentsController@getComments');
 
 Route::middleware('auth:sanctum')->get('get-users', 'UserController@getAllUsers');
 
+Route::middleware('auth:sanctum')->get('get-user-activity/{id}', 'UserController@getUserActivity');
+
 Route::middleware('auth:sanctum')->post('change-user-role/{id}', 'UserController@changeUserRole');
 
 Route::middleware('auth:sanctum')->delete('delete-user/{id}', 'UserController@deleteUser');

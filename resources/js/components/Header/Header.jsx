@@ -22,6 +22,10 @@ const Header = ({loggedIn, changeIsLoggedIn, changeLoggedUser, loggedUser}) => {
         setShowMenu(false)
     }
 
+    const toUserProfile = () => {
+        history.push(`/profile`)
+    }
+
     const logout = (e) => {
         e.preventDefault()
         requests.logout().then(() => {
@@ -57,7 +61,7 @@ const Header = ({loggedIn, changeIsLoggedIn, changeLoggedUser, loggedUser}) => {
                     }
                     { loggedIn ?
                         <li>
-                            <span className="text-light mr-2">{loggedUser?.name}</span>
+                            <span onClick={toUserProfile} className="cursor-pointer text-light mr-2">{loggedUser?.name}</span>
                             <a onClick={logout} href="#" className="d-inline">Logout</a>
                         </li>
                     :
@@ -71,7 +75,7 @@ const Header = ({loggedIn, changeIsLoggedIn, changeLoggedUser, loggedUser}) => {
                 
                 { loggedIn ?
                 <>
-                    <span className="text-light mr-2">{loggedUser?.name}</span>
+                    <span onClick={toUserProfile} className="cursor-pointer text-light mr-2">{loggedUser?.name}</span>
                     <a className={`text-white ${s['login-logout']}`} onClick={logout} href="#">Logout</a>
                 </>
                 :

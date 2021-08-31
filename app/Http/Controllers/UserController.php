@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Comments;
+use App\Models\News;
 
 class UserController extends Controller
 {   
@@ -23,6 +25,17 @@ class UserController extends Controller
 		}
         $users = User::orderBy('role', 'ASC')->get();
 		return response()->json($users);
+    }
+
+    public function getUserActivity($userId) {
+        if (auth()->user()->id !== $userId && auth()->user()->role !== self::ROLE_ADMIN) {
+			return response("You do not have a permission to execute this operation!", 403);
+		}
+		
+		$commentsCount = count(Comments::where('author', $userId)->get());
+		$articlesCount = count(News::where('author', $userId)->get());
+
+		return response()->json(['commentsCount' => $commentsCount, 'articlesCount' => $articlesCount]);
     }
 
     public function changeUserRole(Request $request, $userId) {
