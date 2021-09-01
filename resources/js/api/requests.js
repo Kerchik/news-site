@@ -44,5 +44,9 @@ export default {
     async deleteUser(id) {
         await this.getCookie()
         await axios.delete(`/api/delete-user/${id}`)
+    },
+    async changeUserData(form, id) {
+        await this.getCookie()
+        await axios.post(`/api/user/${id}`, form)
     }
 }
