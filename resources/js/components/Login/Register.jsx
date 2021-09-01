@@ -10,7 +10,7 @@ const Register = () => {
         name: '',
         email: '',
         password: '',
-        handleConfirmPasswordChange: ''
+        password_confirmation: ''
     })
 
     const [errors, setErrors] = useState([])
@@ -107,7 +107,7 @@ const Register = () => {
                     <input
                       type="password"
                       className={`form-control ${errors.password && "input-border-danger"}`}
-                      id="password"
+                      id="confirm-password"
                       value={form.password_confirmation}
                       onChange={handleConfirmPasswordChange}
                     />
