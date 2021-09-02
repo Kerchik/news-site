@@ -11,7 +11,7 @@
         a {
             text-decoration: none;
             color: #ebe4e1;
-            :hover {
+            &:hover {
                 text-decoration: none;
                 color: #c7c4c3;
             }
@@ -29,11 +29,21 @@
     text-decoration: none;
     color: #c7c4c3 !important;
 }
+.username {
+    &:hover {
+        color: #c7c4c3 !important;
+    }
+}
 .header-mt {
     margin-top: 1em;
 }
 .navbar-toggle-button {
     display: inline-block;
+}
+.link {
+    &:hover {
+        color: #c7c4c3 !important;
+    }
 }
 .dropdown-menu-ul {
     li,a {

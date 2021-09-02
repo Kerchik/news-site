@@ -54,19 +54,19 @@ const Header = ({loggedIn, changeIsLoggedIn, changeLoggedUser, loggedUser}) => {
             </button>
             <div className={`demo-menu ${showMenu && 'visible'}`}>
                 <ul className={`${s['dropdown-menu-ul']} text-center pl-0`}>
-                    <li><a onClick={() => goToPage("/news")}>News</a></li>
-                    <li><a onClick={() => goToPage("/about")}>About</a></li>
+                    <li><Link to="/news" className={s['link']}>News</Link></li>
+                    <li><Link to="/about" className={s['link']}>About</Link></li>
                     { (loggedIn && loggedUser?.role === 1) &&
                         <li><a onClick={() => goToPage("/admin-page")}>Admin Page</a></li>                   
                     }
                     { loggedIn ?
                         <li>
-                            <span onClick={toUserProfile} className="cursor-pointer text-light mr-2">{loggedUser?.name}</span>
-                            <a onClick={logout} href="#" className="d-inline">Logout</a>
+                            <span onClick={toUserProfile} className={`cursor-pointer text-light mr-2 ${s['username']}`}>{loggedUser?.name}</span>
+                            <a onClick={logout} href="#" className={`d-inline text-white ${s['login-logout']}`}>Logout</a>
                         </li>
                     :
                         <li>
-                            <a className="link" onClick={() => goToPage("/login")}>Login</a>
+                            <a className={`cursor-pointer ${s['link']}`} onClick={() => goToPage("/login")}>Login</a>
                         </li>
                     }
                 </ul>
@@ -75,7 +75,7 @@ const Header = ({loggedIn, changeIsLoggedIn, changeLoggedUser, loggedUser}) => {
                 
                 { loggedIn ?
                 <>
-                    <span onClick={toUserProfile} className="cursor-pointer text-light mr-2">{loggedUser?.name}</span>
+                    <span onClick={toUserProfile} className={`cursor-pointer text-light mr-2 ${s['username']}`}>{loggedUser?.name}</span>
                     <a className={`text-white ${s['login-logout']}`} onClick={logout} href="#">Logout</a>
                 </>
                 :

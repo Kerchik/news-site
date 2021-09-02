@@ -1,5 +1,6 @@
 .scroll-up {
     width: 56px;
+    cursor: pointer;
 }
 @media (max-width: 576px) {
     .footer-logo {

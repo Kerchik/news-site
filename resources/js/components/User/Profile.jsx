@@ -194,11 +194,11 @@ const Profile = ({loggedIn, loggedUser}) => {
                         {userData?.created_at}
                     </div>
                 </div>
-                <div className="col-xl-6">
+                <div className="col-md-6">
                     <div>Articles count: </div>
                     <div>{userActivity?.articlesCount}</div>
                 </div>
-                <div className="col-xl-6">
+                <div className="col-md-6">
                     <div>Comments count: </div>
                     <div>{userActivity?.commentsCount}</div>
                 </div>
