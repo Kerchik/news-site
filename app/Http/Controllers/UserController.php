@@ -28,7 +28,7 @@ class UserController extends Controller
     }
 
     public function getUserActivity($userId) {
-        if (auth()->user()->id !== $userId && auth()->user()->role !== self::ROLE_ADMIN) {
+        if (auth()->user()->id !== intval($userId) && auth()->user()->role !== self::ROLE_ADMIN) {
 			return response("You do not have a permission to execute this operation!", 403);
 		}
 		
@@ -68,7 +68,9 @@ class UserController extends Controller
 			return response("You do not have a permission to execute this operation!", 403);
 		}
 		$request->validate([
-            'avatar' => ['required']
+            'avatar' => ['required'],
+            'name' => ['required', 'unique:users,name,'.auth()->user()->id],
+            'email' => ['required', 'email', 'unique:users,email,'.auth()->user()->id],
         ]);
 		
 		$user = User::where('id', $userId)->first();
@@ -77,8 +79,8 @@ class UserController extends Controller
 			return response('User is not found!', 404);
 		}
 
-		// $news->title = $request['title'];
-		// $news->content = $request['content'];
+		$user->name = $request['name'];
+		$user->email = $request['email'];
 		
 		if ($request->file('avatar')) {
 			$user->avatar = $request->file('avatar')->store('user-avatars', 'public');
@@ -86,7 +88,7 @@ class UserController extends Controller
 
 		$user->save();
 
-		return response("News have been sucessfully edited!", 200);
+		return response("User data has been succesfully updated!", 200);
 	}
 
     public function deleteUser($userId) {
