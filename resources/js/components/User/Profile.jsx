@@ -68,6 +68,17 @@ const Profile = ({loggedIn, loggedUser}) => {
     }, [inputFieldsVisibility.name, inputFieldsVisibility.email])
 
     const handleAvatarChange = (file) => {
+        if (file.type !== "image/png" && file.type !== "image/jpeg") {
+            setErrors({
+                ...errors,
+                'avatar' : 'Please choose image!' 
+            })
+            console.error('Please choose image!')
+            return
+        }
+        if (errors['avatar']) {
+            delete errors['avatar']
+        }
         setUserData({
             ...userData,
             avatar: URL.createObjectURL(file),
@@ -112,7 +123,7 @@ const Profile = ({loggedIn, loggedUser}) => {
 
     return (
         <div className={`content-width mt main p-4`}>
-            { (errors.name || errors.email) &&
+            { (errors.name || errors.email || errors.avatar) &&
             <div className="alert alert-danger w-100" role="alert">
                 <div>Error</div>
                 {
@@ -133,6 +144,7 @@ const Profile = ({loggedIn, loggedUser}) => {
                         </div>
                         <input
                             type="file"
+                            accept="image/png, image/jpeg"
                             className="d-none"
                             ref={hiddenFileInput}
                             onChange={(e) => {

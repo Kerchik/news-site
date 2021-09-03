@@ -73,7 +73,6 @@ const Login = ({changeIsLoggedIn, changeLoggedUser, loggedIn}) => {
                             <input
                                 type="password"
                                 className={`form-control ${errors.password && "input-border-danger"}`}
-                                id="password"
                                 value={form.password}
                                 onChange={handlePasswordChange}
                             />

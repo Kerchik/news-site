@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import requests  from '../../../api/requests'
+import defaultAvatar from '../../../img/user_default_avatar.png'
 import s from './NewsArticle.module.css'
 
 const Comments = ({loggedIn, newsState}) => {
@@ -52,6 +53,12 @@ const Comments = ({loggedIn, newsState}) => {
                                         </span>
                                         <div className="d-flex justify-content-between py-1 pt-2">
                                             <div>
+                                                <img
+                                                    src={comment?.author?.avatar || defaultAvatar}
+                                                    alt="avatar"
+                                                    width="25"
+                                                    height="25"
+                                                />
                                                 <span className={s.text2}>{comment?.author?.name || 'DELETED'}
                                                 </span>
                                             </div>

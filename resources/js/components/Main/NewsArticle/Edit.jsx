@@ -39,6 +39,10 @@ const reducer = (state, action) => {
         case 'finish-content-change':
             return {...state, showEditContent: false}
         case 'handle-photo-change':
+            if (action.files.type !== "image/png" && action.files.type !== "image/jpeg") {
+                console.error('Please choose image!')
+                return {...state}
+            }
             return {
                 ...state,
                 photo: URL.createObjectURL(action.files),
@@ -167,6 +171,7 @@ const Edit = ({loggedIn, loggedUser}) => {
                     </button>
                     <input
                         type="file"
+                        accept="image/png, image/jpeg"
                         className="d-none"
                         ref={hiddenFileInput}
                         onChange={(e) => {

@@ -44,6 +44,9 @@ class CommentsController extends Controller
 		$comments = Comments::where('news_id', $id)->orderBy('created_at', 'DESC')->get();
 		foreach ($comments as $comment) {
 			$comment->author = User::where('id', $comment->author)->first();
+			if ($comment->author['avatar']) {
+				$comment->author['avatar'] = url($comment->author['avatar']);
+			}
 		}
 		return response()->json($comments);
 	} 

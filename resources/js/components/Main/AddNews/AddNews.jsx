@@ -37,6 +37,16 @@ const AddNews = ({loggedIn, loggedUser}) => {
     }
 
     const setPhoto = (event) => {
+        if (event.target.files[0] !== "image/png" && event.target.files[0] !== "image/jpeg") {
+            setErrors({
+                ...errors,
+                'photo' : [
+                    'Please choose image!'
+                ]
+            })
+            console.error('Please choose image!')
+            return
+        }
         setState({
             ...state,
             photo: event.target.files[0]
@@ -84,7 +94,8 @@ const AddNews = ({loggedIn, loggedUser}) => {
                     { errors.content[0] }
                 </span> }
                 <input 
-                    type="file" 
+                    type="file"
+                    accept="image/png, image/jpeg"
                     className={`w-100 my-1 ${errors.photo && "input-border-danger"}`} 
                     placeholder="Photo"
                     onChange={setPhoto} 
