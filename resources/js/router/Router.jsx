@@ -46,7 +46,7 @@ const Router = ({loggedIn, loggedUser, changeIsLoggedIn, changeLoggedUser}) => {
                     <Route exact path="/register" component={Register} />
                     <Route exact path="/login"><Login loggedIn={loggedIn} changeIsLoggedIn={changeIsLoggedIn} changeLoggedUser={changeLoggedUser} /></Route>
                     <Route exact path="/profile"><Profile loggedIn={loggedIn} loggedUser={loggedUser}/></Route>
-                    <Route exact path="/profile/password-change"><PasswordChange loggedIn={loggedIn} loggedUser={loggedUser}/></Route>
+                    <Route exact path="/profile/password-change"><PasswordChange loggedIn={loggedIn} loggedUser={loggedUser} changeIsLoggedIn={changeIsLoggedIn} changeLoggedUser={changeLoggedUser}/></Route>
                     <Route path="*">
                         <NotFound />
                     </Route>

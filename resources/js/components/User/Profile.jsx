@@ -215,7 +215,8 @@ const Profile = ({loggedIn, loggedUser}) => {
                     <div>{userActivity?.commentsCount}</div>
                 </div>
                 <div className="col-12 d-flex justify-content-end">
-                    <button 
+                    <button
+                        type="button"
                         onClick={() => history.push('/profile/password-change')} 
                         className={`btn btn-primary mr-2`}
                     >

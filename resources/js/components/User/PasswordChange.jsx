@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import { useHistory } from 'react-router-dom';
 import requests from '../../api/requests'
 
-const PasswordChange = ({loggedIn, loggedUser}) => {
+const PasswordChange = ({loggedIn, loggedUser, changeIsLoggedIn, changeLoggedUser}) => {
     let history = useHistory()
     const [userData, setUserData] = useState(null)
     const [errors, setErrors] = useState([])
@@ -45,7 +45,11 @@ const PasswordChange = ({loggedIn, loggedUser}) => {
         e.preventDefault();
         requests.changePassword(form, userData.id)
         .then(() => {
-            console.log('changed')
+            requests.logout().then(() => {
+                changeIsLoggedIn(false)
+                changeLoggedUser(null)
+                history.push('/login')
+            })
         })
         .catch(error => {
             if (error.response.status == 422) {
