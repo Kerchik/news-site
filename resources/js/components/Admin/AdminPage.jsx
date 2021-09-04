@@ -116,6 +116,54 @@ const AdminPage = ({loggedIn, loggedUser}) => {
                     </table>
                 </div>
                 }
+                <div className="w-100">
+                    <h4>Roles description:</h4>
+                        <h5>Admin:</h5>
+                        <ul>
+                            <li>
+                                Has rights to edit and delete and comment existing articles;
+                            </li>
+                            <li>
+                                Add new articles;
+                            </li>
+                            <li>
+                                Change roles of other users;
+                            </li>
+                            <li>
+                                Delete other users;
+                            </li>
+                            <li>
+                                Watch and change their profiles;
+                            </li>
+                        </ul>
+                        <h5>Author:</h5>
+                        <ul>
+                            <li>
+                                Add new articles;
+                            </li>
+                            <li>
+                                Comment existing articles;
+                            </li>
+                            <li>
+                                Watch and change their profiles;
+                            </li>
+                        </ul>
+                        <h5>Regular user:</h5>
+                        <ul>
+                            <li>
+                                Comment existing articles;
+                            </li>
+                            <li>
+                                Watch and change their profiles;
+                            </li>
+                        </ul>
+                        <h5>Guest/Unauthorized</h5>
+                        <ul>
+                            <li>
+                                Read existing articles;
+                            </li>
+                        </ul>
+                </div>
             </div>
             { roleModalIsOpen &&
                 <RoleModal 
