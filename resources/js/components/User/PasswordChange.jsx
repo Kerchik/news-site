@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import {Link} from 'react-router-dom'
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types'
 import requests from '../../api/requests'
 
 const PasswordChange = ({loggedIn, loggedUser, changeIsLoggedIn, changeLoggedUser}) => {
@@ -102,6 +103,13 @@ const PasswordChange = ({loggedIn, loggedUser, changeIsLoggedIn, changeLoggedUse
             </div>
         </div>
     )
+}
+
+PasswordChange.propTypes = {
+    loggedIn: PropTypes.bool.isRequired,
+    changeIsLoggedIn: PropTypes.func.isRequired,
+    changeLoggedUser: PropTypes.func.isRequired,
+    loggedUser: PropTypes.object,
 }
 
 export default PasswordChange
