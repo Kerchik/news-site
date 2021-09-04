@@ -31,7 +31,7 @@ const Header = ({loggedIn, changeIsLoggedIn, changeLoggedUser, loggedUser}) => {
         requests.logout().then(() => {
             changeIsLoggedIn(false)
             changeLoggedUser(null)
-            history.go(0)
+            history.push('/')
         })
     }
     return (

@@ -102,9 +102,9 @@ const AdminPage = ({loggedIn, loggedUser}) => {
                                     <td>{user.name}</td>
                                     <td>
                                         {userRoles[user.role].name}
-                                        {user.id === 1 || <button className="btn btn-primary ml-2" onClick={(e) => openRoleModalWindow(e, user)}>Change</button>}
+                                        {user.id === 1 || user.id === loggedUser.id || <button className="btn btn-primary ml-2" onClick={(e) => openRoleModalWindow(e, user)}>Change</button>}
                                     </td>
-                                    <td>{user.id === 1 || <button className="btn btn-danger ml-2" onClick={(e) => openDeleteModalWindow(e, user)}>Delete</button>}</td>
+                                    <td>{user.id === 1 || user.id === loggedUser.id || <button className="btn btn-danger ml-2" onClick={(e) => openDeleteModalWindow(e, user)}>Delete</button>}</td>
                                 </tr>
                             ))
                             : 
