@@ -3,7 +3,7 @@ import React from 'react'
 const About = () => {
     return (
         <div className={`content-width mt main p-4`}>
-            <p class="w-100">
+            <p className="w-100">
                 This project is made by Maksims Ļiskins. 
                 I am Frontend/WEB developer with &gt; 1 year work experience.
                 Site is written with Laravel + React JS.
@@ -12,10 +12,10 @@ const About = () => {
             <div>
                 <ul>
                     <li>
-                        <a href="https://github.com/Kerchik" target="_blank">Github</a>
+                        <a href="https://github.com/Kerchik" target="_blank" rel="noreferrer">Github</a>
                     </li>
                     <li>
-                        <a href="https://www.linkedin.com/in/maksims-%C4%BCiskins-75a04421b/" target="_blank">LinkedIn</a>
+                        <a href="https://www.linkedin.com/in/maksims-%C4%BCiskins-75a04421b/" target="_blank" rel="noreferrer">LinkedIn</a>
                     </li>
                     <li>
                         <a href="mailto:maksims.liskins@inbox.lv">Email</a>
