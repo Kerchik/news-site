@@ -48,5 +48,9 @@ export default {
     async changeUserData(form, id) {
         await this.getCookie()
         await axios.post(`/api/user/${id}`, form)
+    },
+    async changePassword(form, id) {
+        await this.getCookie()
+        await axios.post(`/api/user/${id}/password-change`, form)
     }
 }

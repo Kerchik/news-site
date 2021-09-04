@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Comments;
 use App\Models\News;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {   
@@ -89,6 +90,28 @@ class UserController extends Controller
 		$user->save();
 
 		return response("User data has been succesfully updated!", 200);
+	}
+
+	public function editUserPassword(Request $request, $userId) {
+		if (auth()->user()->id !== intval($userId)) {
+			return response("You do not have a permission to execute this operation!", 403);
+		}
+		
+		$request->validate([
+			'password' => ['required', 'min:8', 'confirmed']
+        ]);
+		
+		$user = User::where('id', $userId)->first();
+
+		if (!$user) {
+			return response('User is not found!', 404);
+		}
+
+		$user->password = Hash::make($request['password']);
+
+		$user->save();
+
+		return response("Password was succesfully changed!", 200);
 	}
 
     public function deleteUser($userId) {

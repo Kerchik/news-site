@@ -216,6 +216,12 @@ const Profile = ({loggedIn, loggedUser}) => {
                 </div>
                 <div className="col-12 d-flex justify-content-end">
                     <button 
+                        onClick={() => history.push('/profile/password-change')} 
+                        className={`btn btn-primary mr-2`}
+                    >
+                        Change password
+                    </button>
+                    <button 
                         onClick={saveChanges} 
                         className={`btn btn-success`}
                         disabled={!userDataIsChanged}

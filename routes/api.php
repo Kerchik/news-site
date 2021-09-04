@@ -35,6 +35,8 @@ Route::middleware('auth:sanctum')->post('change-user-role/{id}', 'UserController
 
 Route::middleware('auth:sanctum')->post('user/{id}', 'UserController@editUserData');
 
+Route::middleware('auth:sanctum')->post('user/{id}/password-change', 'UserController@editUserPassword');
+
 Route::middleware('auth:sanctum')->delete('delete-user/{id}', 'UserController@deleteUser');
 
 Route::get('redirect', function() {
