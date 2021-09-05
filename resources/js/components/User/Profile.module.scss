@@ -37,6 +37,34 @@
   .img__wrap:hover .img__description {
     transform: translateY(0);
   }
-  .h-32 {
+  .h-36 {
+    height: 36px;
+  }
+  .info-block {
     height: 32px;
+    line-height: 32px;
+  }
+  .line-height-inital {
+    line-height: initial;
+  }
+  @media (max-width: 767px) {
+    .below-md-col {
+      text-align: center;
+    }
+    .img__wrap {
+      margin-left: auto !important;
+      margin-right: auto !important;
+    }
+    .user-data {
+      margin-left: auto !important;
+      margin-right: auto !important;
+      width: auto !important;
+      text-align: justify;
+    }
+    .action-buttons-block {
+      button {
+        width: 100% !important;
+        margin-right: 0 !important;
+      }
+    }
   }

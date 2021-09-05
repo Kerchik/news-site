@@ -134,8 +134,8 @@ const Profile = ({loggedIn, loggedUser}) => {
             </div>
             }
             <form className="row w-100" encType="multipart/form-data" name="fileinfo">
-                <h2 className="col-12">Profile:</h2>
-                <div className="col-xl-2">
+                <h2 className={`col-12 ${s['below-md-col']}`}>Profile:</h2>
+                <div className="col-md-2">
                     <div className={s["img__wrap"]}>
                         <img src={userData?.avatar || defaultAvatar} className={s['avatar']}/>
                         <div onClick={handleAvatarChangeClick} className={`${s["img__description_layer"]} cursor-pointer`}>
@@ -154,67 +154,79 @@ const Profile = ({loggedIn, loggedUser}) => {
                         />
                     </div>
                 </div>
-                <div className="col-xl-10 px-0">
-                    <div className="col-12 mb-2">
-                        <span>Username: </span> 
-                        {!inputFieldsVisibility.name &&
-                            <>
-                                {userData?.name}
-                                <img 
-                                    onClick={() => setInputFieldsVisibility({...inputFieldsVisibility, name: true})} 
-                                    src={edit} 
-                                    className={`${s['edit-button']} ml-2 cursor-pointer`}
+                <div className={`col-md-10 px-0 ${s['user-data']}`}>
+                    <div className={`col-12 ${s['h-36']}`}>
+                        <div className={s['info-block']}>
+                            <span>Username: </span> 
+                            {!inputFieldsVisibility.name &&
+                                <>
+                                    {userData?.name}
+                                    <img 
+                                        onClick={() => setInputFieldsVisibility({...inputFieldsVisibility, name: true})} 
+                                        src={edit} 
+                                        className={`${s['edit-button']} ml-2 cursor-pointer align-bottom`}
+                                    />
+                                </>
+                            }
+                            {inputFieldsVisibility.name && 
+                                <input 
+                                    value={userData?.name}
+                                    ref={nameInput}
+                                    className={s['line-height-inital']}
+                                    onChange={(e) => handleFieldChange(e, 'name')}
+                                    onBlur={() => setInputFieldsVisibility({...inputFieldsVisibility, name: false})}
                                 />
-                            </>
-                        }
-                        {inputFieldsVisibility.name && 
-                            <input 
-                                value={userData?.name}
-                                ref={nameInput}
-                                onChange={(e) => handleFieldChange(e, 'name')}
-                                onBlur={() => setInputFieldsVisibility({...inputFieldsVisibility, name: false})}
-                            />
-                        }
+                            }
+                        </div>
                     </div>
-                    <div className="col-12 mb-2">
-                        <span>Email: </span> 
-                        {!inputFieldsVisibility.email &&
-                            <>
-                                {userData?.email}
-                                <img 
-                                    onClick={() => setInputFieldsVisibility({...inputFieldsVisibility, email: true})} 
-                                    src={edit} 
-                                    className={`${s['edit-button']} ml-2 cursor-pointer`}
+                    <div className={`col-12 ${s['h-36']}`}>
+                        <div className={s['info-block']}>
+                            <span>Email: </span> 
+                            {!inputFieldsVisibility.email &&
+                                <>
+                                    {userData?.email}
+                                    <img 
+                                        onClick={() => setInputFieldsVisibility({...inputFieldsVisibility, email: true})} 
+                                        src={edit} 
+                                        className={`${s['edit-button']} ml-2 cursor-pointer align-bottom`}
+                                    />
+                                </>
+                            }
+                            {inputFieldsVisibility.email && 
+                                <input 
+                                    value={userData?.email}
+                                    ref={emailInput}
+                                    className={s['line-height-inital']}
+                                    onChange={(e) => handleFieldChange(e, 'email')}
+                                    onBlur={() => setInputFieldsVisibility({...inputFieldsVisibility, email: false})}
                                 />
-                            </>
-                        }
-                        {inputFieldsVisibility.email && 
-                            <input 
-                                value={userData?.email}
-                                ref={emailInput}
-                                onChange={(e) => handleFieldChange(e, 'email')}
-                                onBlur={() => setInputFieldsVisibility({...inputFieldsVisibility, email: false})}
-                            />
-                        }
+                            }
+                        </div>
                     </div>
-                    <div className={`col-12 mb-2 ${s['h-32']}`}>
-                        <span>Role: </span>
-                        {userData && userRoles[userData.role].name}
+                    <div className={`col-12 ${s['h-36']}`}>
+                        <div className={s['info-block']}>
+                            <span>Role: </span>
+                            {userData && userRoles[userData.role].name}
+                        </div>
                     </div>
-                    <div className={`col-12 mb-2 ${s['h-32']}`}>
-                        <span>Registration date: </span>
-                        {userData?.created_at}
+                    <div className={`col-12 ${s['h-36']}`}>
+                        <div className={s['info-block']}>
+                            <span>Registration date: </span>
+                            {userData?.created_at}
+                        </div>
                     </div>
                 </div>
-                <div className="col-md-6">
-                    <div>Articles count: </div>
-                    <div>{userActivity?.articlesCount}</div>
+                <div className="w-100 row mx-0 my-3">
+                    <div className={`col-md-6 ${s['below-md-col']}`}>
+                        <div><h4>Articles count:</h4></div>
+                        <div>{userActivity?.articlesCount}</div>
+                    </div>
+                    <div className={`col-md-6 ${s['below-md-col']}`}>
+                        <div><h4>Comments count:</h4></div>
+                        <div>{userActivity?.commentsCount}</div>
+                    </div>
                 </div>
-                <div className="col-md-6">
-                    <div>Comments count: </div>
-                    <div>{userActivity?.commentsCount}</div>
-                </div>
-                <div className="col-12 d-flex justify-content-end">
+                <div className={`col-12 d-flex justify-content-end flex-wrap ${s['action-buttons-block']}`}>
                     <button
                         type="button"
                         onClick={() => history.push('/profile/password-change')} 
