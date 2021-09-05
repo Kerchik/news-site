@@ -61,10 +61,15 @@
       width: auto !important;
       text-align: justify;
     }
+  }
+  @media (max-width: 575px) {
     .action-buttons-block {
       button {
         width: 100% !important;
         margin-right: 0 !important;
+        &:first-child {
+          margin-bottom: 0.5rem;
+        }
       }
     }
   }

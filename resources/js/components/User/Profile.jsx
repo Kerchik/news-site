@@ -122,7 +122,7 @@ const Profile = ({loggedIn, loggedUser}) => {
     }
 
     return (
-        <div className={`content-width mt main p-4`}>
+        <div className={`content-width row mt main py-4 `}>
             { (errors.name || errors.email || errors.avatar) &&
             <div className="alert alert-danger w-100" role="alert">
                 <div>Error</div>
@@ -133,7 +133,7 @@ const Profile = ({loggedIn, loggedUser}) => {
                 }
             </div>
             }
-            <form className="row w-100" encType="multipart/form-data" name="fileinfo">
+            <form className="col-12 row mx-0" encType="multipart/form-data" name="fileinfo">
                 <h2 className={`col-12 ${s['below-md-col']}`}>Profile:</h2>
                 <div className="col-md-2">
                     <div className={s["img__wrap"]}>
