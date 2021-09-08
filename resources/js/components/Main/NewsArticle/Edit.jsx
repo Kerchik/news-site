@@ -156,7 +156,8 @@ const Edit = ({loggedIn, loggedUser}) => {
                 }
                 {state.showEditContent && 
                     <textarea 
-                        className={s['title-input']} 
+                        className={s['title-input']}
+                        rows="4"
                         value={state.content} 
                         onChange={(e) => dispatch({type: 'handle-content-change', content: e.target.value})} 
                         onBlur={() => dispatch({type: 'finish-content-change'})} 

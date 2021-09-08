@@ -37,7 +37,6 @@ const AddNews = ({loggedIn, loggedUser}) => {
     }
 
     const setPhoto = (event) => {
-        console.log(event.target.files[0])
         if (event.target.files[0].type !== "image/png" && event.target.files[0].type !== "image/jpeg") {
             setErrors({
                 ...errors,
