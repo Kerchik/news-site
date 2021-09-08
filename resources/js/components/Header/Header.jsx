@@ -35,8 +35,8 @@ const Header = ({loggedIn, changeIsLoggedIn, changeLoggedUser, loggedUser}) => {
         })
     }
     return (
-        <div className="d-flex content-width justify-content-between">
-            <div className={` ${s.header}`}>
+        <header className="d-flex content-width justify-content-between">
+            <nav className={` ${s.header}`}>
                 <img 
                     src={logo}
                     className={'cursor-pointer'} 
@@ -48,11 +48,11 @@ const Header = ({loggedIn, changeIsLoggedIn, changeLoggedUser, loggedUser}) => {
                         <li><Link to="/admin-page">Admin Page</Link></li>                   
                     }
                 </ul>
-            </div>
+            </nav>
             <button onClick={toggleHeaderMenu} className={`navbar-toggler navbar-dark ${s['navbar-toggle-button']}`} type="button">
                 <span className="navbar-toggler-icon"></span>
             </button>
-            <div className={`demo-menu ${showMenu && 'visible'}`}>
+            <nav className={`demo-menu ${showMenu && 'visible'}`}>
                 <ul className={`${s['dropdown-menu-ul']} text-center pl-0`}>
                     <li><Link to="/news" className={s['link']}>News</Link></li>
                     <li><Link to="/about" className={s['link']}>About</Link></li>
@@ -70,7 +70,7 @@ const Header = ({loggedIn, changeIsLoggedIn, changeLoggedUser, loggedUser}) => {
                         </li>
                     }
                 </ul>
-            </div>
+            </nav>
             <div className={`${s['header-mt']} ${s['navbar-hide']} ${s['navbar-header-margin']}`}>
                 
                 { loggedIn ?
@@ -82,7 +82,7 @@ const Header = ({loggedIn, changeIsLoggedIn, changeLoggedUser, loggedUser}) => {
                 <Link to="/login" className={`text-white ${s['login']} ${s['login-logout']}`}>Login</Link> 
                 }
             </div>
-        </div>
+        </header>
     )
 }
 

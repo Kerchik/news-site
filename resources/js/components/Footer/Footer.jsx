@@ -8,7 +8,7 @@ const Footer = () => {
         window.scrollTo(0, 0)
     }
     return (
-        <div className={`d-flex content-width text-white justify-content-between pb-2 mt-1 ${s['footer']}`}>
+        <footer className={`d-flex content-width text-white justify-content-between pb-2 mt-1 ${s['footer']}`}>
             <div>
                 <img 
                     src={logo} 
@@ -22,7 +22,7 @@ const Footer = () => {
                     onClick={scrollTop}    
                 />
             </div>
-        </div>
+        </footer>
     )
 }
 

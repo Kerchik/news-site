@@ -56,7 +56,7 @@ const View = ({loggedIn}) => {
 
     return (
         <div className={`content-width mt ${s.main}`}>
-            <div className="row w-100 mx-0">
+            <article className="row w-100 mx-0">
                 <img src={state.photo} className="col-12 px-0" />
                 <div className={`col-12 d-flex justify-content-end ${s.author}`}>
                     Author: <b>{state?.author?.name || 'DELETED'}</b>
@@ -65,7 +65,7 @@ const View = ({loggedIn}) => {
                     {state.title}
                 </span> 
                 <div className={`col-12 ${s.content}`} dangerouslySetInnerHTML={{__html: state.content}}></div>
-            </div>
+            </article>
             <Comments 
                 loggedIn={loggedIn}
                 newsState={state}
