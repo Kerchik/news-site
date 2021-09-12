@@ -11,10 +11,8 @@ const Comments = ({loggedIn, newsState}) => {
     const [errors, setErrors] = useState([])
 
     useEffect(() => {
-        if (newsState.id) {
-            getComments(newsState.id)
-        }
-    }, [newsState])
+        getComments(newsState.id)
+    }, [])
     
     const getComments = async (id) => {
         requests.getComments(id).then(({data}) => {

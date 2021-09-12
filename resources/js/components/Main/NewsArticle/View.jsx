@@ -66,10 +66,12 @@ const View = ({loggedIn}) => {
                 </span> 
                 <div className={`col-12 ${s.content}`} dangerouslySetInnerHTML={{__html: state.content}}></div>
             </article>
-            <Comments 
-                loggedIn={loggedIn}
-                newsState={state}
-            />
+            { state.id &&
+                <Comments 
+                    loggedIn={loggedIn}
+                    newsState={state}
+                />
+            }
         </div>
     )
 }
