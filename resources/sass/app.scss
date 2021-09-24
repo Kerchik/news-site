@@ -91,7 +91,7 @@ html, body {
 }
 .demo-menu.visible {
   transform: translateY(-.3rem);
-  transition: transform .2s,opacity .2s,visibility linear;
+  transition: opacity .4s,visibility linear;
   visibility: visible;
   opacity: 1;
   width: 97%;

@@ -1,6 +1,9 @@
 .news-block {
     height: 400px;
     margin-top: 5px;
+    a {
+        text-decoration: none;
+    }
 }
 .news-block-photo {
     max-width: 100%;
