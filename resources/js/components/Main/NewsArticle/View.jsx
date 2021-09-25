@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import PropTypes from 'prop-types'
 import {useParams, useHistory} from 'react-router-dom'
 import s from './NewsArticle.module.css'
@@ -7,6 +7,8 @@ import Comments from './Comments'
 const View = ({loggedIn}) => {
     const { id } = useParams();
     let history = useHistory()
+
+    const isCancelled = useRef(false);
 
     const [state, setState] = useState({
         id: null,
@@ -35,14 +37,16 @@ const View = ({loggedIn}) => {
         fetch(`/api/news/${id}`)
         .then(handleResponse)
         .then(news => {
-            setState({
-                ...state,
-                id: news.id,
-                title: news.title,
-                content: news.content,
-                photo: news.photo,
-                author: news.author,
-            })
+            if (!isCancelled.current) {
+                setState({
+                    ...state,
+                    id: news.id,
+                    title: news.title,
+                    content: news.content,
+                    photo: news.photo,
+                    author: news.author,
+                })
+            }
         })
         .catch((error) => {
             if (error?.status === 404) {
@@ -51,6 +55,10 @@ const View = ({loggedIn}) => {
                 return
             }
         })
+
+        return () => {
+            isCancelled.current = true;
+        }
            
     }, [])
 

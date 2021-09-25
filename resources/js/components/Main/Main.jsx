@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 import s from './Main.module.scss'
@@ -11,9 +11,15 @@ const Main = ({loggedIn, loggedUser}) => {
     const [currentPage, setCurrentPage] = useState(null)
     const [lastPage, setLastPage] = useState(null)
     const [loading, setLoading] = useState(true)
+
+    const isCancelled = useRef(false);
     
     useEffect(() => {
         loadItems()
+
+        return () => {
+            isCancelled.current = true;
+        }
     }, [])
 
     const loadItems = async () => {
@@ -23,7 +29,9 @@ const Main = ({loggedIn, loggedUser}) => {
             return response.json();
         })
         .then((news) => {
-            fetchActions(news)
+            if (!isCancelled.current) {
+                fetchActions(news)
+            }
         });
     }
 

@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import {Link} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import requests  from '../../../api/requests'
@@ -10,13 +10,21 @@ const Comments = ({loggedIn, newsState}) => {
     const [commentValue, setCommentValue] = useState('')
     const [errors, setErrors] = useState([])
 
+    const isCancelled = useRef(false);
+
     useEffect(() => {
         getComments(newsState.id)
+
+        return () => {
+            isCancelled.current = true;
+        }
     }, [])
     
     const getComments = async (id) => {
         requests.getComments(id).then(({data}) => {
-            setComments(data)
+            if (!isCancelled.current) {
+                setComments(data)
+            }
         })
     }
     const commentHandler = (e) => {
@@ -28,8 +36,10 @@ const Comments = ({loggedIn, newsState}) => {
             news_id: newsState.id
         }
         requests.addComment(data, newsState.id).then(() => {
-            setCommentValue('')
-            getComments(newsState.id)
+            if (!isCancelled.current) {
+                setCommentValue('')
+                getComments(newsState.id)
+            }
         })
         .catch(error => {
             if (error.response.status == 422) {

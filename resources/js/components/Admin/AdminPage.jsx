@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import Loading from '../Common/Loading'
@@ -7,6 +7,8 @@ import DeleteUserModal from './Modal/DeleteUserModal';
 
 const AdminPage = ({loggedIn, loggedUser}) => {
     let history = useHistory()
+
+    const isCancelled = useRef(false);
 
     const modalStyles = {
         content : {
@@ -52,6 +54,10 @@ const AdminPage = ({loggedIn, loggedUser}) => {
             return
         }
         loadUsers()
+
+        return () => {
+            isCancelled.current = true;
+        }
     }, [])
 
     const loadUsers = async () => {
@@ -59,11 +65,15 @@ const AdminPage = ({loggedIn, loggedUser}) => {
         .then(response => {
             return response.json();
         }).then((data) => {
-            setUsersList(data)
-            setLoading(false)
+            if (!isCancelled.current) {
+                setUsersList(data)
+                setLoading(false)
+            }
         }).catch((e) => {
-            console.error(e)
-            setLoading(false)
+            if (!isCancelled.current) {
+                console.error(e)
+                setLoading(false)
+            }
         })
     }
 
